@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LandVerify - Contact with Seller</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#f2f9f3] text-slate-900 antialiased min-h-screen">
+
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-emerald-800 focus:text-white focus:px-4 focus:py-2 focus:rounded-md">
+    Skip to main content
+  </a>
+
+  <!-- Main Container -->
+  <div class="flex flex-col lg:flex-row min-h-screen p-3 md:p-6 gap-6 max-w-[1600px] mx-auto">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full lg:w-64 bg-white rounded-3xl p-6 flex flex-col justify-between shadow-xs flex-shrink-0" aria-label="Sidebar Navigation">
+      <div>
+        <!-- Logo -->
+        <div class="mb-8">
+          <a href="#" class="inline-block focus:outline-none focus:ring-2 focus:ring-emerald-600 rounded-md">
+            <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">LandVerify</h1>
+            <span class="text-[9px] font-semibold text-emerald-800 tracking-wider block bg-emerald-100 px-2 py-0.5 rounded-full inline-block -mt-0.5">
+              Secure . Verified . Transparent
+            </span>
+          </a>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav aria-label="Main Navigation">
+          <ul class="space-y-1.5" role="list">
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <span>Browse Land</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span>My Properties</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                <span>Add Land</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-current="page" class="flex items-center gap-3 px-4 py-2.5 bg-[#bffecd] text-emerald-950 font-bold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-emerald-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Messages</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>Transactions</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span>Profile</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Logout Button -->
+      <div class="pt-6 border-t border-slate-100">
+        <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+          <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Board Area -->
+    <main id="main-content" class="flex-1 bg-white rounded-3xl p-6 md:p-8 shadow-xs flex flex-col justify-between border border-slate-100">
+      
+      <!-- Top Title & Header Navigation Bar -->
+      <div class="space-y-4 mb-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900">Contact with Seller</h2>
+            <!-- Breadcrumbs -->
+            <nav aria-label="Breadcrumb" class="mt-1">
+              <ol class="flex items-center gap-1.5 text-xs text-slate-600 font-medium" role="list">
+                <li><a href="#" class="hover:underline focus:outline-none focus:ring-1 focus:ring-emerald-600 rounded">Home</a></li>
+                <li>&gt;</li>
+                <li><a href="#" class="hover:underline focus:outline-none focus:ring-1 focus:ring-emerald-600 rounded">Messages</a></li>
+                <li>&gt;</li>
+                <li class="text-slate-900 font-semibold" aria-current="page">Contact with Seller</li>
+              </ol>
+            </nav>
+          </div>
+
+          <!-- Header Right Icons -->
+          <div class="flex items-center gap-3">
+            <button type="button" aria-label="Notifications" class="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 22a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22zm7-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C8.63 5.36 7 7.92 7 11v5l-2 2v1h14v-1l-2-2z"/>
+              </svg>
+            </button>
+            <button type="button" aria-label="User Account" class="text-slate-300 hover:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-600 rounded-full">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <hr class="border-slate-200" />
+      </div>
+
+      <!-- Messaging Grid Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+        <!-- Conversations Column (Left - 5 Cols) -->
+        <section aria-label="Conversations List" class="lg:col-span-5 space-y-4">
+          <h3 class="text-2xl font-bold text-slate-900">Conversations</h3>
+
+          <!-- Search Input -->
+          <div class="relative">
+            <label for="search-conversations" class="sr-only">Search conversations</label>
+            <input 
+              type="text" 
+              id="search-conversations"
+              placeholder="Search conversations..." 
+              class="w-full pl-3 pr-10 py-2.5 border border-slate-400 rounded-xs text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-600 placeholder-slate-500 bg-white"
+            />
+            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-500">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Conversation List -->
+          <ul class="space-y-3" role="list">
+            
+            <!-- Item 1 (Active) -->
+            <li>
+              <button type="button" class="w-full text-left bg-slate-100 hover:bg-slate-200 p-3.5 rounded-sm flex items-start gap-3 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <div class="w-10 h-10 rounded-full bg-amber-400 border-2 border-emerald-600 flex items-center justify-center text-white overflow-hidden flex-shrink-0">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Rahman Hossain profile" class="w-full h-full object-cover" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <h4 class="font-bold text-slate-900 text-sm leading-tight">Rahman Hossain</h4>
+                  <p class="text-xs text-slate-600 font-medium truncate mt-0.5">Yes, the land is still available. You can visit anytime.</p>
+                </div>
+              </button>
+            </li>
+
+            <!-- Item 2 -->
+            <li>
+              <button type="button" class="w-full text-left bg-slate-100 hover:bg-slate-200 p-3.5 rounded-sm flex items-start gap-3 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <div class="w-10 h-10 rounded-full bg-pink-400 flex items-center justify-center text-white overflow-hidden flex-shrink-0">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Farjana Ahmed profile" class="w-full h-full object-cover" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <h4 class="font-bold text-slate-900 text-sm leading-tight">Farjana Ahmed</h4>
+                  <p class="text-xs text-slate-600 font-medium truncate mt-0.5">I have a question about the documents.</p>
+                </div>
+              </button>
+            </li>
+
+            <!-- Item 3 -->
+            <li>
+              <button type="button" class="w-full text-left bg-slate-100 hover:bg-slate-200 p-3.5 rounded-sm flex items-start gap-3 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white overflow-hidden flex-shrink-0">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Sakib Hasan profile" class="w-full h-full object-cover" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <h4 class="font-bold text-slate-900 text-sm leading-tight">Sakib Hasan</h4>
+                  <p class="text-xs text-slate-600 font-medium truncate mt-0.5">Thank you for your response. I will check and update you.</p>
+                </div>
+              </button>
+            </li>
+
+            <!-- Item 4 -->
+            <li>
+              <button type="button" class="w-full text-left bg-slate-100 hover:bg-slate-200 p-3.5 rounded-sm flex items-start gap-3 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white overflow-hidden flex-shrink-0">
+                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80" alt="Nusrat Jahan profile" class="w-full h-full object-cover" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <h4 class="font-bold text-slate-900 text-sm leading-tight">Nusrat Jahan</h4>
+                  <p class="text-xs text-slate-600 font-medium truncate mt-0.5">Can I get more pictures of the land?</p>
+                </div>
+              </button>
+            </li>
+
+          </ul>
+
+          <!-- See All Messages Button -->
+          <div class="pt-2">
+            <button type="button" class="w-full border border-slate-900 hover:bg-slate-50 text-slate-900 font-bold text-xs py-2.5 px-4 rounded-xs transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+              See All Messagers
+            </button>
+          </div>
+        </section>
+
+        <!-- Active Chat Window (Right - 7 Cols) -->
+        <section aria-label="Active Conversation with Rahman Hossain" class="lg:col-span-7 border border-slate-400 rounded-xs flex flex-col justify-between bg-white min-h-[580px]">
+          
+          <div>
+            <!-- Active Chat Header -->
+            <header class="p-3.5 border-b border-slate-300 flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-amber-400 overflow-hidden flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Rahman Hossain" class="w-full h-full object-cover" />
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm">Rahman Hossain</h3>
+            </header>
+
+            <!-- Linked Property Information Banner -->
+            <div class="p-3 bg-slate-100 border-b border-slate-300 flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=200&q=80" alt="Property thumbnail" class="w-14 h-10 object-cover rounded-xs flex-shrink-0" />
+                <div class="min-w-0">
+                  <h4 class="font-extrabold text-slate-900 text-xs sm:text-sm truncate">12.5 Katha Residential Plot</h4>
+                  <p class="text-[11px] text-slate-600 font-medium truncate">Bashundhara, Dhaka</p>
+                </div>
+              </div>
+              <a href="#" class="border border-slate-900 hover:bg-white text-slate-900 font-bold text-xs py-1.5 px-3 rounded-xs whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                View Details
+              </a>
+            </div>
+
+            <!-- Chat Messages Log -->
+            <div class="p-4 space-y-4 max-h-[380px] overflow-y-auto">
+              
+              <!-- Incoming Message 1 -->
+              <div class="flex items-start gap-2.5 max-w-[80%]">
+                <div class="w-7 h-7 rounded-full bg-amber-400 overflow-hidden flex-shrink-0 mt-0.5">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="" aria-hidden="true" class="w-full h-full object-cover" />
+                </div>
+                <div class="bg-slate-200 text-slate-900 text-xs p-3 rounded-xs leading-relaxed">
+                  Assalamu Alaikum,<br />
+                  I am interested in your property.<br />
+                  Is it still available?
+                </div>
+              </div>
+
+              <!-- Outgoing Message 1 -->
+              <div class="flex items-start gap-2.5 max-w-[80%] ml-auto justify-end">
+                <div class="bg-slate-200 text-slate-900 text-xs p-3 rounded-xs leading-relaxed">
+                  Wa Alaikum Assalam,<br />
+                  Yes, the land is still available.
+                </div>
+                <div class="w-7 h-7 rounded-full bg-blue-500 overflow-hidden flex-shrink-0 mt-0.5">
+                  <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80" alt="" aria-hidden="true" class="w-full h-full object-cover" />
+                </div>
+              </div>
+
+              <!-- Incoming Message 2 -->
+              <div class="flex items-start gap-2.5 max-w-[80%]">
+                <div class="w-7 h-7 rounded-full bg-amber-400 overflow-hidden flex-shrink-0 mt-0.5">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="" aria-hidden="true" class="w-full h-full object-cover" />
+                </div>
+                <div class="bg-slate-200 text-slate-900 text-xs p-3 rounded-xs leading-relaxed">
+                  Great! Can I visit the property this weekend?
+                </div>
+              </div>
+
+              <!-- Outgoing Message 2 -->
+              <div class="flex items-start gap-2.5 max-w-[80%] ml-auto justify-end">
+                <div class="bg-slate-200 text-slate-900 text-xs p-3 rounded-xs leading-relaxed">
+                  Yes, you can visit anytime.<br />
+                  Let me know when you are coming.
+                </div>
+                <div class="w-7 h-7 rounded-full bg-blue-500 overflow-hidden flex-shrink-0 mt-0.5">
+                  <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80" alt="" aria-hidden="true" class="w-full h-full object-cover" />
+                </div>
+              </div>
+
+              <!-- Incoming Message 3 -->
+              <div class="flex items-start gap-2.5 max-w-[80%]">
+                <div class="w-7 h-7 rounded-full bg-amber-400 overflow-hidden flex-shrink-0 mt-0.5">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="" aria-hidden="true" class="w-full h-full object-cover" />
+                </div>
+                <div class="bg-slate-200 text-slate-900 text-xs p-3 rounded-xs leading-relaxed">
+                  I will come on Saturday around 11 AM. Hope that's okay.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom Message Composer -->
+          <footer class="p-3.5 border-t border-slate-300">
+            <form class="flex items-center gap-2" onSubmit="event.preventDefault();">
+              <div class="relative flex-1 flex items-center">
+                <button type="button" aria-label="Attach file" class="absolute left-3 text-slate-600 hover:text-slate-800 focus:outline-none focus:ring-1 focus:ring-emerald-600 rounded">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                  </svg>
+                </button>
+                <label for="chat-message-input" class="sr-only">Type a message</label>
+                <input 
+                  type="text" 
+                  id="chat-message-input"
+                  placeholder="Type a Message......" 
+                  class="w-full pl-9 pr-3 py-2 border border-slate-400 rounded-md text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-600 placeholder-slate-500 bg-white"
+                />
+              </div>
+              
+              <!-- Send Button -->
+              <button type="submit" aria-label="Send message" class="bg-[#0a5c2d] hover:bg-emerald-800 text-white p-2.5 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600 flex items-center justify-center">
+                <svg class="w-4 h-4 transform rotate-45 -mt-0.5 -ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+              </button>
+            </form>
+          </footer>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
