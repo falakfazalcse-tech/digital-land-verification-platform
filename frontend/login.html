@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandDeal - Login</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#22C55E',
+                        'dark-primary': '#16A34A',
+                        'heading': '#111827',
+                        'sub-text': '#4B5563',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white font-sans antialiased text-heading h-screen overflow-hidden">
+
+    <div class="flex h-full w-full">
+        <!-- Left Side: Login Form (Fixed within viewport) -->
+        <div class="w-full lg:w-[45%] h-full flex flex-col justify-between p-6 sm:p-10 xl:p-12 overflow-y-auto lg:overflow-visible">
+            <div class="max-w-md w-full mx-auto my-auto">
+                <!-- Logo & Subtitle (Larger Logo) -->
+                <div class="mb-5">
+                    <h1 class="text-4xl font-black tracking-tight text-heading">LandDeal</h1>
+                    <div class="mt-2 inline-flex items-center gap-1.5 px-3 py-0.5 bg-green-50 color-green text-dark-primary text-xs font-semibold rounded-full border border-dark-primary">
+                        <span class="w-1.5 h-1.5 rounded-full bg-dark-primary"></span>
+                        Secure. Verified. Transparent
+                    </div>
+                </div>
+
+                <!-- Form Title (Smaller Welcome Back) -->
+                <h2 class="text-xl font-bold text-heading mb-1">Welcome Back</h2>
+                <p class="text-xs text-sub-text mb-5">Login to your LandDeal account</p>
+
+                <!-- Role Selector Buttons with Enhanced Officer Hover -->
+                <div class="flex gap-3 mb-5">
+                    <button type="button" class="flex-1 py-2.5 px-4 text-center text-xs sm:text-sm font-semibold rounded-lg bg-dark-primary text-white shadow-sm transition-all duration-200 hover:bg-[#118239]">
+                        Buyer/Seller
+                    </button>
+                    <!-- Officer Button with clear hover, active, and focus states -->
+                    <button type="button" class="flex-1 py-2.5 px-4 text-center text-xs sm:text-sm font-semibold rounded-lg text-sub-text border border-gray-300 transition-all duration-200 hover:bg-green-50 hover:text-dark-primary hover:border-dark-primary active:scale-95">
+                        Officer
+                    </button>
+                </div>
+
+                <!-- Login Form -->
+                <form class="space-y-4">
+                    <!-- Email Input -->
+                    <div>
+                        <label for="email" class="block text-xs font-medium mb-1">Email Address/Mobile No</label>
+                        <input type="text" id="email" name="email" placeholder="Enter your email/mobile no" class="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs sm:text-sm placeholder:text-gray-400 focus:ring-1 focus:ring-primary focus:border-primary transition" />
+                    </div>
+
+                    <!-- Password Input with Working Show/Hide Toggle -->
+                    <div>
+                        <label for="password" class="block text-xs font-medium mb-1">Password</label>
+                        <div class="relative">
+                            <input type="password" id="password" name="password" placeholder="Enter Your Password" class="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs sm:text-sm placeholder:text-gray-400 focus:ring-1 focus:ring-primary focus:border-primary transition pr-10" />
+                            
+                            <!-- Toggle Button -->
+                            <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400 hover:text-gray-600 transition focus:outline-none" aria-label="Toggle password visibility">
+                                <!-- Eye Icon (Visible) -->
+                                <svg id="eye-icon-show" class="w-4 h-4 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.573 16.49 16.638 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <!-- Eye Off Icon (Hidden state default) -->
+                                <svg id="eye-icon-hide" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.243 4.243L9.878 9.878" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember & Forgot -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" id="remember_me" name="remember_me" class="w-3.5 h-3.5 text-primary border-gray-300 rounded focus:ring-primary focus:ring-0 transition cursor-pointer" />
+                            <label for="remember_me" class="text-xs font-medium cursor-pointer">Remember me</label>
+                        </div>
+                        <a href="#" class="text-xs font-medium text-dark-primary hover:text-primary transition">Forgot password?</a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button type="submit" class="w-full py-2.5 px-4 text-center text-xs sm:text-sm font-bold rounded-lg bg-primary text-white shadow-sm transition hover:bg-dark-primary focus:ring-2 focus:ring-primary/50 focus:ring-offset-1">
+                        Login
+                    </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="relative my-4">
+                    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                        <div class="w-full border-t border-gray-200"></div>
+                    </div>
+                    <div class="relative flex justify-center">
+                        <span class="bg-white px-3 text-xs text-sub-text">or continue with</span>
+                    </div>
+                </div>
+
+                <!-- Google Login Button -->
+                <button type="button" class="w-full py-2.5 px-4 flex items-center justify-center gap-2 text-xs sm:text-sm font-medium rounded-lg text-heading border border-gray-300 transition hover:bg-gray-50">
+                    <svg class="w-4 h-4" viewBox="0 0 48 48">
+                        <defs><path id="a" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></defs><clipPath id="b"><use xlink:href="#a" overflow="visible"/></clipPath><path clip-path="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z"/><path clip-path="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"/><path clip-path="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"/><path clip-path="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"/>
+                    </svg>
+                    Continue with Google
+                </button>
+
+                <!-- Register Prompt -->
+                <p class="text-xs sm:text-sm mt-4 text-center font-medium">
+                    Don't have an account? 
+                    <a href="register.html" class="text-dark-primary hover:text-primary transition">Register</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Side: Hero Cover -->
+        <div class="hidden lg:block lg:w-[55%] h-full relative ">
+            <img src="/assets/images/login_page_image.jpg" alt="Aerial view of green land plots" class="absolute inset-0 w-full h-full object-cover">
+            
+            <div class="absolute inset-0 bg-black/35"></div>
+
+        </div>
+    </div>
+
+    <!-- Script for Password Show/Hide Feature -->
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const eyeShow = document.getElementById('eye-icon-show');
+            const eyeHide = document.getElementById('eye-icon-hide');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeShow.classList.remove('hidden');
+                eyeHide.classList.add('hidden');
+            } else {
+                passwordInput.type = 'password';
+                eyeShow.classList.add('hidden');
+                eyeHide.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
