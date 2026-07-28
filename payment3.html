@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LandDeal - Payment Step 3</title>
+  
+  <!-- Typography & Font Family -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#f2f9f3] text-gray-900 min-h-screen p-4 md:p-6 lg:p-8">
+
+  <!-- Main Container -->
+  <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-6 items-stretch">
+    
+    <!-- Sidebar Panel -->
+    <aside class="w-full lg:w-64 bg-white rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shrink-0">
+      <div>
+        <!-- Logo & Tagline -->
+        <div class="mb-8">
+          <h1 class="text-2xl font-bold text-gray-900 tracking-tight">LandDeal</h1>
+          <div class="mt-1 inline-block bg-green-50 border border-green-200 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+            Secure • Verified • Transparent
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="space-y-1">
+          <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="layout-grid" class="w-5 h-5"></i>
+            Dashboard
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="search" class="w-5 h-5"></i>
+            Browse Land
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="home" class="w-5 h-5"></i>
+            My Properties
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="plus" class="w-5 h-5"></i>
+            Add Land
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+            Messages
+          </a>
+          <!-- Active Nav Item -->
+          <a href="#" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
+            <i data-lucide="receipt" class="w-5 h-5"></i>
+            Transactions
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="user" class="w-5 h-5"></i>
+            Profile
+          </a>
+        </nav>
+      </div>
+
+      <!-- Logout -->
+      <div class="pt-6 border-t border-gray-100">
+        <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
+          <i data-lucide="log-out" class="w-5 h-5"></i>
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main class="flex-1 bg-white rounded-2xl border border-gray-200 p-6 lg:p-8 flex flex-col justify-between">
+      
+      <div>
+        <!-- Top Bar -->
+        <header class="flex items-center justify-between pb-6 border-b border-gray-200 mb-8">
+          <h2 class="text-lg font-bold text-gray-900">Payment – Step 3 : Make Payment</h2>
+          <div class="flex items-center gap-4">
+            <button aria-label="Notifications" class="text-green-500 hover:text-green-600 relative p-1">
+              <i data-lucide="bell" class="w-5 h-5 fill-current"></i>
+            </button>
+            <button aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400">
+              <i data-lucide="user" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Stepper -->
+        <div class="max-w-2xl mx-auto mb-10 px-4">
+          <div class="relative flex items-center justify-between">
+            
+            <!-- Background Line with Active Progress Fill -->
+            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 bg-gray-200 -z-0"></div>
+            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-2/3 h-0.5 bg-[#0b6b32] -z-0"></div>
+
+            <!-- Step 1 (Completed) -->
+            <div class="relative z-10 flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full bg-[#0b6b32] text-white flex items-center justify-center font-bold text-sm shadow-sm">
+                1
+              </div>
+              <span class="mt-2 text-xs font-semibold text-gray-900">Select Method</span>
+            </div>
+
+            <!-- Step 2 (Completed) -->
+            <div class="relative z-10 flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full bg-[#0b6b32] text-white flex items-center justify-center font-bold text-sm shadow-sm">
+                2
+              </div>
+              <span class="mt-2 text-xs font-semibold text-gray-900">Review Order</span>
+            </div>
+
+            <!-- Step 3 (Active) -->
+            <div class="relative z-10 flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full bg-[#0b6b32] text-white flex items-center justify-center font-bold text-sm shadow-sm">
+                3
+              </div>
+              <span class="mt-2 text-xs font-semibold text-[#0b6b32]">Make Payment</span>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative z-10 flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full bg-white border-2 border-gray-300 text-gray-700 flex items-center justify-center font-bold text-sm">
+                4
+              </div>
+              <span class="mt-2 text-xs font-medium text-gray-700">Confirmation</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section Title -->
+        <div class="mb-6">
+          <h3 class="text-lg font-bold text-gray-900">Make Payment</h3>
+          <p class="text-sm text-gray-600 mt-1">Complete your payment method securely to purchase this property.</p>
+        </div>
+
+        <!-- Main Form & Summary Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <!-- Left Column: Bkash Form Card -->
+          <div class="lg:col-span-7">
+            <div class="bg-white rounded-2xl border border-gray-300 p-6">
+              
+              <!-- Card Header with Logo -->
+              <div class="flex items-center justify-between mb-6">
+                <h4 class="font-bold text-base text-gray-900">Pay with Bkash</h4>
+                
+                <!-- bKash Logo Badge -->
+                <div class="px-2.5 py-1.5 bg-[#e2136e]/10 border border-[#e2136e]/20 rounded-lg flex items-center gap-1.5">
+                  <span class="font-black italic text-xs text-[#e2136e] tracking-wider">bKash</span>
+                  <div class="w-2 h-2 rounded-full bg-[#e2136e]"></div>
+                </div>
+              </div>
+
+              <!-- Payment Request Form -->
+              <form class="space-y-5" onsubmit="event.preventDefault();">
+                
+                <!-- Bkash Number Input -->
+                <div>
+                  <label for="bkash_number" class="block font-bold text-xs text-gray-900 mb-2">
+                    Bkash Number
+                  </label>
+                  <input 
+                    type="text" 
+                    id="bkash_number" 
+                    name="bkash_number" 
+                    placeholder="01XXXXXXXXX" 
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:outline-none focus:border-[#0b6b32] focus:ring-1 focus:ring-[#0b6b32] transition-colors"
+                  />
+                </div>
+
+                <!-- Enter Amount Input -->
+                <div>
+                  <label for="amount" class="block font-bold text-xs text-gray-900 mb-2">
+                    Enter Amount
+                  </label>
+                  <input 
+                    type="text" 
+                    id="amount" 
+                    name="amount" 
+                    value="৳ 28,25,000" 
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm font-semibold text-gray-900 focus:outline-none focus:border-[#0b6b32] focus:ring-1 focus:ring-[#0b6b32] transition-colors bg-gray-50/50"
+                  />
+                </div>
+
+                <!-- Helper Text -->
+                <p class="text-xs text-gray-500 pt-1">
+                  You will receive a payment request on your Bkash number.
+                </p>
+
+                <!-- Action Button -->
+                <div class="pt-2">
+                  <button 
+                    type="submit" 
+                    class="w-full bg-[#0b6b32] hover:bg-[#095728] text-white font-semibold py-3.5 rounded-xl transition-colors shadow-sm text-sm"
+                  >
+                    Request Payment
+                  </button>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+
+          <!-- Right Column: Payment Summary Panel -->
+          <div class="lg:col-span-5">
+            <div class="bg-white rounded-2xl border border-gray-300 p-6">
+              <h4 class="font-bold text-base text-gray-900 mb-4">Payment Summary</h4>
+              
+              <!-- Plot Header -->
+              <div class="flex items-center gap-3 pb-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=160&q=80" 
+                  alt="Plot image" 
+                  class="w-12 h-12 object-cover rounded-xl"
+                />
+                <div>
+                  <p class="font-bold text-xs text-gray-900">12.5 katha Residential Plot</p>
+                  <p class="text-[11px] text-gray-500 mt-0.5">Bashundhara, Dhaka</p>
+                </div>
+              </div>
+
+              <hr class="border-gray-200 mb-4" />
+
+              <!-- Pricing Breakdown -->
+              <div class="space-y-3.5 text-xs">
+                <div class="flex justify-between items-center text-gray-600">
+                  <span>Land Price</span>
+                  <span class="font-semibold text-gray-900">৳ 28,00,000</span>
+                </div>
+                <div class="flex justify-between items-center text-gray-600">
+                  <span>Service Fee</span>
+                  <span class="font-semibold text-gray-900">৳ 20,000</span>
+                </div>
+                <div class="flex justify-between items-center text-gray-600">
+                  <span>Verification Fee</span>
+                  <span class="font-semibold text-gray-900">৳ 5,000</span>
+                </div>
+                
+                <hr class="border-gray-200 my-4" />
+
+                <div class="flex justify-between items-center pt-1">
+                  <span class="font-bold text-sm text-gray-900">Total Amount</span>
+                  <span class="font-bold text-base text-gray-900">৳ 28,25,000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Initialize Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
