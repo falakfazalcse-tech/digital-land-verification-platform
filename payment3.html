@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LandDeal - Payment Step 3</title>
+  <title>LandDeal - Payment Step 3: Make Payment</title>
   
   <!-- Typography & Font Family -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,40 +32,42 @@
       <div>
         <!-- Logo & Tagline -->
         <div class="mb-8">
-          <h1 class="text-2xl font-bold text-gray-900 tracking-tight">LandDeal</h1>
-          <div class="mt-1 inline-block bg-green-50 border border-green-200 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">
-            Secure • Verified • Transparent
-          </div>
+          <a href="dashboard.html" class="block">
+            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">LandDeal</h1>
+            <div class="mt-1 inline-block bg-green-50 border border-green-200 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+              Secure • Verified • Transparent
+            </div>
+          </a>
         </div>
 
         <!-- Navigation Menu -->
         <nav class="space-y-1">
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="layout-grid" class="w-5 h-5"></i>
             Dashboard
           </a>
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="search_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="search" class="w-5 h-5"></i>
             Browse Land
           </a>
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="properties_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="home" class="w-5 h-5"></i>
             My Properties
           </a>
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="verification.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="plus" class="w-5 h-5"></i>
             Add Land
           </a>
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="message_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="mail" class="w-5 h-5"></i>
             Messages
           </a>
           <!-- Active Nav Item -->
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
+          <a href="payment1.html" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
             <i data-lucide="receipt" class="w-5 h-5"></i>
             Transactions
           </a>
-          <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="user" class="w-5 h-5"></i>
             Profile
           </a>
@@ -74,7 +76,7 @@
 
       <!-- Logout -->
       <div class="pt-6 border-t border-gray-100">
-        <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
+        <a href="index.html" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
           <i data-lucide="log-out" class="w-5 h-5"></i>
           Logout
         </a>
@@ -92,35 +94,33 @@
             <button aria-label="Notifications" class="text-green-500 hover:text-green-600 relative p-1">
               <i data-lucide="bell" class="w-5 h-5 fill-current"></i>
             </button>
-            <button aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400">
+            <a href="profile.html" aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600">
               <i data-lucide="user" class="w-5 h-5"></i>
-            </button>
+            </a>
           </div>
         </header>
 
         <!-- Stepper -->
         <div class="max-w-2xl mx-auto mb-10 px-4">
           <div class="relative flex items-center justify-between">
-            
-            <!-- Background Line with Active Progress Fill -->
             <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 bg-gray-200 -z-0"></div>
             <div class="absolute left-0 top-1/2 -translate-y-1/2 w-2/3 h-0.5 bg-[#0b6b32] -z-0"></div>
 
             <!-- Step 1 (Completed) -->
-            <div class="relative z-10 flex flex-col items-center">
+            <a href="payment1.html" class="relative z-10 flex flex-col items-center group">
               <div class="w-10 h-10 rounded-full bg-[#0b6b32] text-white flex items-center justify-center font-bold text-sm shadow-sm">
-                1
+                <i data-lucide="check" class="w-5 h-5"></i>
               </div>
               <span class="mt-2 text-xs font-semibold text-gray-900">Select Method</span>
-            </div>
+            </a>
 
             <!-- Step 2 (Completed) -->
-            <div class="relative z-10 flex flex-col items-center">
+            <a href="payment2.html" class="relative z-10 flex flex-col items-center group">
               <div class="w-10 h-10 rounded-full bg-[#0b6b32] text-white flex items-center justify-center font-bold text-sm shadow-sm">
-                2
+                <i data-lucide="check" class="w-5 h-5"></i>
               </div>
               <span class="mt-2 text-xs font-semibold text-gray-900">Review Order</span>
-            </div>
+            </a>
 
             <!-- Step 3 (Active) -->
             <div class="relative z-10 flex flex-col items-center">
@@ -131,12 +131,12 @@
             </div>
 
             <!-- Step 4 -->
-            <div class="relative z-10 flex flex-col items-center">
+            <a href="payment4.html" class="relative z-10 flex flex-col items-center group">
               <div class="w-10 h-10 rounded-full bg-white border-2 border-gray-300 text-gray-700 flex items-center justify-center font-bold text-sm">
                 4
               </div>
               <span class="mt-2 text-xs font-medium text-gray-700">Confirmation</span>
-            </div>
+            </a>
 
           </div>
         </div>
@@ -144,40 +144,39 @@
         <!-- Section Title -->
         <div class="mb-6">
           <h3 class="text-lg font-bold text-gray-900">Make Payment</h3>
-          <p class="text-sm text-gray-600 mt-1">Complete your payment method securely to purchase this property.</p>
+          <p class="text-sm text-gray-600 mt-1">Complete your payment details securely to finalize your land purchase.</p>
         </div>
 
         <!-- Main Form & Summary Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
-          <!-- Left Column: Bkash Form Card -->
+          <!-- Left Column: Dynamic Gateway Form Card -->
           <div class="lg:col-span-7">
             <div class="bg-white rounded-2xl border border-gray-300 p-6">
               
-              <!-- Card Header with Logo -->
+              <!-- Card Header with Dynamic Logo -->
               <div class="flex items-center justify-between mb-6">
-                <h4 class="font-bold text-base text-gray-900">Pay with Bkash</h4>
+                <h4 id="gateway-title" class="font-bold text-base text-gray-900">Pay with bKash</h4>
                 
-                <!-- bKash Logo Badge -->
-                <div class="px-2.5 py-1.5 bg-[#e2136e]/10 border border-[#e2136e]/20 rounded-lg flex items-center gap-1.5">
-                  <span class="font-black italic text-xs text-[#e2136e] tracking-wider">bKash</span>
-                  <div class="w-2 h-2 rounded-full bg-[#e2136e]"></div>
+                <div id="gateway-badge" class="px-3 py-1 bg-[#e2136e] rounded-lg text-white font-extrabold text-xs tracking-wider">
+                  bKash
                 </div>
               </div>
 
               <!-- Payment Request Form -->
-              <form class="space-y-5" onsubmit="event.preventDefault();">
+              <form id="payForm" action="payment4.html" method="GET" class="space-y-5">
                 
-                <!-- Bkash Number Input -->
+                <!-- Account / Number Input -->
                 <div>
-                  <label for="bkash_number" class="block font-bold text-xs text-gray-900 mb-2">
-                    Bkash Number
+                  <label id="account-label" for="account_number" class="block font-bold text-xs text-gray-900 mb-2">
+                    bKash Account Number
                   </label>
                   <input 
                     type="text" 
-                    id="bkash_number" 
-                    name="bkash_number" 
+                    id="account_number" 
+                    name="account_number" 
                     placeholder="01XXXXXXXXX" 
+                    required
                     class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:outline-none focus:border-[#0b6b32] focus:ring-1 focus:ring-[#0b6b32] transition-colors"
                   />
                 </div>
@@ -185,29 +184,30 @@
                 <!-- Enter Amount Input -->
                 <div>
                   <label for="amount" class="block font-bold text-xs text-gray-900 mb-2">
-                    Enter Amount
+                    Amount Payable
                   </label>
                   <input 
                     type="text" 
                     id="amount" 
                     name="amount" 
                     value="৳ 28,25,000" 
-                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm font-semibold text-gray-900 focus:outline-none focus:border-[#0b6b32] focus:ring-1 focus:ring-[#0b6b32] transition-colors bg-gray-50/50"
+                    readonly
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm font-semibold text-gray-900 focus:outline-none focus:border-[#0b6b32] focus:ring-1 focus:ring-[#0b6b32] transition-colors bg-gray-50/50 cursor-not-allowed"
                   />
                 </div>
 
                 <!-- Helper Text -->
-                <p class="text-xs text-gray-500 pt-1">
-                  You will receive a payment request on your Bkash number.
+                <p id="helper-text" class="text-xs text-gray-500 pt-1">
+                  You will receive a notification to enter your PIN and confirm payment.
                 </p>
 
                 <!-- Action Button -->
                 <div class="pt-2">
                   <button 
                     type="submit" 
-                    class="w-full bg-[#0b6b32] hover:bg-[#095728] text-white font-semibold py-3.5 rounded-xl transition-colors shadow-sm text-sm"
+                    class="w-full bg-[#0b6b32] hover:bg-[#095728] text-white font-semibold py-3.5 rounded-xl transition-colors shadow-sm text-sm cursor-pointer"
                   >
-                    Request Payment
+                    Confirm & Complete Payment
                   </button>
                 </div>
 
@@ -264,13 +264,106 @@
         </div>
       </div>
 
+      <!-- Footer CTA Navigation -->
+      <div class="mt-8 flex items-center justify-between pt-4 border-t border-gray-100">
+        <a href="payment2.html" class="px-6 py-3 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm transition-colors flex items-center gap-2">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>Back</span>
+        </a>
+      </div>
+
     </main>
 
   </div>
 
-  <!-- Initialize Lucide Icons -->
+  <!-- Dynamic Gateway Configuration Script -->
   <script>
     lucide.createIcons();
+
+    const config = {
+      bkash: {
+        title: 'Pay with bKash',
+        badge: 'bKash',
+        badgeBg: '#e2136e',
+        label: 'bKash Account Number',
+        placeholder: '01XXXXXXXXX',
+        helper: 'You will receive a OTP / PIN prompt on your bKash mobile number.'
+      },
+      nagad: {
+        title: 'Pay with Nagad',
+        badge: 'Nagad',
+        badgeBg: '#f7941d',
+        label: 'Nagad Mobile Number',
+        placeholder: '01XXXXXXXXX',
+        helper: 'A payment prompt will be sent directly to your Nagad wallet.'
+      },
+      rocket: {
+        title: 'Pay with Rocket',
+        badge: 'Rocket',
+        badgeBg: '#8c3494',
+        label: 'Rocket Mobile Account Number',
+        placeholder: '01XXXXXXXXX',
+        helper: 'Enter your 12-digit DBBL Rocket account number.'
+      },
+      card: {
+        title: 'Pay with Credit / Debit Card',
+        badge: 'VISA',
+        badgeBg: '#1e3a8a',
+        label: 'Card Number',
+        placeholder: '4532 •••• •••• 8921',
+        helper: 'Enter your card details safely. 256-bit encryption active.'
+      },
+      bank: {
+        title: 'Bank Transfer Details',
+        badge: 'BANK',
+        badgeBg: '#0284c7',
+        label: 'Bank Account Reference / Txn ID',
+        placeholder: 'E.g. TXN-998811',
+        helper: 'Please transfer to LandDeal Escrow Account & input your Transaction ID.'
+      },
+      wallet: {
+        title: 'Other Digital Wallet',
+        badge: 'WALLET',
+        badgeBg: '#1e293b',
+        label: 'Wallet ID / Phone Number',
+        placeholder: '01XXXXXXXXX',
+        helper: 'Select wallet provider and complete authorization.'
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Get method from URL or localStorage
+      const urlParams = new URLSearchParams(window.location.search);
+      let method = urlParams.get('payment_method') || localStorage.getItem('selectedPaymentMethod') || 'bkash';
+      method = method.toLowerCase();
+
+      // 2. Load matching config or default to bkash
+      const data = config[method] || config.bkash;
+
+      // 3. Render dynamically
+      document.getElementById('gateway-title').textContent = data.title;
+      
+      const badge = document.getElementById('gateway-badge');
+      badge.textContent = data.badge;
+      badge.style.backgroundColor = data.badgeBg;
+
+      document.getElementById('account-label').textContent = data.label;
+      
+      const accInput = document.getElementById('account_number');
+      accInput.placeholder = data.placeholder;
+
+      document.getElementById('helper-text').textContent = data.helper;
+
+      // 4. Form Submission Handler
+      document.getElementById('payForm').addEventListener('submit', (e) => {
+        // Form submits naturally to payment4.html?payment_method=...
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'payment_method';
+        hiddenInput.value = method;
+        e.target.appendChild(hiddenInput);
+      });
+    });
   </script>
 </body>
 </html>

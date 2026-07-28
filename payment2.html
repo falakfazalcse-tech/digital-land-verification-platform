@@ -20,7 +20,7 @@
     <aside class="w-full lg:w-64 bg-white rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shrink-0">
       <div>
         <div class="mb-8">
-          <a href="../dashboard.html" class="block">
+          <a href="dashboard.html" class="block">
             <h1 class="text-2xl font-bold text-gray-900 tracking-tight">LandDeal</h1>
             <div class="mt-1 inline-block bg-green-50 border border-green-200 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">
               Secure • Verified • Transparent
@@ -28,31 +28,31 @@
           </a>
         </div>
         <nav class="space-y-1">
-          <a href="../dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="layout-grid" class="w-5 h-5"></i> Dashboard
           </a>
-          <a href="../search_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="search_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="search" class="w-5 h-5"></i> Browse Land
           </a>
-          <a href="../properties_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="properties_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="home" class="w-5 h-5"></i> My Properties
           </a>
-          <a href="../verification.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="verification.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="plus" class="w-5 h-5"></i> Add Land
           </a>
-          <a href="../message_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="message_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="mail" class="w-5 h-5"></i> Messages
           </a>
-          <a href="../payment.html" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
+          <a href="payment.html" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
             <i data-lucide="receipt" class="w-5 h-5"></i> Transactions
           </a>
-          <a href="../profile.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="user" class="w-5 h-5"></i> Profile
           </a>
         </nav>
       </div>
       <div class="pt-6 border-t border-gray-100">
-        <a href="../index.html" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
+        <a href="index.html" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
           <i data-lucide="log-out" class="w-5 h-5"></i> Logout
         </a>
       </div>
@@ -68,7 +68,7 @@
             <button aria-label="Notifications" class="text-green-500 hover:text-green-600 relative p-1">
               <i data-lucide="bell" class="w-5 h-5 fill-current"></i>
             </button>
-            <a href="../profile.html" aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600">
+            <a href="profile.html" aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600">
               <i data-lucide="user" class="w-5 h-5"></i>
             </a>
           </div>
@@ -145,12 +145,14 @@
                   <span class="font-semibold text-gray-900 text-sm">1988-29401-2940</span>
                 </div>
                 <div>
-                  <span class="text-gray-500 block">Selected Payment Method</span>
+                  <span class="text-gray-500 block mb-1">Selected Payment Method</span>
                   <!-- DYNAMIC PAYMENT METHOD DISPLAY -->
-                  <span id="selected-payment-display" class="font-semibold text-green-700 text-sm flex items-center gap-1.5 mt-0.5">
-                    <span class="w-2 h-2 rounded-full bg-green-600"></span> 
-                    <span id="payment-method-name">bKash Mobile Wallet</span>
-                  </span>
+                  <div id="selected-payment-display" class="flex items-center gap-2">
+                    <div id="payment-badge" class="w-8 h-6 rounded flex items-center justify-center font-bold text-[10px] text-white shrink-0 bg-[#e2136e]">
+                      Bkash
+                    </div>
+                    <span id="payment-method-name" class="font-bold text-gray-900 text-sm">bKash Mobile Wallet</span>
+                  </div>
                 </div>
                 <div>
                   <span class="text-gray-500 block">Date</span>
@@ -197,7 +199,7 @@
           <i data-lucide="arrow-left" class="w-4 h-4"></i>
           <span>Back</span>
         </a>
-        <a href="payment3.html" class="bg-[#0b6b32] hover:bg-[#095728] text-white font-semibold px-8 py-3 rounded-xl flex items-center gap-2 transition-colors">
+        <a id="proceedBtn" href="payment3.html" class="bg-[#0b6b32] hover:bg-[#095728] text-white font-semibold px-8 py-3 rounded-xl flex items-center gap-2 transition-colors">
           <span>Proceed to Pay</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
@@ -209,37 +211,75 @@
     // Initialize Lucide icons
     lucide.createIcons();
 
-    // Map keys to display labels
-    const paymentMethodsMap = {
-      bkash: 'bKash Mobile Wallet',
-      nagad: 'Nagad Mobile Wallet',
-      rocket: 'DBBL Rocket',
-      card: 'Credit / Debit Card (Visa/Mastercard)',
-      bank: 'Bank Wire / Direct Transfer',
-      escrow: 'LandDeal Escrow Balance'
+    // Map keys to display details
+    const paymentMethodsData = {
+      bkash: {
+        name: 'bKash Mobile Wallet',
+        bgColor: '#e2136e',
+        label: 'Bkash'
+      },
+      nagad: {
+        name: 'Nagad Mobile Wallet',
+        bgColor: '#f7941d',
+        label: 'Nagad'
+      },
+      rocket: {
+        name: 'DBBL Rocket Wallet',
+        bgColor: '#8c3494',
+        label: 'Rocket'
+      },
+      card: {
+        name: 'Credit / Debit Card (VISA)',
+        bgColor: '#1e3a8a',
+        label: 'VISA'
+      },
+      bank: {
+        name: 'Bank Transfer',
+        bgColor: '#0284c7',
+        label: 'BANK'
+      },
+      wallet: {
+        name: 'Other Digital Wallet',
+        bgColor: '#1e293b',
+        label: 'WALLET'
+      }
     };
 
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Get method from URL query params (e.g. payment2.html?method=nagad)
+      // 1. Check URL parameters
       const urlParams = new URLSearchParams(window.location.search);
-      let selectedMethod = urlParams.get('method');
+      let selectedMethod = urlParams.get('payment_method');
 
-      // 2. If not in URL, get method from localStorage
+      // 2. Fallback to localStorage
       if (!selectedMethod) {
         selectedMethod = localStorage.getItem('selectedPaymentMethod');
       }
 
-      // 3. Fallback to default ('bkash') if none specified
-      if (!selectedMethod || !paymentMethodsMap[selectedMethod.toLowerCase()]) {
+      // 3. Fallback to default
+      if (!selectedMethod || !paymentMethodsData[selectedMethod.toLowerCase()]) {
         selectedMethod = 'bkash';
       } else {
         selectedMethod = selectedMethod.toLowerCase();
       }
 
-      // 4. Update DOM element
-      const methodElement = document.getElementById('payment-method-name');
-      if (methodElement) {
-        methodElement.textContent = paymentMethodsMap[selectedMethod];
+      // 4. Update display elements dynamically
+      const methodInfo = paymentMethodsData[selectedMethod];
+      const nameEl = document.getElementById('payment-method-name');
+      const badgeEl = document.getElementById('payment-badge');
+
+      if (nameEl) nameEl.textContent = methodInfo.name;
+      if (badgeEl) {
+        badgeEl.textContent = methodInfo.label;
+        badgeEl.style.backgroundColor = methodInfo.bgColor;
+      }
+
+      // 5. Connect link parameters to step 3 button
+      const proceedBtn = document.getElementById('proceedBtn');
+      if (proceedBtn) {
+        proceedBtn.href = `payment3.html?payment_method=${selectedMethod}`;
+        proceedBtn.addEventListener('click', () => {
+          localStorage.setItem('selectedPaymentMethod', selectedMethod);
+        });
       }
     });
   </script>
