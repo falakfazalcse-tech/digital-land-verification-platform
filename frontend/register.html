@@ -178,6 +178,37 @@
                 hideIcon.classList.remove('hidden');
             }
         }
+        document.querySelector('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const payload = {
+        full_name: document.getElementById('full_name').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value,
+        confirm_password: document.getElementById('confirm_password').value,
+        role: document.getElementById('role').value,
+        terms: document.getElementById('terms').checked
+    };
+
+    try {
+        const res = await fetch('http://localhost:5000/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        if (data.success) {
+            alert(`Account Created! Your Unique ID is: ${data.data.userId}`);
+            window.location.href = 'login.html';
+        } else {
+            alert(data.message);
+        }
+    } catch (err) {
+        alert('Server error, try again later.');
+    }
+});
     </script>
 </body>
 </html>
