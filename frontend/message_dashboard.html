@@ -3,359 +3,236 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LandVerify - Contact with Seller</title>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
+  <title>LandDeal - Interactive Messages</title>
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #e5e7eb;
+      border-radius: 10px;
+    }
+
+    /* Dedicated Active Bar CSS rules (Guarantees the green line never vanishes) */
+    .contact-item {
+      border-left: 4px solid transparent;
+      transition: all 0.2s ease-in-out;
+    }
+    .contact-item.active {
+      border-left-color: #0b6b32 !important;
+      background-color: #f0fdf4 !important; /* light green tint */
+    }
   </style>
 </head>
-<body class="bg-[#f2f9f3] text-slate-900 antialiased min-h-screen">
-
-  <!-- Accessibility Skip Link -->
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-emerald-800 focus:text-white focus:px-4 focus:py-2 focus:rounded-md">
-    Skip to main content
-  </a>
+<body class="bg-[#f2f9f3] text-gray-900 min-h-screen p-4 md:p-6 lg:p-8">
 
   <!-- Main Container -->
-  <div class="flex flex-col lg:flex-row min-h-screen p-3 md:p-6 gap-6 max-w-[1600px] mx-auto">
+  <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-6 items-stretch">
 
-    <!-- Sidebar Navigation -->
-    <aside class="w-full lg:w-64 bg-white rounded-3xl p-6 flex flex-col justify-between shadow-xs flex-shrink-0" aria-label="Sidebar Navigation">
+    <!-- Sidebar Panel -->
+    <aside class="w-full lg:w-64 bg-white rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shrink-0 shadow-sm">
       <div>
         <!-- Logo -->
         <div class="mb-8">
-          <a href="#" class="inline-block focus:outline-none focus:ring-2 focus:ring-emerald-600 rounded-md">
-            <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">LandVerify</h1>
-            <span class="text-[9px] font-semibold text-emerald-800 tracking-wider block bg-emerald-100 px-2 py-0.5 rounded-full inline-block -mt-0.5">
-              Secure . Verified . Transparent
-            </span>
+          <a href="../dashboard.html" class="block">
+            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">LandDeal</h1>
+            <div class="mt-1 inline-block bg-green-50 border border-green-200 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+              Secure • Verified • Transparent
+            </div>
           </a>
         </div>
 
         <!-- Navigation Menu -->
-        <nav aria-label="Main Navigation">
-          <ul class="space-y-1.5" role="list">
-            <li>
-              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                </svg>
-                <span>Dashboard</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <span>Browse Land</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                <span>My Properties</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                </svg>
-                <span>Add Land</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" aria-current="page" class="flex items-center gap-3 px-4 py-2.5 bg-[#bffecd] text-emerald-950 font-bold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                <svg class="w-5 h-5 text-emerald-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span>Messages</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span>Transactions</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                <span>Profile</span>
-              </a>
-            </li>
-          </ul>
+        <nav class="space-y-1">
+          <a href="../dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="layout-grid" class="w-5 h-5"></i>
+            Dashboard
+          </a>
+          <a href="../search_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="search" class="w-5 h-5"></i>
+            Browse Land
+          </a>
+          <a href="../properties_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="home" class="w-5 h-5"></i>
+            My Properties
+          </a>
+          <a href="../verification.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="plus" class="w-5 h-5"></i>
+            Add Land
+          </a>
+          <a href="../message_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+            Messages
+          </a>
+          <a href="../payment.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="receipt" class="w-5 h-5"></i>
+            Transactions
+          </a>
+          <a href="../profile.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="user" class="w-5 h-5"></i>
+            Profile
+          </a>
         </nav>
       </div>
 
-      <!-- Logout Button -->
-      <div class="pt-6 border-t border-slate-100">
-        <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-          <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-          </svg>
-          <span>Logout</span>
+      <div class="pt-6 border-t border-gray-100 mt-6 lg:mt-0">
+        <a href="../index.html" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
+          <i data-lucide="log-out" class="w-5 h-5"></i>
+          Logout
         </a>
       </div>
     </aside>
 
-    <!-- Main Board Area -->
-    <main id="main-content" class="flex-1 bg-white rounded-3xl p-6 md:p-8 shadow-xs flex flex-col justify-between border border-slate-100">
+    <!-- Main Content Panel -->
+    <main class="flex-1 bg-white rounded-2xl border border-gray-200 p-6 lg:p-8 shadow-sm flex flex-col">
       
-      <!-- Top Title & Header Navigation Bar -->
-      <div class="space-y-4 mb-6">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="text-2xl font-bold text-slate-900">Contact with Seller</h2>
-            <!-- Breadcrumbs -->
-            <nav aria-label="Breadcrumb" class="mt-1">
-              <ol class="flex items-center gap-1.5 text-xs text-slate-600 font-medium" role="list">
-                <li><a href="#" class="hover:underline focus:outline-none focus:ring-1 focus:ring-emerald-600 rounded">Home</a></li>
-                <li>&gt;</li>
-                <li><a href="#" class="hover:underline focus:outline-none focus:ring-1 focus:ring-emerald-600 rounded">Messages</a></li>
-                <li>&gt;</li>
-                <li class="text-slate-900 font-semibold" aria-current="page">Contact with Seller</li>
-              </ol>
-            </nav>
+      <!-- Top Bar Header -->
+      <header class="flex items-center justify-between pb-6 border-b border-gray-100 mb-6">
+        <div>
+          <h2 class="text-xl font-bold text-gray-900">Messages</h2>
+        </div>
+        <div class="flex items-center gap-4">
+          <button aria-label="Notifications" class="text-green-600 hover:text-green-700 relative p-1 transition-transform active:scale-95">
+            <i data-lucide="bell" class="w-5 h-5 fill-current"></i>
+          </button>
+          <a href="../profile.html" aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors">
+            <i data-lucide="user" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </header>
+
+      <!-- Chat Layout Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 border border-gray-200 rounded-2xl overflow-hidden min-h-[620px] flex-1">
+        
+        <!-- Left: Conversations List -->
+        <div class="lg:col-span-4 border-r border-gray-200 flex flex-col bg-gray-50/50">
+          <div class="p-4 border-b border-gray-200 bg-white">
+            <div class="relative">
+              <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+              <input type="text" id="searchInput" placeholder="Search messages..." class="w-full bg-gray-100 border-none rounded-xl pl-9 pr-4 py-2 text-xs focus:ring-2 focus:ring-green-600 outline-none" />
+            </div>
           </div>
 
-          <!-- Header Right Icons -->
-          <div class="flex items-center gap-3">
-            <button type="button" aria-label="Notifications" class="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 22a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22zm7-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C8.63 5.36 7 7.92 7 11v5l-2 2v1h14v-1l-2-2z"/>
-              </svg>
-            </button>
-            <button type="button" aria-label="User Account" class="text-slate-300 hover:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-600 rounded-full">
-              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
-              </svg>
-            </button>
+          <!-- Contact List -->
+          <div id="contactList" class="divide-y divide-gray-100 overflow-y-auto custom-scrollbar flex-1">
+            
+            <!-- Contact Item 1 -->
+            <div data-contact-id="1" class="contact-item active p-4 cursor-pointer flex items-start gap-3 hover:bg-gray-100/60">
+              <div class="relative shrink-0">
+                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm">
+                  SB
+                </div>
+                <span class="w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full absolute bottom-0 right-0"></span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="text-xs font-bold text-gray-900 truncate">Sajjatal Bashar</h4>
+                  <span class="text-[10px] text-gray-400">10:42 AM</span>
+                </div>
+                <p class="last-message text-xs text-gray-600 font-semibold truncate">Yes, the documents are ready for inspection.</p>
+                <p class="property-tag text-[10px] text-green-700 font-medium mt-1 truncate">12.5 Katha Residential Plot</p>
+              </div>
+            </div>
+
+            <!-- Contact Item 2 -->
+            <div data-contact-id="2" class="contact-item p-4 cursor-pointer flex items-start gap-3 hover:bg-gray-100/60">
+              <div class="relative shrink-0">
+                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-sm">
+                  AR
+                </div>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="text-xs font-bold text-gray-900 truncate">Anisur Rahman</h4>
+                  <span class="text-[10px] text-gray-400">Yesterday</span>
+                </div>
+                <p class="last-message text-xs text-gray-500 truncate">Can we negotiate on the service fee?</p>
+                <p class="property-tag text-[10px] text-gray-400 mt-1 truncate">5.0 Katha Commercial Plot</p>
+              </div>
+            </div>
+
+            <!-- Contact Item 3 -->
+            <div data-contact-id="3" class="contact-item p-4 cursor-pointer flex items-start gap-3 hover:bg-gray-100/60">
+              <div class="relative shrink-0">
+                <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 font-bold text-sm">
+                  KH
+                </div>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="text-xs font-bold text-gray-900 truncate">Kabir Hossain</h4>
+                  <span class="text-[10px] text-gray-400">Jul 24</span>
+                </div>
+                <p class="last-message text-xs text-gray-500 truncate">Thank you for the quick verification.</p>
+                <p class="property-tag text-[10px] text-gray-400 mt-1 truncate">Gazipur Land Plot</p>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <hr class="border-slate-200" />
-      </div>
-
-      <!-- Messaging Grid Layout -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-
-        <!-- Conversations Column (Left - 5 Cols) -->
-        <section aria-label="Conversations List" class="lg:col-span-5 space-y-4">
-          <h3 class="text-2xl font-bold text-slate-900">Conversations</h3>
-
-          <!-- Search Input -->
-          <div class="relative">
-            <label for="search-conversations" class="sr-only">Search conversations</label>
-            <input 
-              type="text" 
-              id="search-conversations"
-              placeholder="Search conversations..." 
-              class="w-full pl-3 pr-10 py-2.5 border border-slate-400 rounded-xs text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-600 placeholder-slate-500 bg-white"
-            />
-            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-500">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Conversation List -->
-          <ul class="space-y-3" role="list">
-            
-            <!-- Item 1 (Active) -->
-            <li>
-              <button type="button" class="w-full text-left bg-slate-100 hover:bg-slate-200 p-3.5 rounded-sm flex items-start gap-3 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                <div class="w-10 h-10 rounded-full bg-amber-400 border-2 border-emerald-600 flex items-center justify-center text-white overflow-hidden flex-shrink-0">
-                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Rahman Hossain profile" class="w-full h-full object-cover" />
-                </div>
-                <div class="min-w-0 flex-1">
-                  <h4 class="font-bold text-slate-900 text-sm leading-tight">Rahman Hossain</h4>
-                  <p class="text-xs text-slate-600 font-medium truncate mt-0.5">Yes, the land is still available. You can visit anytime.</p>
-                </div>
-              </button>
-            </li>
-
-            <!-- Item 2 -->
-            <li>
-              <button type="button" class="w-full text-left bg-slate-100 hover:bg-slate-200 p-3.5 rounded-sm flex items-start gap-3 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                <div class="w-10 h-10 rounded-full bg-pink-400 flex items-center justify-center text-white overflow-hidden flex-shrink-0">
-                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Farjana Ahmed profile" class="w-full h-full object-cover" />
-                </div>
-                <div class="min-w-0 flex-1">
-                  <h4 class="font-bold text-slate-900 text-sm leading-tight">Farjana Ahmed</h4>
-                  <p class="text-xs text-slate-600 font-medium truncate mt-0.5">I have a question about the documents.</p>
-                </div>
-              </button>
-            </li>
-
-            <!-- Item 3 -->
-            <li>
-              <button type="button" class="w-full text-left bg-slate-100 hover:bg-slate-200 p-3.5 rounded-sm flex items-start gap-3 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white overflow-hidden flex-shrink-0">
-                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Sakib Hasan profile" class="w-full h-full object-cover" />
-                </div>
-                <div class="min-w-0 flex-1">
-                  <h4 class="font-bold text-slate-900 text-sm leading-tight">Sakib Hasan</h4>
-                  <p class="text-xs text-slate-600 font-medium truncate mt-0.5">Thank you for your response. I will check and update you.</p>
-                </div>
-              </button>
-            </li>
-
-            <!-- Item 4 -->
-            <li>
-              <button type="button" class="w-full text-left bg-slate-100 hover:bg-slate-200 p-3.5 rounded-sm flex items-start gap-3 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white overflow-hidden flex-shrink-0">
-                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80" alt="Nusrat Jahan profile" class="w-full h-full object-cover" />
-                </div>
-                <div class="min-w-0 flex-1">
-                  <h4 class="font-bold text-slate-900 text-sm leading-tight">Nusrat Jahan</h4>
-                  <p class="text-xs text-slate-600 font-medium truncate mt-0.5">Can I get more pictures of the land?</p>
-                </div>
-              </button>
-            </li>
-
-          </ul>
-
-          <!-- See All Messages Button -->
-          <div class="pt-2">
-            <button type="button" class="w-full border border-slate-900 hover:bg-slate-50 text-slate-900 font-bold text-xs py-2.5 px-4 rounded-xs transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-              See All Messagers
-            </button>
-          </div>
-        </section>
-
-        <!-- Active Chat Window (Right - 7 Cols) -->
-        <section aria-label="Active Conversation with Rahman Hossain" class="lg:col-span-7 border border-slate-400 rounded-xs flex flex-col justify-between bg-white min-h-[580px]">
+        <!-- Right: Active Chat View -->
+        <div class="lg:col-span-8 flex flex-col bg-white">
           
-          <div>
-            <!-- Active Chat Header -->
-            <header class="p-3.5 border-b border-slate-300 flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full bg-amber-400 overflow-hidden flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Rahman Hossain" class="w-full h-full object-cover" />
+          <!-- Chat Header -->
+          <div class="p-4 border-b border-gray-200 flex items-center justify-between bg-white">
+            <div class="flex items-center gap-3">
+              <div id="activeAvatar" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm shrink-0">
+                SB
               </div>
-              <h3 class="font-bold text-slate-900 text-sm">Rahman Hossain</h3>
-            </header>
-
-            <!-- Linked Property Information Banner -->
-            <div class="p-3 bg-slate-100 border-b border-slate-300 flex items-center justify-between gap-3">
-              <div class="flex items-center gap-3 min-w-0">
-                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=200&q=80" alt="Property thumbnail" class="w-14 h-10 object-cover rounded-xs flex-shrink-0" />
-                <div class="min-w-0">
-                  <h4 class="font-extrabold text-slate-900 text-xs sm:text-sm truncate">12.5 Katha Residential Plot</h4>
-                  <p class="text-[11px] text-slate-600 font-medium truncate">Bashundhara, Dhaka</p>
-                </div>
+              <div>
+                <h3 id="activeName" class="text-sm font-bold text-gray-900">Sajjatal Bashar</h3>
+                <p class="text-[11px] text-gray-500">Property: <span id="activeProperty" class="font-semibold text-gray-700">12.5 Katha Residential Plot</span></p>
               </div>
-              <a href="#" class="border border-slate-900 hover:bg-white text-slate-900 font-bold text-xs py-1.5 px-3 rounded-xs whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                View Details
-              </a>
             </div>
 
-            <!-- Chat Messages Log -->
-            <div class="p-4 space-y-4 max-h-[380px] overflow-y-auto">
-              
-              <!-- Incoming Message 1 -->
-              <div class="flex items-start gap-2.5 max-w-[80%]">
-                <div class="w-7 h-7 rounded-full bg-amber-400 overflow-hidden flex-shrink-0 mt-0.5">
-                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="" aria-hidden="true" class="w-full h-full object-cover" />
-                </div>
-                <div class="bg-slate-200 text-slate-900 text-xs p-3 rounded-xs leading-relaxed">
-                  Assalamu Alaikum,<br />
-                  I am interested in your property.<br />
-                  Is it still available?
-                </div>
-              </div>
-
-              <!-- Outgoing Message 1 -->
-              <div class="flex items-start gap-2.5 max-w-[80%] ml-auto justify-end">
-                <div class="bg-slate-200 text-slate-900 text-xs p-3 rounded-xs leading-relaxed">
-                  Wa Alaikum Assalam,<br />
-                  Yes, the land is still available.
-                </div>
-                <div class="w-7 h-7 rounded-full bg-blue-500 overflow-hidden flex-shrink-0 mt-0.5">
-                  <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80" alt="" aria-hidden="true" class="w-full h-full object-cover" />
-                </div>
-              </div>
-
-              <!-- Incoming Message 2 -->
-              <div class="flex items-start gap-2.5 max-w-[80%]">
-                <div class="w-7 h-7 rounded-full bg-amber-400 overflow-hidden flex-shrink-0 mt-0.5">
-                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="" aria-hidden="true" class="w-full h-full object-cover" />
-                </div>
-                <div class="bg-slate-200 text-slate-900 text-xs p-3 rounded-xs leading-relaxed">
-                  Great! Can I visit the property this weekend?
-                </div>
-              </div>
-
-              <!-- Outgoing Message 2 -->
-              <div class="flex items-start gap-2.5 max-w-[80%] ml-auto justify-end">
-                <div class="bg-slate-200 text-slate-900 text-xs p-3 rounded-xs leading-relaxed">
-                  Yes, you can visit anytime.<br />
-                  Let me know when you are coming.
-                </div>
-                <div class="w-7 h-7 rounded-full bg-blue-500 overflow-hidden flex-shrink-0 mt-0.5">
-                  <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80" alt="" aria-hidden="true" class="w-full h-full object-cover" />
-                </div>
-              </div>
-
-              <!-- Incoming Message 3 -->
-              <div class="flex items-start gap-2.5 max-w-[80%]">
-                <div class="w-7 h-7 rounded-full bg-amber-400 overflow-hidden flex-shrink-0 mt-0.5">
-                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="" aria-hidden="true" class="w-full h-full object-cover" />
-                </div>
-                <div class="bg-slate-200 text-slate-900 text-xs p-3 rounded-xs leading-relaxed">
-                  I will come on Saturday around 11 AM. Hope that's okay.
-                </div>
-              </div>
-
+            <div class="flex items-center gap-2">
+              <button onclick="alert('Calling owner...')" class="p-2 text-gray-500 hover:text-green-700 hover:bg-gray-100 rounded-lg transition-colors" title="Call">
+                <i data-lucide="phone" class="w-4 h-4"></i>
+              </button>
+              <button onclick="alert('Redirecting to property details...')" class="p-2 text-gray-500 hover:text-green-700 hover:bg-gray-100 rounded-lg transition-colors" title="View Property Details">
+                <i data-lucide="info" class="w-4 h-4"></i>
+              </button>
             </div>
           </div>
 
-          <!-- Bottom Message Composer -->
-          <footer class="p-3.5 border-t border-slate-300">
-            <form class="flex items-center gap-2" onSubmit="event.preventDefault();">
-              <div class="relative flex-1 flex items-center">
-                <button type="button" aria-label="Attach file" class="absolute left-3 text-slate-600 hover:text-slate-800 focus:outline-none focus:ring-1 focus:ring-emerald-600 rounded">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                  </svg>
-                </button>
-                <label for="chat-message-input" class="sr-only">Type a message</label>
-                <input 
-                  type="text" 
-                  id="chat-message-input"
-                  placeholder="Type a Message......" 
-                  class="w-full pl-9 pr-3 py-2 border border-slate-400 rounded-md text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-600 placeholder-slate-500 bg-white"
-                />
-              </div>
-              
-              <!-- Send Button -->
-              <button type="submit" aria-label="Send message" class="bg-[#0a5c2d] hover:bg-emerald-800 text-white p-2.5 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600 flex items-center justify-center">
-                <svg class="w-4 h-4 transform rotate-45 -mt-0.5 -ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
+          <!-- Chat Body / Messages -->
+          <div id="chatBody" class="flex-1 p-4 lg:p-6 overflow-y-auto space-y-4 custom-scrollbar bg-[#fafdfb]">
+            <!-- Messages dynamically populated -->
+          </div>
+
+          <!-- Chat Input Area -->
+          <div class="p-4 border-t border-gray-200 bg-white">
+            <form id="chatForm" class="flex items-center gap-3">
+              <button type="button" onclick="document.getElementById('fileInput').click()" class="p-2 text-gray-400 hover:text-gray-600 rounded-lg transition-colors">
+                <i data-lucide="paperclip" class="w-5 h-5"></i>
+              </button>
+              <input type="file" id="fileInput" class="hidden" onchange="if(this.files[0]) alert('Selected: ' + this.files[0].name)" />
+              <input type="text" id="messageInput" placeholder="Type a message..." class="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-green-600 focus:bg-white transition-all" autocomplete="off" />
+              <button type="submit" class="bg-[#0b6b32] hover:bg-[#095728] text-white p-2.5 rounded-xl flex items-center justify-center transition-colors shadow-sm active:scale-95">
+                <i data-lucide="send" class="w-4 h-4"></i>
               </button>
             </form>
-          </footer>
+          </div>
 
-        </section>
+        </div>
 
       </div>
 
@@ -363,5 +240,206 @@
 
   </div>
 
+  <script>
+    lucide.createIcons();
+
+    // Mock Chat Database for all conversations
+    const mockChats = {
+      '1': {
+        name: 'Sajjatal Bashar',
+        initials: 'SB',
+        bg: 'bg-blue-100',
+        color: 'text-blue-600',
+        property: '12.5 Katha Residential Plot',
+        messages: [
+          { sender: 'them', text: 'Hello! I saw you requested the verification documents for the Bashundhara plot.', time: '10:38 AM' },
+          { sender: 'me', text: 'Hi Sajjatal, yes! Could you confirm if the Mutation and Khatian documents are updated?', time: '10:40 AM' },
+          { sender: 'them', text: 'Yes, the documents are ready for inspection. I have already uploaded them to the platform.', time: '10:42 AM' }
+        ]
+      },
+      '2': {
+        name: 'Anisur Rahman',
+        initials: 'AR',
+        bg: 'bg-purple-100',
+        color: 'text-purple-600',
+        property: '5.0 Katha Commercial Plot',
+        messages: [
+          { sender: 'them', text: 'Hello, I received your proposal for the Uttara commercial plot.', time: 'Yesterday 4:15 PM' },
+          { sender: 'them', text: 'Can we negotiate on the service fee?', time: 'Yesterday 4:16 PM' }
+        ]
+      },
+      '3': {
+        name: 'Kabir Hossain',
+        initials: 'KH',
+        bg: 'bg-amber-100',
+        color: 'text-amber-600',
+        property: 'Gazipur Land Plot',
+        messages: [
+          { sender: 'me', text: 'Your property documents have been verified successfully.', time: 'Jul 24, 2:00 PM' },
+          { sender: 'them', text: 'Thank you for the quick verification.', time: 'Jul 24, 2:05 PM' }
+        ]
+      }
+    };
+
+    let activeContactId = '1';
+
+    const chatBody = document.getElementById('chatBody');
+    const chatForm = document.getElementById('chatForm');
+    const messageInput = document.getElementById('messageInput');
+    const searchInput = document.getElementById('searchInput');
+
+    function scrollToBottom() {
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+    }
+
+    // Toggle active state & green bar across all conversations
+    function setActiveContactUI(selectedId) {
+      document.querySelectorAll('.contact-item').forEach(item => {
+        const id = item.getAttribute('data-contact-id');
+        const lastMsgEl = item.querySelector('.last-message');
+        const propTagEl = item.querySelector('.property-tag');
+
+        if (id === selectedId) {
+          // Add CSS class `.active` which guarantees green bar + light green background
+          item.classList.add('active');
+          
+          if (lastMsgEl) {
+            lastMsgEl.classList.remove('text-gray-500');
+            lastMsgEl.classList.add('text-gray-600', 'font-semibold');
+          }
+          if (propTagEl) {
+            propTagEl.classList.remove('text-gray-400');
+            propTagEl.classList.add('text-green-700', 'font-medium');
+          }
+        } else {
+          // Remove active state
+          item.classList.remove('active');
+
+          if (lastMsgEl) {
+            lastMsgEl.classList.remove('text-gray-600', 'font-semibold');
+            lastMsgEl.classList.add('text-gray-500');
+          }
+          if (propTagEl) {
+            propTagEl.classList.remove('text-green-700', 'font-medium');
+            propTagEl.classList.add('text-gray-400');
+          }
+        }
+      });
+    }
+
+    // Render Messages for Selected Conversation
+    function renderChat(contactId) {
+      const data = mockChats[contactId];
+      if (!data) return;
+
+      // Update Header
+      document.getElementById('activeName').textContent = data.name;
+      document.getElementById('activeProperty').textContent = data.property;
+      const avatarEl = document.getElementById('activeAvatar');
+      avatarEl.textContent = data.initials;
+      avatarEl.className = `w-10 h-10 rounded-full ${data.bg} flex items-center justify-center ${data.color} font-bold text-sm shrink-0`;
+
+      // Render Messages Body
+      let html = `
+        <div class="flex items-center justify-center my-2">
+          <span class="text-[10px] font-semibold bg-gray-200 text-gray-600 px-3 py-1 rounded-full">Today</span>
+        </div>
+      `;
+
+      data.messages.forEach(msg => {
+        if (msg.sender === 'me') {
+          html += `
+            <div class="flex items-start justify-end gap-3 max-w-[80%] ml-auto">
+              <div class="text-right">
+                <div class="bg-[#0b6b32] text-white text-xs p-3.5 rounded-2xl rounded-tr-none shadow-xs">
+                  ${escapeHTML(msg.text)}
+                </div>
+                <span class="text-[10px] text-gray-400 mt-1 block">${msg.time}</span>
+              </div>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="flex items-start gap-3 max-w-[80%]">
+              <div class="w-8 h-8 rounded-full ${data.bg} flex items-center justify-center ${data.color} font-bold text-xs shrink-0">
+                ${data.initials}
+              </div>
+              <div>
+                <div class="bg-white border border-gray-200 text-gray-800 text-xs p-3.5 rounded-2xl rounded-tl-none shadow-xs">
+                  ${escapeHTML(msg.text)}
+                </div>
+                <span class="text-[10px] text-gray-400 mt-1 block">${msg.time}</span>
+              </div>
+            </div>
+          `;
+        }
+      });
+
+      chatBody.innerHTML = html;
+      scrollToBottom();
+    }
+
+    // Attach click listener to every contact
+    document.querySelectorAll('.contact-item').forEach(item => {
+      item.addEventListener('click', function() {
+        activeContactId = this.getAttribute('data-contact-id');
+        setActiveContactUI(activeContactId);
+        renderChat(activeContactId);
+      });
+    });
+
+    // Handle Form Submit
+    chatForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const text = messageInput.value.trim();
+      if (!text) return;
+
+      const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      mockChats[activeContactId].messages.push({
+        sender: 'me',
+        text: text,
+        time: currentTime
+      });
+
+      const activeItem = document.querySelector(`.contact-item[data-contact-id="${activeContactId}"] .last-message`);
+      if (activeItem) activeItem.textContent = text;
+
+      renderChat(activeContactId);
+      messageInput.value = '';
+
+      // Auto Reply Simulator
+      setTimeout(() => {
+        const replies = ["Got it, thanks!", "I will review this shortly.", "Perfect, let me check with the team."];
+        const randomReply = replies[Math.floor(Math.random() * replies.length)];
+
+        mockChats[activeContactId].messages.push({
+          sender: 'them',
+          text: randomReply,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        });
+
+        if (activeItem) activeItem.textContent = randomReply;
+        renderChat(activeContactId);
+      }, 1500);
+    });
+
+    // Filter Contacts by Search
+    searchInput.addEventListener('input', function() {
+      const term = this.value.toLowerCase();
+      document.querySelectorAll('.contact-item').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(term) ? 'flex' : 'none';
+      });
+    });
+
+    // Initial load setup
+    setActiveContactUI(activeContactId);
+    renderChat(activeContactId);
+  </script>
 </body>
 </html>
