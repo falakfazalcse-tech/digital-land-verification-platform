@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LandDeal - Step 3: Preview Property</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+</head>
+<body class="bg-[#eef8f0] text-gray-900 min-h-screen antialiased">
+
+  <div class="flex min-h-screen p-4 md:p-6 gap-6 max-w-[1600px] mx-auto">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white rounded-3xl p-6 hidden lg:flex flex-col justify-between shadow-sm flex-shrink-0">
+      <div>
+        <div class="mb-8">
+          <h1 class="text-2xl font-extrabold text-gray-900 tracking-tight">LandDeal</h1>
+          <span class="text-[9px] font-semibold text-[#0b6b32] tracking-wider bg-[#dcfce7] px-2 py-0.5 rounded-full inline-block mt-1">Secure . Verified . Transparent</span>
+        </div>
+        <nav class="space-y-2">
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">Dashboard</a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">Browse Land</a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">My Properties</a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 bg-[#cbf7d5] text-[#0b6b32] font-bold rounded-xl text-xs">Add Land</a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">Messages</a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">Transactions</a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">Profile</a>
+        </nav>
+      </div>
+      <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">Logout</a>
+    </aside>
+
+    <!-- Main Section -->
+    <main class="flex-1 bg-white rounded-3xl p-6 md:p-8 shadow-sm flex flex-col justify-between">
+      <div>
+        <!-- Header -->
+        <header class="flex items-center justify-between pb-5 border-b border-gray-100 mb-8">
+          <h2 class="text-xl font-bold text-gray-900">Add Your Land</h2>
+          <div class="flex items-center gap-3">
+            <span class="p-2 text-[#0b6b32] bg-green-50 rounded-full">🔔</span>
+            <span class="text-gray-400">👤</span>
+          </div>
+        </header>
+
+        <!-- Stepper Navigation (Interconnected Links) -->
+        <div class="mb-10 pt-2 pb-4">
+          <div class="flex items-center justify-center max-w-xl mx-auto relative">
+            
+            <!-- Step 1 Clickable Link -->
+            <a href="index.html" class="flex flex-col items-center z-10 group cursor-pointer">
+              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white flex items-center justify-center text-base shadow-sm group-hover:bg-[#085226]">
+                ✓
+              </div>
+              <span class="text-xs font-bold text-[#0b6b32] mt-2">Property Details</span>
+            </a>
+
+            <div class="flex-1 h-[2px] bg-[#0b6b32] mx-2 -mt-6"></div>
+
+            <!-- Step 2 Clickable Link -->
+            <a href="add_land2.html" class="flex flex-col items-center z-10 group cursor-pointer">
+              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white flex items-center justify-center text-base shadow-sm group-hover:bg-[#085226]">
+                ✓
+              </div>
+              <span class="text-xs font-bold text-[#0b6b32] mt-2">Documents</span>
+            </a>
+
+            <div class="flex-1 h-[2px] bg-[#0b6b32] mx-2 -mt-6"></div>
+
+            <!-- Step 3 Active Link -->
+            <a href="add_land3.html" class="flex flex-col items-center z-10 group">
+              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white font-bold flex items-center justify-center text-base shadow-sm ring-4 ring-green-100">
+                3
+              </div>
+              <span class="text-xs font-bold text-[#0b6b32] mt-2">Preview</span>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Preview Card -->
+        <div class="border border-gray-100 rounded-3xl p-6 md:p-8 bg-white shadow-xs">
+          <h3 class="text-xl font-extrabold text-gray-900 mb-6">Preview Property</h3>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Dynamic Data Display from Page 1 -->
+            <div class="border border-gray-100 rounded-2xl p-6 bg-white shadow-xs">
+              <h4 class="text-sm font-bold text-gray-900 mb-6">Property Summary</h4>
+
+              <div class="space-y-3.5 text-xs font-medium text-gray-700">
+                <div class="grid grid-cols-2">
+                  <span class="text-gray-900 font-semibold">Land Title</span>
+                  <span id="preview-title" class="text-gray-600">--</span>
+                </div>
+                <div class="grid grid-cols-2">
+                  <span class="text-gray-900 font-semibold">District</span>
+                  <span id="preview-district" class="text-gray-600">--</span>
+                </div>
+                <div class="grid grid-cols-2">
+                  <span class="text-gray-900 font-semibold">Upazila</span>
+                  <span id="preview-upazila" class="text-gray-600">--</span>
+                </div>
+                <div class="grid grid-cols-2">
+                  <span class="text-gray-900 font-semibold">Mouza</span>
+                  <span id="preview-mouza" class="text-gray-600">--</span>
+                </div>
+                <div class="grid grid-cols-2">
+                  <span class="text-gray-900 font-semibold">Khatian No</span>
+                  <span id="preview-khatian" class="text-gray-600">--</span>
+                </div>
+                <div class="grid grid-cols-2">
+                  <span class="text-gray-900 font-semibold">Dag No</span>
+                  <span id="preview-dag" class="text-gray-600">--</span>
+                </div>
+                <div class="grid grid-cols-2">
+                  <span class="text-gray-900 font-semibold">Area</span>
+                  <span id="preview-area" class="text-gray-600">--</span>
+                </div>
+                <div class="grid grid-cols-2">
+                  <span class="text-gray-900 font-semibold">Land Type</span>
+                  <span id="preview-type" class="text-gray-600">--</span>
+                </div>
+                <div class="grid grid-cols-2">
+                  <span class="text-gray-900 font-semibold">Description</span>
+                  <span id="preview-desc" class="text-gray-600">--</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic Images Display from Page 2 -->
+            <div class="border border-gray-100 rounded-2xl p-6 bg-white shadow-xs flex flex-col justify-between">
+              <div>
+                <h4 class="text-sm font-bold text-gray-900 mb-6">Images</h4>
+
+                <div id="image-grid" class="grid grid-cols-2 gap-3 mb-6">
+                  <!-- Fallback placeholders if none uploaded -->
+                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" />
+                  </div>
+                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100">
+                    <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" />
+                  </div>
+                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100">
+                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" />
+                  </div>
+                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100">
+                    <img src="https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" class="w-full py-2.5 bg-[#dcfce7] hover:bg-[#cbf7d5] text-[#0b6b32] font-bold text-xs rounded-xl transition-colors">
+                View all
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Bottom Action Buttons -->
+          <div class="mt-8 flex justify-between items-center">
+            <a href="add_land2.html" class="px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xs rounded-xl transition-all">
+              ← Back
+            </a>
+            <button type="button" onclick="submitData()" class="px-8 py-2.5 bg-[#0b6b32] hover:bg-[#085226] text-white font-bold text-xs rounded-xl transition-all shadow-sm">
+              Submit →
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Interconnected Sync Logic
+    window.addEventListener('DOMContentLoaded', () => {
+      const data = JSON.parse(localStorage.getItem('landDealData') || '{}');
+
+      // Populate Page 1 Inputs
+      document.getElementById('preview-title').textContent = data.landTitle || 'Green Valley Plot';
+      document.getElementById('preview-district').textContent = data.district || 'Gazipur';
+      document.getElementById('preview-upazila').textContent = data.upazila || 'Kaliganj';
+      document.getElementById('preview-mouza').textContent = data.mouza || 'Tala';
+      document.getElementById('preview-khatian').textContent = data.khatianNo || '1234';
+      document.getElementById('preview-dag').textContent = data.dagNo || '5678';
+      document.getElementById('preview-area').textContent = data.area || '10 Decimals';
+      document.getElementById('preview-type').textContent = data.landType || 'Residential';
+      document.getElementById('preview-desc').textContent = data.description || 'Verified property ready for sale.';
+
+      // Populate Page 2 Uploaded Images if available
+      if (data.landImages && data.landImages.length > 0) {
+        const grid = document.getElementById('image-grid');
+        grid.innerHTML = '';
+        data.landImages.forEach((src) => {
+          const card = document.createElement('div');
+          card.className = 'overflow-hidden rounded-xl h-32 bg-gray-100';
+          card.innerHTML = `<img src="${src}" class="w-full h-full object-cover" />`;
+          grid.appendChild(card);
+        });
+      }
+    });
+
+    function submitData() {
+      alert('Listing submitted successfully!');
+      localStorage.removeItem('landDealData');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
