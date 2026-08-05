@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LandDeal - Browse Land</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#f2f9f3] text-slate-900 antialiased min-h-screen">
+
+  <!-- Accessibility Skip Link (WCAG 2.1 / Section 508) -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-emerald-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-md">
+    Skip to main content
+  </a>
+
+  <!-- Layout Container -->
+  <div class="flex flex-col lg:flex-row min-h-screen p-3 md:p-6 gap-6 max-w-[1600px] mx-auto">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full lg:w-64 bg-white rounded-3xl p-6 flex flex-col justify-between shadow-xs flex-shrink-0" aria-label="Sidebar Navigation">
+      <div>
+        <!-- Logo -->
+        <div class="mb-8">
+          <a href="#" class="inline-block focus:outline-none focus:ring-2 focus:ring-emerald-600 rounded-md">
+            <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">LandDeal</h1>
+            <span class="text-[9px] font-semibold text-emerald-800 tracking-wider block bg-emerald-100 px-2 py-0.5 rounded-full inline-block -mt-0.5">
+              Secure . Verified . Transparent
+            </span>
+          </a>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav aria-label="Main Navigation">
+          <ul class="space-y-1.5" role="list">
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-current="page" class="flex items-center gap-3 px-4 py-2.5 bg-[#bffecd] text-emerald-950 font-bold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-emerald-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <span>Browse Land</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span>My Properties</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                <span>Add Land</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+                <span>My Listings</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Messages</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>Transactions</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span>Profile</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Logout -->
+      <div class="pt-6 border-t border-slate-100">
+        <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+          <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Board -->
+    <main id="main-content" class="flex-1 bg-white rounded-3xl p-6 md:p-8 shadow-xs flex flex-col justify-between">
+      <div>
+        
+        <!-- Header Controls (Global Search & Profile Actions) -->
+        <header class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-6">
+          
+          <!-- Search Bar -->
+          <form role="search" class="flex-1 max-w-2xl" onSubmit="event.preventDefault();">
+            <div class="relative flex items-center">
+              <label for="global-land-search" class="sr-only">Search location, land type or keywords</label>
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <input 
+                type="search" 
+                id="global-land-search" 
+                placeholder="Search location, land type or keywords" 
+                class="w-full pl-10 pr-12 py-2 text-xs sm:text-sm text-slate-800 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-white placeholder-slate-400"
+              />
+              <button type="submit" aria-label="Submit global search" class="absolute right-1 top-1 bottom-1 px-3.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600 flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </div>
+          </form>
+
+          <!-- Notification & Profile Controls -->
+          <div class="flex items-center gap-4 self-end sm:self-auto">
+            <button type="button" aria-label="View notifications" class="p-2 text-emerald-600 hover:bg-emerald-50 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 22a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22zm7-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C8.63 5.36 7 7.92 7 11v5l-2 2v1h14v-1l-2-2z"/>
+              </svg>
+            </button>
+            <button type="button" aria-label="User account menu" class="text-slate-300 hover:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-600 rounded-full">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <!-- Page Title -->
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">Browse Land</h2>
+
+        <!-- Advanced Filter Box -->
+        <section aria-label="Filter Properties" class="border border-slate-200/80 rounded-2xl p-5 mb-6 bg-white shadow-xs">
+          <form class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-9 gap-4 items-end" onSubmit="event.preventDefault();">
+            
+            <!-- Location Dropdown -->
+            <div class="lg:col-span-2">
+              <label for="filter-location" class="block text-xs font-bold text-slate-900 mb-1.5">Location</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-slate-500">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <select id="filter-location" class="w-full pl-8 pr-8 py-2 text-xs font-medium text-slate-800 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-white appearance-none cursor-pointer">
+                  <option value="">Select Location</option>
+                  <option value="dhaka">Mohammadpur Dhaka</option>
+                  <option value="gazipur">Gazipur</option>
+                </select>
+                <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center pointer-events-none text-slate-500">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Land Type Dropdown -->
+            <div class="lg:col-span-2">
+              <label for="filter-type" class="block text-xs font-bold text-slate-900 mb-1.5">Land Type</label>
+              <div class="relative">
+                <select id="filter-type" class="w-full px-3 py-2 text-xs font-medium text-slate-800 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-white appearance-none cursor-pointer">
+                  <option value="all">All Type</option>
+                  <option value="residential">Residential Plot</option>
+                  <option value="agricultural">Agricultural</option>
+                </select>
+                <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center pointer-events-none text-slate-500">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Area Dropdown -->
+            <div class="lg:col-span-2">
+              <label for="filter-area" class="block text-xs font-bold text-slate-900 mb-1.5">Area (katha)</label>
+              <div class="relative">
+                <select id="filter-area" class="w-full px-3 py-2 text-xs font-medium text-slate-800 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-white appearance-none cursor-pointer">
+                  <option value="">Min - Max</option>
+                  <option value="1-5">1 - 5 Katha</option>
+                  <option value="5-10">5 - 10 Katha</option>
+                </select>
+                <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center pointer-events-none text-slate-500">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price Range Dropdown -->
+            <div class="lg:col-span-2">
+              <label for="filter-price" class="block text-xs font-bold text-slate-900 mb-1.5">Price Range</label>
+              <div class="relative">
+                <select id="filter-price" class="w-full px-3 py-2 text-xs font-medium text-slate-800 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-white appearance-none cursor-pointer">
+                  <option value="">Min - Max</option>
+                  <option value="10-30">10,00,000 - 30,00,000 Taka</option>
+                </select>
+                <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center pointer-events-none text-slate-500">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Filter Apply Button -->
+            <div class="lg:col-span-1">
+              <button type="submit" class="w-full bg-[#16a34a] hover:bg-emerald-700 text-white font-bold text-xs py-2 px-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-600 shadow-xs">
+                Apply Filter
+              </button>
+            </div>
+
+          </form>
+        </section>
+
+        <!-- Listing Indicator Text -->
+        <p class="text-xs text-slate-600 font-semibold mb-4">
+          Showing 1 to 4 of 120 Properties
+        </p>
+
+        <!-- Property Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+          <!-- Card 1 -->
+          <article class="border border-slate-200/80 rounded-2xl overflow-hidden bg-white hover:shadow-lg transition-shadow group">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="5 Katha Residential Plot located in Mohammadpur Dhaka" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <!-- Verified Badge -->
+              <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-emerald-700 px-2.5 py-1 rounded-full text-[11px] font-bold flex items-center gap-1 shadow-xs">
+                <svg class="w-3.5 h-3.5 fill-current text-emerald-600" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Verified</span>
+              </span>
+            </div>
+            <div class="p-4 space-y-2">
+              <h3 class="font-extrabold text-slate-900 text-sm">5 Katha Residential Plot</h3>
+              <div class="flex items-center gap-1 text-slate-500 text-xs">
+                <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Mohammadpur Dhaka</span>
+              </div>
+              <p class="text-emerald-700 font-extrabold text-xs pt-1">
+                Price: 28,00,000 Taka
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="border border-slate-200/80 rounded-2xl overflow-hidden bg-white hover:shadow-lg transition-shadow group">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="5 Katha Residential Plot located in Mohammadpur Dhaka" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <!-- Verified Badge -->
+              <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-emerald-700 px-2.5 py-1 rounded-full text-[11px] font-bold flex items-center gap-1 shadow-xs">
+                <svg class="w-3.5 h-3.5 fill-current text-emerald-600" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Verified</span>
+              </span>
+            </div>
+            <div class="p-4 space-y-2">
+              <h3 class="font-extrabold text-slate-900 text-sm">5 Katha Residential Plot</h3>
+              <div class="flex items-center gap-1 text-slate-500 text-xs">
+                <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Mohammadpur Dhaka</span>
+              </div>
+              <p class="text-emerald-700 font-extrabold text-xs pt-1">
+                Price: 28,00,000 Taka
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="border border-slate-200/80 rounded-2xl overflow-hidden bg-white hover:shadow-lg transition-shadow group">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="5 Katha Residential Plot located in Mohammadpur Dhaka" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <!-- Verified Badge -->
+              <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-emerald-700 px-2.5 py-1 rounded-full text-[11px] font-bold flex items-center gap-1 shadow-xs">
+                <svg class="w-3.5 h-3.5 fill-current text-emerald-600" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Verified</span>
+              </span>
+            </div>
+            <div class="p-4 space-y-2">
+              <h3 class="font-extrabold text-slate-900 text-sm">5 Katha Residential Plot</h3>
+              <div class="flex items-center gap-1 text-slate-500 text-xs">
+                <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Mohammadpur Dhaka</span>
+              </div>
+              <p class="text-emerald-700 font-extrabold text-xs pt-1">
+                Price: 28,00,000 Taka
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="border border-slate-200/80 rounded-2xl overflow-hidden bg-white hover:shadow-lg transition-shadow group">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="5 Katha Residential Plot located in Mohammadpur Dhaka" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <!-- Verified Badge -->
+              <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-emerald-700 px-2.5 py-1 rounded-full text-[11px] font-bold flex items-center gap-1 shadow-xs">
+                <svg class="w-3.5 h-3.5 fill-current text-emerald-600" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Verified</span>
+              </span>
+            </div>
+            <div class="p-4 space-y-2">
+              <h3 class="font-extrabold text-slate-900 text-sm">5 Katha Residential Plot</h3>
+              <div class="flex items-center gap-1 text-slate-500 text-xs">
+                <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Mohammadpur Dhaka</span>
+              </div>
+              <p class="text-emerald-700 font-extrabold text-xs pt-1">
+                Price: 28,00,000 Taka
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+</body>
+</html>

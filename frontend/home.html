@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LandDeal - Verified Land Platform</title>
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#0B7A3E',
+              dark: '#085C2F',
+              light: '#EAF6EE',
+              accent: '#054020'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- Skip Link for Keyboard Accessibility -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-brand focus:font-bold focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-brand">
+    Skip to main content
+  </a>
+
+  <!-- TOP HEADER / NAVBAR -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 rounded focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 transition-transform duration-200 hover:scale-[1.01]" aria-label="LandDeal Homepage">
+        <div>
+          <span class="text-3xl font-extrabold text-gray-900 tracking-tight block leading-none hover:text-brand transition-colors duration-200">LandDeal</span>
+          <div class="inline-flex items-center gap-1.5 px-3 py-0.2 bg-[#EAF6EE] text-[#16A34A] text-sm font-semibold rounded-full border border-[#16A34A] hover:bg-emerald-100 transition-colors duration-200">
+            <span class="w-2 h-2 rounded-full bg-[#16A34A]"></span>
+            Secure. Verified. Transparent
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation & Auth -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+        <a href="#hero" class="text-sm font-semibold text-gray-700 hover:text-brand focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 rounded px-2 py-1 transition-colors duration-200">Home</a>
+        <a href="#properties" class="text-sm font-semibold text-gray-700 hover:text-brand focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 rounded px-2 py-1 transition-colors duration-200">Browse Lands</a>
+        <a href="#why-choose" class="text-sm font-semibold text-gray-700 hover:text-brand focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 rounded px-2 py-1 transition-colors duration-200">Why Choose Us</a>
+        <a href="#how-it-works" class="text-sm font-semibold text-gray-700 hover:text-brand focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 rounded px-2 py-1 transition-colors duration-200">How It Works</a>
+      </nav>
+
+      <!-- Header Action Buttons -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="login.html" class="px-4 py-2 border border-brand text-brand font-semibold text-sm rounded-lg hover:bg-brand-light focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 transition-all duration-200 hover:shadow-sm">
+          Login
+        </a>
+        <a href="register.html" class="px-4 py-2 bg-brand text-white font-semibold text-sm rounded-lg hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5">
+          Register
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" class="flex-grow">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12" aria-labelledby="hero-heading">
+      <div class="relative rounded-3xl overflow-hidden bg-emerald-950 text-white min-h-[420px] flex items-center group">
+        <!-- Hero Background Image & Overlay -->
+        <img 
+          src="/assets/images/hero_bg.png" 
+          alt="Aerial view of green agricultural field plots" 
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/90 via-emerald-900/80 to-transparent"></div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-2xl px-6 py-12 sm:px-12 sm:py-16">
+          <!-- Badge -->
+          <span class="inline-flex items-center gap-2 px-3 py-1 bg-white/90 text-brand text-xs font-bold rounded-full mb-6 border border-brand/20 hover:bg-white transition-colors duration-200 cursor-default">
+            <i class="fa-solid fa-circle-check text-brand" aria-hidden="true"></i>
+            Secure • Verified • Transparent
+          </span>
+
+          <h1 id="hero-heading" class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+            Buy & Sell Land with <span class="text-emerald-400">Confidence</span>
+          </h1>
+
+          <p class="text-sm sm:text-base text-gray-200 mb-8 leading-relaxed max-w-lg">
+            A trusted platform for verified land ownership. Secure payment and easy transaction.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="#properties" class="px-6 py-3 bg-brand hover:bg-brand-dark text-white font-semibold rounded-lg text-sm transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-900">
+              Browse Verified Lands
+            </a>
+            <a href="#how-it-works" class="px-6 py-3 bg-white/90 hover:bg-white text-gray-900 font-semibold rounded-lg text-sm transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2">
+              Learn How It Works
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED VERIFIED LANDS SECTION -->
+    <section id="properties" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10" aria-labelledby="featured-heading">
+      <div class="flex items-center justify-between mb-6">
+        <h2 id="featured-heading" class="text-2xl font-bold text-gray-900">Featured Verified Lands</h2>
+        <a href="#" class="text-sm font-semibold text-brand hover:text-brand-dark hover:underline flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-brand rounded px-1 transition-colors duration-200 group">
+          View all <i class="fa-solid fa-arrow-right text-xs transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <!-- Grid Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Card 1 -->
+        <article class="group bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+          <div class="relative h-44 bg-gray-100 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1524813686514-a57563d77965?q=80&w=600&auto=format&fit=crop" alt="Plot layout with brick layout outline" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 bg-white/90 group-hover:bg-white text-brand text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow-sm transition-colors duration-200">
+              <i class="fa-solid fa-circle-check text-[10px]" aria-hidden="true"></i> Verified
+            </span>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold text-gray-900 text-sm mb-1 group-hover:text-brand transition-colors duration-200">5 Katha Residential Plot</h3>
+            <p class="text-xs text-gray-500 mb-3 flex items-center gap-1">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i> Mohammadpur, Dhaka
+            </p>
+            <div class="text-xs font-bold text-gray-900">
+              <span class="text-gray-500 font-normal">Price:</span> 28,00,000 Taka
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="group bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+          <div class="relative h-44 bg-gray-100 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=600&auto=format&fit=crop" alt="Top-down view of green field boundary plots" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 bg-white/90 group-hover:bg-white text-brand text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow-sm transition-colors duration-200">
+              <i class="fa-solid fa-circle-check text-[10px]" aria-hidden="true"></i> Verified
+            </span>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold text-gray-900 text-sm mb-1 group-hover:text-brand transition-colors duration-200">5 Katha Residential Plot</h3>
+            <p class="text-xs text-gray-500 mb-3 flex items-center gap-1">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i> Mohammadpur, Dhaka
+            </p>
+            <div class="text-xs font-bold text-gray-900">
+              <span class="text-gray-500 font-normal">Price:</span> 28,00,000 Taka
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="group bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+          <div class="relative h-44 bg-gray-100 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?q=80&w=600&auto=format&fit=crop" alt="Open land field with transmission poles under clear sky" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 bg-white/90 group-hover:bg-white text-brand text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow-sm transition-colors duration-200">
+              <i class="fa-solid fa-circle-check text-[10px]" aria-hidden="true"></i> Verified
+            </span>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold text-gray-900 text-sm mb-1 group-hover:text-brand transition-colors duration-200">5 Katha Residential Plot</h3>
+            <p class="text-xs text-gray-500 mb-3 flex items-center gap-1">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i> Mohammadpur, Dhaka
+            </p>
+            <div class="text-xs font-bold text-gray-900">
+              <span class="text-gray-500 font-normal">Price:</span> 28,00,000 Taka
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="group bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+          <div class="relative h-44 bg-gray-100 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?q=80&w=600&auto=format&fit=crop" alt="Vast green grass land landscape" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 bg-white/90 group-hover:bg-white text-brand text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow-sm transition-colors duration-200">
+              <i class="fa-solid fa-circle-check text-[10px]" aria-hidden="true"></i> Verified
+            </span>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold text-gray-900 text-sm mb-1 group-hover:text-brand transition-colors duration-200">5 Katha Residential Plot</h3>
+            <p class="text-xs text-gray-500 mb-3 flex items-center gap-1">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i> Mohammadpur, Dhaka
+            </p>
+            <div class="text-xs font-bold text-gray-900">
+              <span class="text-gray-500 font-normal">Price:</span> 28,00,000 Taka
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE LANDDEAL -->
+    <section id="why-choose" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" aria-labelledby="why-heading">
+      <div class="text-center mb-10">
+        <h2 id="why-heading" class="text-2xl sm:text-3xl font-extrabold text-gray-900">
+          Why Choose <span class="text-brand">LandDeal</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Feature 1 -->
+        <div class="group bg-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm hover:shadow-lg hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300">
+          <div class="w-12 h-12 bg-emerald-100 text-brand rounded-full flex items-center justify-center mx-auto mb-4 text-xl group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+            <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 text-sm mb-2 group-hover:text-brand transition-colors duration-200">Secure Documents</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            All ownership documents are digitally checked and stored safely.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="group bg-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm hover:shadow-lg hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300">
+          <div class="w-12 h-12 bg-emerald-100 text-brand rounded-full flex items-center justify-center mx-auto mb-4 text-xl group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 text-sm mb-2 group-hover:text-brand transition-colors duration-200">Safe Payment</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Protected online payment process for worry-free transactions.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="group bg-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm hover:shadow-lg hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300">
+          <div class="w-12 h-12 bg-emerald-100 text-brand rounded-full flex items-center justify-center mx-auto mb-4 text-xl group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 text-sm mb-2 group-hover:text-brand transition-colors duration-200">Accurate Location</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            View exact land location on an interactive map before you buy.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="group bg-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm hover:shadow-lg hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300">
+          <div class="w-12 h-12 bg-emerald-100 text-brand rounded-full flex items-center justify-center mx-auto mb-4 text-xl group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 text-sm mb-2 group-hover:text-brand transition-colors duration-200">Verified Properties</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Every listing is verified by a certified land officer.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" aria-labelledby="how-heading">
+      <div class="text-center mb-10">
+        <h2 id="how-heading" class="text-2xl sm:text-3xl font-extrabold text-gray-900">
+          How It <span class="text-brand">Works</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Step 1 -->
+        <div class="group relative bg-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm hover:shadow-lg hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300">
+          <span class="absolute top-4 left-4 w-6 h-6 bg-brand text-white rounded-full text-xs font-bold flex items-center justify-center group-hover:scale-110 transition-transform duration-200">1</span>
+          <div class="w-12 h-12 bg-emerald-100 text-brand rounded-full flex items-center justify-center mx-auto mb-4 text-xl mt-2 group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+            <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 text-sm mb-2 group-hover:text-brand transition-colors duration-200">Owner Uploads Land</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Submit land details and required ownership documents.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="group relative bg-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm hover:shadow-lg hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300">
+          <span class="absolute top-4 left-4 w-6 h-6 bg-brand text-white rounded-full text-xs font-bold flex items-center justify-center group-hover:scale-110 transition-transform duration-200">2</span>
+          <div class="w-12 h-12 bg-emerald-100 text-brand rounded-full flex items-center justify-center mx-auto mb-4 text-xl mt-2 group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+            <i class="fa-solid fa-file-circle-check" aria-hidden="true"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 text-sm mb-2 group-hover:text-brand transition-colors duration-200">Officer Verifies Documents</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            A land officer verifies and checks all submitted documents.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="group relative bg-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm hover:shadow-lg hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300">
+          <span class="absolute top-4 left-4 w-6 h-6 bg-brand text-white rounded-full text-xs font-bold flex items-center justify-center group-hover:scale-110 transition-transform duration-200">3</span>
+          <div class="w-12 h-12 bg-emerald-100 text-brand rounded-full flex items-center justify-center mx-auto mb-4 text-xl mt-2 group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 text-sm mb-2 group-hover:text-brand transition-colors duration-200">Land Gets Approved</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Once verified, the land is approved and listed on the platform.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="group relative bg-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm hover:shadow-lg hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300">
+          <span class="absolute top-4 left-4 w-6 h-6 bg-brand text-white rounded-full text-xs font-bold flex items-center justify-center group-hover:scale-110 transition-transform duration-200">4</span>
+          <div class="w-12 h-12 bg-emerald-100 text-brand rounded-full flex items-center justify-center mx-auto mb-4 text-xl mt-2 group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+            <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 text-sm mb-2 group-hover:text-brand transition-colors duration-200">Buyer Purchases Securely</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Buyers contact the owner and complete a secure payment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION BANNER -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" aria-label="Call to Action">
+      <div class="bg-brand text-white rounded-2xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-extrabold mb-2">Ready to buy or sell verified land?</h2>
+          <p class="text-xs sm:text-sm text-emerald-100">Join LandDeal today — list your property or browse verified listings across Bangladesh.</p>
+        </div>
+        <div class="flex flex-wrap gap-3 w-full md:w-auto">
+          <a href="#" class="flex-1 md:flex-none text-center px-5 py-2.5 bg-white text-brand font-bold text-sm rounded-lg hover:bg-emerald-50 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand transition-all duration-200">
+            List Your Land
+          </a>
+          <a href="#" class="flex-1 md:flex-none text-center px-5 py-2.5 bg-brand-dark border border-white/30 text-white font-bold text-sm rounded-lg hover:bg-black/20 hover:border-white/60 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand transition-all duration-200">
+            Create Account
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-accent text-white mt-12" aria-labelledby="footer-heading">
+    <h2 id="footer-heading" class="sr-only">Footer Navigation</h2>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 pb-10 border-b border-white/10">
+        
+        <!-- Column 1: Brand Info & Newsletter -->
+        <div class="lg:col-span-2">
+          <a href="#" class="inline-flex items-center gap-2 mb-4 rounded focus:outline-none focus:ring-2 focus:ring-white group">
+            <div class="w-8 h-8 bg-white text-brand rounded-lg flex items-center justify-center font-bold text-base group-hover:scale-110 transition-transform duration-200">
+              <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+            </div>
+            <span class="text-xl font-extrabold text-white group-hover:text-emerald-300 transition-colors duration-200">LandDeal</span>
+          </a>
+          <p class="text-xs text-emerald-200/80 mb-6 leading-relaxed max-w-sm">
+            Bangladesh's trusted platform for verified land buying and selling. Secure documents, officer verification, and safe payments — all in one place.
+          </p>
+
+          <!-- Social Icons -->
+          <div class="flex gap-3 mb-6" aria-label="Social Links">
+            <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs hover:bg-white/30 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-200" aria-label="LandDeal Facebook Page">
+              <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs hover:bg-white/30 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-200" aria-label="LandDeal LinkedIn Profile">
+              <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs hover:bg-white/30 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-200" aria-label="LandDeal YouTube Channel">
+              <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <!-- Newsletter Form -->
+          <form class="flex max-w-sm" onsubmit="event.preventDefault();">
+            <label for="newsletter-email" class="sr-only">Your email address</label>
+            <input 
+              type="email" 
+              id="newsletter-email" 
+              placeholder="Your email address" 
+              required 
+              class="w-full px-3 py-2 text-xs text-gray-900 rounded-l-md focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            />
+            <button 
+              type="submit" 
+              class="px-4 py-2 bg-brand text-white font-semibold text-xs rounded-r-md hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-colors duration-200">
+              Subscribe
+            </button>
+          </form>
+        </div>
+
+        <!-- Column 2: Platform -->
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Platform</h3>
+          <ul class="space-y-2.5 text-xs text-emerald-200/80">
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Browse Lands</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Featured Properties</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">List Your Land</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Land Verification</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Search by Location</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Account -->
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Account</h3>
+          <ul class="space-y-2.5 text-xs text-emerald-200/80">
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Login</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Register</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Owner Dashboard</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Buyer Dashboard</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Upload Documents</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Officer Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Support -->
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Support</h3>
+          <ul class="space-y-2.5 text-xs text-emerald-200/80">
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">How It Works</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">FAQ</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Help Center</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Contact Us</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Report an Issue</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: Legal & Contact -->
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Legal</h3>
+          <ul class="space-y-2.5 text-xs text-emerald-200/80 mb-6">
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Cookie Policy</a></li>
+            <li><a href="#" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus:outline-none focus:underline">Verification Policy</a></li>
+          </ul>
+
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-2">Contact</h3>
+          <address class="not-italic text-xs text-emerald-200/80 space-y-1">
+            <p>Mohammadpur, Dhaka, Bangladesh</p>
+            <p><a href="mailto:support@landdeal.bd" class="hover:text-white transition-colors duration-200 focus:outline-none focus:underline">support@landdeal.bd</a></p>
+            <p><a href="tel:+8801700000000" class="hover:text-white transition-colors duration-200 focus:outline-none focus:underline">+880 1700-000000</a></p>
+          </address>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-emerald-200/60 gap-3">
+        <p>© 2026 LandDeal. All rights reserved.</p>
+        <p class="flex items-center gap-1">
+          <i class="fa-solid fa-shield-halved text-emerald-400" aria-hidden="true"></i>
+          Verified land transactions across Bangladesh
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

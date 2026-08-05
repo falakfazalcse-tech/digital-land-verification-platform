@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LandDeal - Payment Step 2: Review Order</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
+</head>
+<body class="bg-[#f2f9f3] text-gray-900 min-h-screen p-4 md:p-6 lg:p-8">
+
+  <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-6 items-stretch">
+    <!-- Sidebar Panel -->
+    <aside class="w-full lg:w-64 bg-white rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shrink-0">
+      <div>
+        <div class="mb-8">
+          <a href="dashboard.html" class="block">
+            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">LandDeal</h1>
+            <div class="mt-1 inline-block bg-green-50 border border-green-200 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+              Secure • Verified • Transparent
+            </div>
+          </a>
+        </div>
+        <nav class="space-y-1">
+          <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="layout-grid" class="w-5 h-5"></i> Dashboard
+          </a>
+          <a href="search_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="search" class="w-5 h-5"></i> Browse Land
+          </a>
+          <a href="properties_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="home" class="w-5 h-5"></i> My Properties
+          </a>
+          <a href="verification.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="plus" class="w-5 h-5"></i> Add Land
+          </a>
+          <a href="message_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="mail" class="w-5 h-5"></i> Messages
+          </a>
+          <a href="payment.html" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
+            <i data-lucide="receipt" class="w-5 h-5"></i> Transactions
+          </a>
+          <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="user" class="w-5 h-5"></i> Profile
+          </a>
+        </nav>
+      </div>
+      <div class="pt-6 border-t border-gray-100">
+        <a href="index.html" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
+          <i data-lucide="log-out" class="w-5 h-5"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main class="flex-1 bg-white rounded-2xl border border-gray-200 p-6 lg:p-8 flex flex-col justify-between">
+      <div>
+        <!-- Top Bar -->
+        <header class="flex items-center justify-between pb-6 border-b border-gray-200 mb-8">
+          <h2 class="text-lg font-bold text-gray-900">Payment – Step 2 : Review Order</h2>
+          <div class="flex items-center gap-4">
+            <button aria-label="Notifications" class="text-green-500 hover:text-green-600 relative p-1">
+              <i data-lucide="bell" class="w-5 h-5 fill-current"></i>
+            </button>
+            <a href="profile.html" aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600">
+              <i data-lucide="user" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </header>
+
+        <!-- Stepper -->
+        <div class="max-w-2xl mx-auto mb-10 px-4">
+          <div class="relative flex items-center justify-between">
+            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 bg-gray-200 -z-0"></div>
+
+            <a href="payment1.html" class="relative z-10 flex flex-col items-center group">
+              <div class="w-10 h-10 rounded-full bg-green-100 text-green-700 border-2 border-green-600 flex items-center justify-center font-bold text-sm">
+                <i data-lucide="check" class="w-5 h-5"></i>
+              </div>
+              <span class="mt-2 text-xs font-semibold text-green-700">Select Method</span>
+            </a>
+
+            <div class="relative z-10 flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full bg-green-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">
+                2
+              </div>
+              <span class="mt-2 text-xs font-semibold text-green-700">Review Order</span>
+            </div>
+
+            <a href="payment3.html" class="relative z-10 flex flex-col items-center group">
+              <div class="w-10 h-10 rounded-full bg-white border-2 border-gray-300 text-gray-700 group-hover:border-green-600 flex items-center justify-center font-bold text-sm transition-colors">
+                3
+              </div>
+              <span class="mt-2 text-xs font-medium text-gray-700 group-hover:text-green-700">Make Payment</span>
+            </a>
+
+            <a href="payment4.html" class="relative z-10 flex flex-col items-center group">
+              <div class="w-10 h-10 rounded-full bg-white border-2 border-gray-300 text-gray-700 group-hover:border-green-600 flex items-center justify-center font-bold text-sm transition-colors">
+                4
+              </div>
+              <span class="mt-2 text-xs font-medium text-gray-700 group-hover:text-green-700">Confirmation</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Section Title -->
+        <div class="mb-6">
+          <h3 class="text-lg font-bold text-gray-900">Review Details & Confirm</h3>
+          <p class="text-sm text-gray-600 mt-1">Please double-check your land purchase details before proceeding to payment.</p>
+        </div>
+
+        <!-- Details Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-7 space-y-6">
+            <!-- Selected Property Card -->
+            <div class="bg-white rounded-2xl border border-gray-200 p-6 space-y-4">
+              <h4 class="font-bold text-base text-gray-900 border-b border-gray-100 pb-3">Property Particulars</h4>
+              <div class="flex items-start gap-4">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=300&q=80" alt="Property image" class="w-24 h-24 object-cover rounded-xl" />
+                <div class="space-y-1">
+                  <span class="px-2 py-0.5 text-[10px] font-semibold bg-green-100 text-green-700 rounded-full">Verified Listing</span>
+                  <h5 class="font-bold text-sm text-gray-900">12.5 katha Residential Plot</h5>
+                  <p class="text-xs text-gray-600">Block F, Bashundhara R/A, Dhaka</p>
+                  <p class="text-xs text-gray-500 pt-1">Plot ID: #LD-882049</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Buyer & Payment Summary -->
+            <div class="bg-white rounded-2xl border border-gray-200 p-6 space-y-4">
+              <h4 class="font-bold text-base text-gray-900 border-b border-gray-100 pb-3">Transaction Details</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div>
+                  <span class="text-gray-500 block">Buyer Name</span>
+                  <span class="font-semibold text-gray-900 text-sm">Rafiqul Islam</span>
+                </div>
+                <div>
+                  <span class="text-gray-500 block">NID / Verification No.</span>
+                  <span class="font-semibold text-gray-900 text-sm">1988-29401-2940</span>
+                </div>
+                <div>
+                  <span class="text-gray-500 block mb-1">Selected Payment Method</span>
+                  <!-- DYNAMIC PAYMENT METHOD DISPLAY -->
+                  <div id="selected-payment-display" class="flex items-center gap-2">
+                    <div id="payment-badge" class="w-8 h-6 rounded flex items-center justify-center font-bold text-[10px] text-white shrink-0 bg-[#e2136e]">
+                      Bkash
+                    </div>
+                    <span id="payment-method-name" class="font-bold text-gray-900 text-sm">bKash Mobile Wallet</span>
+                  </div>
+                </div>
+                <div>
+                  <span class="text-gray-500 block">Date</span>
+                  <span class="font-semibold text-gray-900 text-sm">July 28, 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Price Calculation Panel -->
+          <div class="lg:col-span-5 bg-white rounded-2xl border border-gray-200 p-6 space-y-4">
+            <h4 class="font-bold text-base text-gray-900 border-b border-gray-100 pb-3">Final Breakdown</h4>
+            <div class="space-y-3 text-xs">
+              <div class="flex justify-between items-center text-gray-600">
+                <span>Land Purchase Price</span>
+                <span class="font-semibold text-gray-900">৳ 28,00,000</span>
+              </div>
+              <div class="flex justify-between items-center text-gray-600">
+                <span>Escrow & Processing Fee</span>
+                <span class="font-semibold text-gray-900">৳ 20,000</span>
+              </div>
+              <div class="flex justify-between items-center text-gray-600">
+                <span>Government Tax & Verification</span>
+                <span class="font-semibold text-gray-900">৳ 5,000</span>
+              </div>
+              <hr class="border-gray-200 my-3" />
+              <div class="flex justify-between items-center pt-1">
+                <span class="font-bold text-sm text-gray-900">Total Payable</span>
+                <span class="font-bold text-lg text-green-800">৳ 28,25,000</span>
+              </div>
+            </div>
+
+            <div class="bg-green-50 border border-green-200 rounded-xl p-3 text-xs text-green-800 flex items-start gap-2">
+              <i data-lucide="info" class="w-4 h-4 shrink-0 mt-0.5 text-green-600"></i>
+              <span>By clicking <strong>Proceed to Pay</strong>, your funds will be placed safely in LandDeal Escrow until title transfer verification completes.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer CTA -->
+      <div class="mt-8 flex items-center justify-between pt-4 border-t border-gray-100">
+        <a href="payment1.html" class="px-6 py-3 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm transition-colors flex items-center gap-2">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>Back</span>
+        </a>
+        <a id="proceedBtn" href="payment3.html" class="bg-[#0b6b32] hover:bg-[#095728] text-white font-semibold px-8 py-3 rounded-xl flex items-center gap-2 transition-colors">
+          <span>Proceed to Pay</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Map keys to display details
+    const paymentMethodsData = {
+      bkash: {
+        name: 'bKash Mobile Wallet',
+        bgColor: '#e2136e',
+        label: 'Bkash'
+      },
+      nagad: {
+        name: 'Nagad Mobile Wallet',
+        bgColor: '#f7941d',
+        label: 'Nagad'
+      },
+      rocket: {
+        name: 'DBBL Rocket Wallet',
+        bgColor: '#8c3494',
+        label: 'Rocket'
+      },
+      card: {
+        name: 'Credit / Debit Card (VISA)',
+        bgColor: '#1e3a8a',
+        label: 'VISA'
+      },
+      bank: {
+        name: 'Bank Transfer',
+        bgColor: '#0284c7',
+        label: 'BANK'
+      },
+      wallet: {
+        name: 'Other Digital Wallet',
+        bgColor: '#1e293b',
+        label: 'WALLET'
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Check URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      let selectedMethod = urlParams.get('payment_method');
+
+      // 2. Fallback to localStorage
+      if (!selectedMethod) {
+        selectedMethod = localStorage.getItem('selectedPaymentMethod');
+      }
+
+      // 3. Fallback to default
+      if (!selectedMethod || !paymentMethodsData[selectedMethod.toLowerCase()]) {
+        selectedMethod = 'bkash';
+      } else {
+        selectedMethod = selectedMethod.toLowerCase();
+      }
+
+      // 4. Update display elements dynamically
+      const methodInfo = paymentMethodsData[selectedMethod];
+      const nameEl = document.getElementById('payment-method-name');
+      const badgeEl = document.getElementById('payment-badge');
+
+      if (nameEl) nameEl.textContent = methodInfo.name;
+      if (badgeEl) {
+        badgeEl.textContent = methodInfo.label;
+        badgeEl.style.backgroundColor = methodInfo.bgColor;
+      }
+
+      // 5. Connect link parameters to step 3 button
+      const proceedBtn = document.getElementById('proceedBtn');
+      if (proceedBtn) {
+        proceedBtn.href = `payment3.html?payment_method=${selectedMethod}`;
+        proceedBtn.addEventListener('click', () => {
+          localStorage.setItem('selectedPaymentMethod', selectedMethod);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
