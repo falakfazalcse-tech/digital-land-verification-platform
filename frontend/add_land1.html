@@ -59,7 +59,6 @@
                 <span>Dashboard</span>
               </a>
             </li>
-            
             <li>
               <a href="properties.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#0b6b32] font-medium rounded-xl text-sm transition-colors group focus:outline-none focus:ring-2 focus:ring-[#0b6b32]">
                 <svg class="w-5 h-5 text-gray-500 group-hover:text-[#0b6b32] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -122,7 +121,6 @@
         <!-- Header Bar -->
         <header class="flex items-center justify-between pb-5 border-b border-gray-200 mb-8">
           <div class="flex items-center gap-3">
-            <!-- Mobile Menu Hamburger Button -->
             <button id="open-sidebar-btn" class="lg:hidden p-2 rounded-xl text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#0b6b32]">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
@@ -146,7 +144,7 @@
         <!-- Form Card Container -->
         <div class="border border-gray-200 rounded-3xl p-5 sm:p-8 mt-6 bg-white shadow-xs">
           
-          <!-- Exact 3-Step Circle Progress Bar -->
+          <!-- 3-Step Progress Indicator -->
           <div class="mb-10 pt-2 pb-6 border-b border-gray-100">
             <div class="flex items-start justify-between max-w-lg mx-auto relative">
               
@@ -158,7 +156,6 @@
                 <span class="text-xs font-bold text-[#0e692a] mt-2 text-center">Property Details</span>
               </div>
 
-              <!-- Line 1-2 -->
               <div class="absolute top-5 left-14 right-1/2 h-[1px] bg-gray-400 -z-0"></div>
 
               <!-- Step 2 (Inactive) -->
@@ -169,7 +166,6 @@
                 <span class="text-xs font-medium text-gray-800 mt-2 text-center">Documents</span>
               </div>
 
-              <!-- Line 2-3 -->
               <div class="absolute top-5 left-1/2 right-14 h-[1px] bg-gray-400 -z-0"></div>
 
               <!-- Step 3 (Inactive) -->
@@ -183,56 +179,42 @@
             </div>
           </div>
 
-          <!-- Form directing to add_land2.html -->
-          <form id="property-form" action="add_land2.html" method="GET" onsubmit="handleNextStep(event)">
-            
+          <!-- Property Input Form -->
+          <form id="property-form" onsubmit="handleNextStep(event)">
             <div id="step-content-1">
               <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+                
                 <!-- Column 1 -->
                 <div class="space-y-5">
                   <div>
                     <label for="land-title" class="block text-xs font-bold text-gray-800 mb-1.5">Land Title</label>
-                    <input type="text" id="land-title" name="landTitle" placeholder="Enter land title" required class="w-full px-4 py-2.5 text-xs text-gray-800 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all placeholder-gray-400" />
+                    <input type="text" id="land-title" name="title" placeholder="Enter land title" required class="w-full px-4 py-2.5 text-xs text-gray-800 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all placeholder-gray-400" />
                   </div>
                   <div>
                     <label for="district" class="block text-xs font-bold text-gray-800 mb-1.5">District</label>
                     <div class="relative">
-                      <select id="district" name="district" required class="w-full px-4 py-2.5 text-xs text-gray-700 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all appearance-none bg-white pr-8">
-                        <option value="" disabled selected>Select District</option>
-                        <option value="Dhaka">Dhaka</option>
-                        <option value="Chittagong">Chittagong</option>
-                        <option value="Sylhet">Sylhet</option>
-                      </select>
+                      <input id="district" name="district" required class="w-full px-4 py-2.5 text-xs text-gray-700 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all appearance-none bg-white pr-8">
+                       
                       <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                       
                       </div>
                     </div>
                   </div>
                   <div>
                     <label for="upazila" class="block text-xs font-bold text-gray-800 mb-1.5">Upazila</label>
                     <div class="relative">
-                      <select id="upazila" name="upazila" required class="w-full px-4 py-2.5 text-xs text-gray-700 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all appearance-none bg-white pr-8">
-                        <option value="" disabled selected>Select Upazila</option>
-                        <option value="Mohammadpur">Mohammadpur</option>
-                        <option value="Dhanmondi">Dhanmondi</option>
-                        <option value="Gulshan">Gulshan</option>
-                      </select>
+                      <input id="upazila" name="upazila" required class="w-full px-4 py-2.5 text-xs text-gray-700 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all appearance-none bg-white pr-8">
+                        
                       <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                       </div>
                     </div>
                   </div>
                   <div>
-                    <label for="mouza" class="block text-xs font-bold text-gray-800 mb-1.5">Mouza</label>
+                    <label for="mouza" class="block text-xs font-bold text-gray-800 mb-1.5">Area</label>
                     <div class="relative">
-                      <select id="mouza" name="mouza" required class="w-full px-4 py-2.5 text-xs text-gray-700 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all appearance-none bg-white pr-8">
-                        <option value="" disabled selected>Select Mouza</option>
-                        <option value="Mouza 01">Mouza 01</option>
-                        <option value="Mouza 02">Mouza 02</option>
-                      </select>
-                      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                      </div>
+                      <input id="mouza" name="mouza" required class="w-full px-4 py-2.5 text-xs text-gray-700 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all appearance-none bg-white pr-8">
+                       
+                     
                     </div>
                   </div>
                 </div>
@@ -241,20 +223,20 @@
                 <div class="space-y-5">
                   <div>
                     <label for="khatian-no" class="block text-xs font-bold text-gray-800 mb-1.5">Khatian No</label>
-                    <input type="text" id="khatian-no" name="khatianNo" placeholder="Enter Khatian No" required class="w-full px-4 py-2.5 text-xs text-gray-800 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all placeholder-gray-400" />
+                    <input type="text" id="khatian-no" name="khatian_no" placeholder="Enter Khatian No" required class="w-full px-4 py-2.5 text-xs text-gray-800 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all placeholder-gray-400" />
                   </div>
                   <div>
                     <label for="dag-no" class="block text-xs font-bold text-gray-800 mb-1.5">Dag No</label>
-                    <input type="text" id="dag-no" name="dagNo" placeholder="Enter Dag No" required class="w-full px-4 py-2.5 text-xs text-gray-800 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all placeholder-gray-400" />
+                    <input type="text" id="dag-no" name="dag_no" placeholder="Enter Dag No" required class="w-full px-4 py-2.5 text-xs text-gray-800 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all placeholder-gray-400" />
                   </div>
                   <div>
-                    <label for="area" class="block text-xs font-bold text-gray-800 mb-1.5">Area</label>
-                    <input type="text" id="area" name="area" placeholder="Enter Area (e.g. 10 Decimals)" required class="w-full px-4 py-2.5 text-xs text-gray-800 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all placeholder-gray-400" />
+                    <label for="area" class="block text-xs font-bold text-gray-800 mb-1.5">Katha</label>
+                    <input type="number" step="0.01" id="area" name="area" placeholder="Enter Area (e.g. 10.5)" required class="w-full px-4 py-2.5 text-xs text-gray-800 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all placeholder-gray-400" />
                   </div>
                   <div>
                     <label for="land-type" class="block text-xs font-bold text-gray-800 mb-1.5">Land Type</label>
                     <div class="relative">
-                      <select id="land-type" name="landType" required class="w-full px-4 py-2.5 text-xs text-gray-700 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all appearance-none bg-white pr-8">
+                      <select id="land-type" name="land_type" required class="w-full px-4 py-2.5 text-xs text-gray-700 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all appearance-none bg-white pr-8">
                         <option value="" disabled selected>Select Land Type</option>
                         <option value="Residential">Residential</option>
                         <option value="Commercial">Commercial</option>
@@ -270,19 +252,19 @@
                 <!-- Column 3 -->
                 <div class="flex flex-col h-full">
                   <label for="description" class="block text-xs font-bold text-gray-800 mb-1.5">Describe Your Property</label>
-                  <textarea id="description" name="description" placeholder="Describe Your Property......" class="w-full flex-1 min-h-[200px] lg:min-h-0 p-4 text-xs text-gray-800 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all placeholder-gray-400 resize-none"></textarea>
+                  <textarea id="description" name="description" placeholder="Describe Your Property..." class="w-full flex-1 min-h-[200px] lg:min-h-0 p-4 text-xs text-gray-800 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all placeholder-gray-400 resize-none"></textarea>
                 </div>
               </div>
             </div>
 
-            <!-- Next Navigation Button -->
+            <!-- Navigation Actions -->
             <div class="mt-8 flex justify-end items-center pt-4 border-t border-gray-100">
               <button 
                 type="submit" 
                 id="next-btn" 
-                class="inline-flex items-center gap-2 px-8 py-2.5 bg-[#0b6b32] hover:bg-[#095728] text-white font-bold text-xs rounded-xl transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0b6b32] hover:translate-x-0.5"
+                class="inline-flex items-center gap-2 px-8 py-2.5 bg-[#0b6b32] hover:bg-[#095728] text-white font-bold text-xs rounded-xl transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0b6b32] disabled:opacity-50"
               >
-                <span>Next Step</span>
+                <span id="btn-text">Next Step</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -297,45 +279,82 @@
 
   </div>
 
-  <!-- JavaScript Implementation -->
   <script>
-    // Sidebar Controls for Mobile
+    const API_BASE = 'http://localhost:5000/api/properties';
+
+    // Sidebar Mobile Controls
     const sidebar = document.getElementById('sidebar');
     const backdrop = document.getElementById('sidebar-backdrop');
-    const openSidebarBtn = document.getElementById('open-sidebar-btn');
-    const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+    document.getElementById('open-sidebar-btn')?.addEventListener('click', () => { sidebar.classList.remove('-translate-x-full'); backdrop.classList.remove('hidden'); });
+    document.getElementById('close-sidebar-btn')?.addEventListener('click', () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); });
+    backdrop?.addEventListener('click', () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); });
 
-    function openSidebar() {
-      sidebar.classList.remove('-translate-x-full');
-      backdrop.classList.remove('hidden');
-    }
+    // Populate existing values if coming back to Step 1
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedDetails = sessionStorage.getItem('landPropertyDetails');
+      if (savedDetails) {
+        try {
+          const details = JSON.parse(savedDetails);
+          if (details.title) document.getElementById('land-title').value = details.title;
+          if (details.district) document.getElementById('district').value = details.district;
+          if (details.upazila) document.getElementById('upazila').value = details.upazila;
+          if (details.mouza) document.getElementById('mouza').value = details.mouza;
+          if (details.khatian_no) document.getElementById('khatian-no').value = details.khatian_no;
+          if (details.dag_no) document.getElementById('dag-no').value = details.dag_no;
+          if (details.area) document.getElementById('area').value = details.area;
+          if (details.land_type) document.getElementById('land-type').value = details.land_type;
+          if (details.description) document.getElementById('description').value = details.description;
+        } catch (e) {
+          console.error('Error parsing cached details:', e);
+        }
+      }
+    });
 
-    function closeSidebar() {
-      sidebar.classList.add('-translate-x-full');
-      backdrop.classList.add('hidden');
-    }
-
-    openSidebarBtn?.addEventListener('click', openSidebar);
-    closeSidebarBtn?.addEventListener('click', closeSidebar);
-    backdrop?.addEventListener('click', closeSidebar);
-
-    // Save Form Data to Session Storage and Navigate to Step 2
-    function handleNextStep(event) {
+    // Submit Step 1 to Backend API
+    async function handleNextStep(event) {
       event.preventDefault();
       
+      const submitBtn = document.getElementById('next-btn');
+      const btnText = document.getElementById('btn-text');
+      
+      submitBtn.disabled = true;
+      btnText.textContent = 'Saving...';
+
       const form = document.getElementById('property-form');
       const formData = new FormData(form);
-      const propertyDetails = {};
+      const propertyData = {};
 
       formData.forEach((value, key) => {
-        propertyDetails[key] = value;
+        propertyData[key] = value;
       });
 
-      // Persist step 1 form data across pages
-      sessionStorage.setItem('landPropertyDetails', JSON.stringify(propertyDetails));
+      try {
+        const response = await fetch(API_BASE, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(propertyData)
+        });
 
-      // Direct connection redirect to add_land2.html page
-      window.location.href = 'add_land2.html';
+        const result = await response.json();
+
+        if (result.success) {
+          // Store property ID for steps 2 & 3
+          sessionStorage.setItem('currentPropertyId', result.propertyId);
+          sessionStorage.setItem('landPropertyDetails', JSON.stringify(propertyData));
+
+          // Proceed to Step 2
+          window.location.href = 'add_land2.html';
+        } else {
+          alert('Failed to save details: ' + (result.message || 'Server error'));
+          submitBtn.disabled = false;
+          btnText.textContent = 'Next Step';
+        }
+      } catch (err) {
+        console.error('API Error:', err);
+        alert('Could not connect to the backend server. Make sure it is running on http://localhost:5000.');
+        submitBtn.disabled = false;
+        btnText.textContent = 'Next Step';
+      }
     }
   </script>
 </body>

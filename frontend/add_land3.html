@@ -21,15 +21,15 @@
           <span class="text-[9px] font-semibold text-[#0b6b32] tracking-wider bg-[#dcfce7] px-2 py-0.5 rounded-full inline-block mt-1">Secure . Verified . Transparent</span>
         </div>
         <nav class="space-y-2">
-          <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">Dashboard</a>
-          <a href="properties.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">My Properties</a>
+          <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs hover:bg-gray-50 transition-colors">Dashboard</a>
+          <a href="properties.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs hover:bg-gray-50 transition-colors">My Properties</a>
           <a href="add_land1.html" class="flex items-center gap-3 px-4 py-3 bg-[#cbf7d5] text-[#0b6b32] font-bold rounded-xl text-xs">Add Land</a>
-          <a href="message_dashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">Messages</a>
-          <a href="payment1.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">Transactions</a>
-          <a href="profile.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">Profile</a>
+          <a href="message_dashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs hover:bg-gray-50 transition-colors">Messages</a>
+          <a href="payment1.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs hover:bg-gray-50 transition-colors">Transactions</a>
+          <a href="profile.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs hover:bg-gray-50 transition-colors">Profile</a>
         </nav>
       </div>
-      <a href="home.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs">Logout</a>
+      <a href="home.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs hover:bg-gray-50 transition-colors">Logout</a>
     </aside>
 
     <!-- Main Section -->
@@ -39,18 +39,18 @@
         <header class="flex items-center justify-between pb-5 border-b border-gray-100 mb-8">
           <h2 class="text-xl font-bold text-gray-900">Add Your Land</h2>
           <div class="flex items-center gap-3">
-            <span class="p-2 text-[#0b6b32] bg-green-50 rounded-full">🔔</span>
-            <span class="text-gray-400">👤</span>
+            <span class="p-2 text-[#0b6b32] bg-green-50 rounded-full cursor-pointer">🔔</span>
+            <span class="text-gray-400 cursor-pointer">👤</span>
           </div>
         </header>
 
-        <!-- Stepper Navigation (Interconnected Links) -->
+        <!-- Stepper Navigation -->
         <div class="mb-10 pt-2 pb-4">
           <div class="flex items-center justify-center max-w-xl mx-auto relative">
             
             <!-- Step 1 Clickable Link -->
-            <a href="index.html" class="flex flex-col items-center z-10 group cursor-pointer">
-              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white flex items-center justify-center text-base shadow-sm group-hover:bg-[#085226]">
+            <a href="add_land1.html" class="flex flex-col items-center z-10 group cursor-pointer">
+              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white flex items-center justify-center text-base shadow-sm group-hover:bg-[#085226] transition-colors">
                 ✓
               </div>
               <span class="text-xs font-bold text-[#0b6b32] mt-2">Property Details</span>
@@ -60,7 +60,7 @@
 
             <!-- Step 2 Clickable Link -->
             <a href="add_land2.html" class="flex flex-col items-center z-10 group cursor-pointer">
-              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white flex items-center justify-center text-base shadow-sm group-hover:bg-[#085226]">
+              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white flex items-center justify-center text-base shadow-sm group-hover:bg-[#085226] transition-colors">
                 ✓
               </div>
               <span class="text-xs font-bold text-[#0b6b32] mt-2">Documents</span>
@@ -81,13 +81,19 @@
 
         <!-- Preview Card -->
         <div class="border border-gray-100 rounded-3xl p-6 md:p-8 bg-white shadow-xs">
-          <h3 class="text-xl font-extrabold text-gray-900 mb-6">Preview Property</h3>
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-extrabold text-gray-900">Preview Property</h3>
+            <span id="data-status-tag" class="text-[10px] font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">Checking saved data...</span>
+          </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
             <!-- Dynamic Data Display from Page 1 -->
             <div class="border border-gray-100 rounded-2xl p-6 bg-white shadow-xs">
-              <h4 class="text-sm font-bold text-gray-900 mb-6">Property Summary</h4>
+              <div class="flex items-center justify-between mb-6">
+                <h4 class="text-sm font-bold text-gray-900">Property Summary</h4>
+                <a href="add_land1.html" class="text-xs font-bold text-[#0b6b32] hover:underline">Edit Step 1</a>
+              </div>
 
               <div class="space-y-3.5 text-xs font-medium text-gray-700">
                 <div class="grid grid-cols-2">
@@ -124,7 +130,7 @@
                 </div>
                 <div class="grid grid-cols-2">
                   <span class="text-gray-900 font-semibold">Description</span>
-                  <span id="preview-desc" class="text-gray-600">--</span>
+                  <span id="preview-desc" class="text-gray-600 break-words">--</span>
                 </div>
               </div>
             </div>
@@ -132,27 +138,30 @@
             <!-- Dynamic Images Display from Page 2 -->
             <div class="border border-gray-100 rounded-2xl p-6 bg-white shadow-xs flex flex-col justify-between">
               <div>
-                <h4 class="text-sm font-bold text-gray-900 mb-6">Images</h4>
+                <div class="flex items-center justify-between mb-6">
+                  <h4 class="text-sm font-bold text-gray-900">Images & Attachments</h4>
+                  <a href="add_land2.html" class="text-xs font-bold text-[#0b6b32] hover:underline">Edit Step 2</a>
+                </div>
 
                 <div id="image-grid" class="grid grid-cols-2 gap-3 mb-6">
                   <!-- Fallback placeholders if none uploaded -->
-                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100">
-                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" />
+                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100 border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Placeholder Land Image" />
                   </div>
-                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100">
-                    <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" />
+                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100 border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Placeholder Land Image" />
                   </div>
-                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100">
-                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" />
+                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100 border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Placeholder Land Image" />
                   </div>
-                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100">
-                    <img src="https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" />
+                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100 border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Placeholder Land Image" />
                   </div>
                 </div>
               </div>
 
-              <button type="button" class="w-full py-2.5 bg-[#dcfce7] hover:bg-[#cbf7d5] text-[#0b6b32] font-bold text-xs rounded-xl transition-colors">
-                View all
+              <button type="button" id="view-all-btn" class="w-full py-2.5 bg-[#dcfce7] hover:bg-[#cbf7d5] text-[#0b6b32] font-bold text-xs rounded-xl transition-colors">
+                View all attached media
               </button>
             </div>
 
@@ -163,11 +172,9 @@
             <a href="add_land2.html" class="px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xs rounded-xl transition-all">
               ← Back
             </a>
-            <a href="add_land4.html">
-            <button type="button" onclick="submitData()" class="px-8 py-2.5 bg-[#0b6b32] hover:bg-[#085226] text-white font-bold text-xs rounded-xl transition-all shadow-sm">
+            <button type="button" id="submit-btn" onclick="submitData()" class="px-8 py-2.5 bg-[#0b6b32] hover:bg-[#085226] text-white font-bold text-xs rounded-xl transition-all shadow-sm">
               Submit →
             </button>
-            </a>
           </div>
 
         </div>
@@ -177,38 +184,95 @@
   </div>
 
   <script>
-    // Interconnected Sync Logic
+    // Comprehensive Data Retrieval Engine
     window.addEventListener('DOMContentLoaded', () => {
-      const data = JSON.parse(localStorage.getItem('landDealData') || '{}');
+      const statusTag = document.getElementById('data-status-tag');
+      
+      // Attempt to load unified local/session storage items
+      let storedData = {};
+      try {
+        const rawLocal = localStorage.getItem('landDealData');
+        const rawSession = sessionStorage.getItem('landDealData');
+        
+        if (rawLocal) {
+          storedData = JSON.parse(rawLocal);
+        } else if (rawSession) {
+          storedData = JSON.parse(rawSession);
+        }
+      } catch (err) {
+        console.warn('Could not parse local draft data:', err);
+      }
 
-      // Populate Page 1 Inputs
-      document.getElementById('preview-title').textContent = data.landTitle || 'Green Valley Plot';
-      document.getElementById('preview-district').textContent = data.district || 'Gazipur';
-      document.getElementById('preview-upazila').textContent = data.upazila || 'Kaliganj';
-      document.getElementById('preview-mouza').textContent = data.mouza || 'Tala';
-      document.getElementById('preview-khatian').textContent = data.khatianNo || '1234';
-      document.getElementById('preview-dag').textContent = data.dagNo || '5678';
-      document.getElementById('preview-area').textContent = data.area || '10 Decimals';
-      document.getElementById('preview-type').textContent = data.landType || 'Residential';
-      document.getElementById('preview-desc').textContent = data.description || 'Verified property ready for sale.';
+      // Check key-value overrides from standalone session/local keys
+      const landTitle = storedData.landTitle || localStorage.getItem('prop_title') || sessionStorage.getItem('prop_title');
+      const district = storedData.district || localStorage.getItem('prop_district') || sessionStorage.getItem('prop_district');
+      const upazila = storedData.upazila || localStorage.getItem('prop_upazila') || sessionStorage.getItem('prop_upazila');
+      const mouza = storedData.mouza || localStorage.getItem('prop_mouza') || sessionStorage.getItem('prop_mouza');
+      const khatianNo = storedData.khatianNo || localStorage.getItem('prop_khatian') || sessionStorage.getItem('prop_khatian');
+      const dagNo = storedData.dagNo || localStorage.getItem('prop_dag') || sessionStorage.getItem('prop_dag');
+      const area = storedData.area || localStorage.getItem('prop_area') || sessionStorage.getItem('prop_area');
+      const landType = storedData.landType || localStorage.getItem('prop_type') || sessionStorage.getItem('prop_type');
+      const description = storedData.description || localStorage.getItem('prop_desc') || sessionStorage.getItem('prop_desc');
 
-      // Populate Page 2 Uploaded Images if available
-      if (data.landImages && data.landImages.length > 0) {
+      // Populate text fields with real fetched data or fallback defaults
+      document.getElementById('preview-title').textContent = landTitle || 'Green Valley Plot';
+      document.getElementById('preview-district').textContent = district || 'Gazipur';
+      document.getElementById('preview-upazila').textContent = upazila || 'Kaliganj';
+      document.getElementById('preview-mouza').textContent = mouza || 'Tala';
+      document.getElementById('preview-khatian').textContent = khatianNo || '1234';
+      document.getElementById('preview-dag').textContent = dagNo || '5678';
+      document.getElementById('preview-area').textContent = area || '10 Decimals';
+      document.getElementById('preview-type').textContent = landType || 'Residential';
+      document.getElementById('preview-desc').textContent = description || 'Verified property ready for sale.';
+
+      // Check and populate Images from Step 2
+      let uploadedImages = storedData.landImages || [];
+      
+      // Fallback check if images are stored separately in local storage
+      if ((!uploadedImages || uploadedImages.length === 0) && localStorage.getItem('prop_images')) {
+        try {
+          uploadedImages = JSON.parse(localStorage.getItem('prop_images'));
+        } catch (e) {
+          console.warn('Error parsing prop_images:', e);
+        }
+      }
+
+      if (uploadedImages && uploadedImages.length > 0) {
         const grid = document.getElementById('image-grid');
-        grid.innerHTML = '';
-        data.landImages.forEach((src) => {
+        grid.innerHTML = ''; // Clear hardcoded sample placeholders
+
+        uploadedImages.forEach((src) => {
           const card = document.createElement('div');
-          card.className = 'overflow-hidden rounded-xl h-32 bg-gray-100';
-          card.innerHTML = `<img src="${src}" class="w-full h-full object-cover" />`;
+          card.className = 'overflow-hidden rounded-xl h-32 bg-gray-100 border border-gray-100 shadow-xs';
+          card.innerHTML = `<img src="${src}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" alt="Uploaded Land Image" />`;
           grid.appendChild(card);
         });
+
+        if (statusTag) {
+          statusTag.textContent = 'Live Saved Draft';
+          statusTag.className = 'text-[10px] font-bold text-[#0b6b32] bg-[#dcfce7] px-3 py-1 rounded-full';
+        }
+      } else {
+        if (statusTag) {
+          statusTag.textContent = 'Using Sample Data';
+        }
       }
     });
 
+    // Final Submission Action
     function submitData() {
-      alert('Listing submitted successfully!');
-      localStorage.removeItem('landDealData');
-      window.location.href = 'index.html';
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Submitting...';
+
+      // Clear local working draft upon successful completion
+      setTimeout(() => {
+        alert('Listing submitted successfully!');
+        localStorage.removeItem('landDealData');
+        localStorage.removeItem('prop_images');
+        sessionStorage.clear();
+        window.location.href = 'add_land4.html';
+      }, 600);
     }
   </script>
 </body>

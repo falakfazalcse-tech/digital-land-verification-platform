@@ -118,18 +118,38 @@ exports.login = async (req, res) => {
 };
 
 // ------------------- GET PROFILE (PROTECTED) -------------------
-exports.getProfile = async (req, res) => {
+
+
+// ------------------- UPDATE PROFILE INFO -------------------
+exports.updateProfile = async (req, res) => {
   try {
-    const [users] = await db.query(
-      'SELECT id, custom_id, full_name, email, phone, role, created_at FROM users WHERE id = ?',
-      [req.user.id]
+    const {
+      full_name, father_name, mother_name, date_of_birth,
+      gender, national_id, birth_certificate, occupation,
+      present_address, permanent_address
+    } = req.body;
+
+    await db.query(
+      `UPDATE users SET 
+        full_name = COALESCE(?, full_name),
+        father_name = COALESCE(?, father_name),
+        mother_name = COALESCE(?, mother_name),
+        date_of_birth = COALESCE(?, date_of_birth),
+        gender = COALESCE(?, gender),
+        national_id = COALESCE(?, national_id),
+        birth_certificate = COALESCE(?, birth_certificate),
+        occupation = COALESCE(?, occupation),
+        present_address = COALESCE(?, present_address),
+        permanent_address = COALESCE(?, permanent_address)
+      WHERE id = ?`,
+      [
+        full_name, father_name, mother_name, date_of_birth,
+        gender, national_id, birth_certificate, occupation,
+        present_address, permanent_address, req.user.id
+      ]
     );
 
-    if (users.length === 0) {
-      return res.status(404).json({ success: false, message: 'User not found.' });
-    }
-
-    res.status(200).json({ success: true, user: users[0] });
+    res.status(200).json({ success: true, message: 'Profile updated successfully.' });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
