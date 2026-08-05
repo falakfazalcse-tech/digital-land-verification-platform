@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Profile - LandDeal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style> body { font-family: 'Plus Jakarta Sans', sans-serif; } </style>
+</head>
+<body class="bg-[#f2f9f3] text-slate-900 antialiased min-h-screen p-4 md:p-8">
+
+
+  <div class="max-w-3xl mx-auto bg-white rounded-3xl p-6 md:p-8 shadow-xs border border-slate-200">
+   
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900">Edit Profile</h2>
+        <p class="text-xs text-slate-500 font-medium mt-1">Update your personal identification & address details</p>
+      </div>
+      <a href="profile.html" class="text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-xl transition-colors">
+        &larr; Back to Profile
+      </a>
+    </div>
+
+
+    <!-- Update Form -->
+    <form id="editProfileForm" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+     
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Full Name</label>
+        <input type="text" id="full_name" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-green-600 outline-none" required />
+      </div>
+
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Father Name</label>
+        <input type="text" id="father_name" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-green-600 outline-none" />
+      </div>
+
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Mother Name</label>
+        <input type="text" id="mother_name" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-green-600 outline-none" />
+      </div>
+
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Date of Birth</label>
+        <input type="date" id="date_of_birth" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-green-600 outline-none" />
+      </div>
+
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Gender</label>
+        <select id="gender" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-green-600 outline-none">
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">National ID (NID)</label>
+        <input type="text" id="national_id" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-green-600 outline-none" />
+      </div>
+
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Birth Certificate No</label>
+        <input type="text" id="birth_certificate" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-green-600 outline-none" />
+      </div>
+
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Occupation</label>
+        <input type="text" id="occupation" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-green-600 outline-none" />
+      </div>
+
+
+      <div class="md:col-span-2">
+        <label class="block text-xs font-bold text-slate-700 mb-1">Present Address</label>
+        <textarea id="present_address" rows="2" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-green-600 outline-none"></textarea>
+      </div>
+
+
+      <div class="md:col-span-2">
+        <label class="block text-xs font-bold text-slate-700 mb-1">Permanent Address</label>
+        <textarea id="permanent_address" rows="2" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-green-600 outline-none"></textarea>
+      </div>
+
+
+      <!-- Submit & Cancel Buttons -->
+      <div class="md:col-span-2 flex justify-end gap-3 mt-4">
+        <a href="profile.html" class="px-5 py-2.5 bg-slate-100 text-slate-700 font-bold rounded-xl text-xs hover:bg-slate-200">Cancel</a>
+        <button type="submit" id="save-btn" class="px-6 py-2.5 bg-[#16a34a] text-white font-bold rounded-xl text-xs hover:bg-green-700 transition-colors shadow-xs">
+          Save Changes
+        </button>
+      </div>
+
+
+    </form>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', loadCurrentUserData);
+
+
+    // 1. Fetch current profile details to pre-fill inputs
+    async function loadCurrentUserData() {
+      const token = localStorage.getItem('token');
+
+
+      if (!token) {
+        alert('Session expired. Redirecting to login...');
+        window.location.href = 'login.html';
+        return;
+      }
+
+
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/profile', {
+          method: 'GET',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+
+        const result = await response.json();
+
+
+        if (result.success) {
+          const u = result.user;
+          document.getElementById('full_name').value = u.full_name || '';
+          document.getElementById('father_name').value = u.father_name || '';
+          document.getElementById('mother_name').value = u.mother_name || '';
+          document.getElementById('date_of_birth').value = u.date_of_birth ? u.date_of_birth.split('T')[0] : '';
+          document.getElementById('gender').value = u.gender || '';
+          document.getElementById('national_id').value = u.national_id || '';
+          document.getElementById('birth_certificate').value = u.birth_certificate || '';
+          document.getElementById('occupation').value = u.occupation || '';
+          document.getElementById('present_address').value = u.present_address || '';
+          document.getElementById('permanent_address').value = u.permanent_address || '';
+        }
+      } catch (err) {
+        console.error('Failed to load user profile:', err);
+      }
+    }
+
+
+    // 2. Submit Updated Data to Backend API
+    document.getElementById('editProfileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+
+      const token = localStorage.getItem('token');
+      const saveBtn = document.getElementById('save-btn');
+     
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving...';
+
+
+      const updatedPayload = {
+        full_name: document.getElementById('full_name').value.trim(),
+        father_name: document.getElementById('father_name').value.trim(),
+        mother_name: document.getElementById('mother_name').value.trim(),
+        date_of_birth: document.getElementById('date_of_birth').value,
+        gender: document.getElementById('gender').value,
+        national_id: document.getElementById('national_id').value.trim(),
+        birth_certificate: document.getElementById('birth_certificate').value.trim(),
+        occupation: document.getElementById('occupation').value.trim(),
+        present_address: document.getElementById('present_address').value.trim(),
+        permanent_address: document.getElementById('permanent_address').value.trim(),
+      };
+
+
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/profile/update', {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedPayload)
+        });
+
+
+        const result = await response.json();
+
+
+        if (result.success) {
+          alert('Profile updated successfully!');
+          window.location.href = 'profile.html'; // Redirect back to profile page
+        } else {
+          alert(result.message || 'Update failed!');
+        }
+      } catch (error) {
+        console.error('Error updating profile:', error);
+        alert('Unable to connect to the backend server.');
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Save Changes';
+      }
+    });
+  </script>
+</body>
+</html>
+

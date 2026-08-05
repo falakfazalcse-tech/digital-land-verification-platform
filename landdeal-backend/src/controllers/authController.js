@@ -118,6 +118,24 @@ exports.login = async (req, res) => {
 };
 
 // ------------------- GET PROFILE (PROTECTED) -------------------
+exports.getProfile = async (req, res) => {
+  try {
+    const [users] = await db.query(
+      'SELECT id, custom_id, full_name, email, phone, role, created_at FROM users WHERE id = ?',
+      [req.user.id]
+    );
+
+
+    if (users.length === 0) {
+      return res.status(404).json({ success: false, message: 'User not found.' });
+    }
+
+
+    res.status(200).json({ success: true, user: users[0] });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 
 // ------------------- UPDATE PROFILE INFO -------------------

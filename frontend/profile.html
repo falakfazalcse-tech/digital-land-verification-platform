@@ -290,7 +290,93 @@
     </main>
 
   </div>
+<script>
+   document.addEventListener('DOMContentLoaded', fetchUserProfile);
 
+
+async function fetchUserProfile() {
+  
+  const token = localStorage.getItem('token');
+  console.log('Saved Token:', token);
+
+
+  if (!token) {
+    alert('Session expired. Please login again.');
+    window.location.href = 'login.html'; 
+    return;
+  }
+
+
+  try {
+    // 2. Profile Fetch Request (Try /api/auth/profile first if /api/profile fails)
+    const response = await fetch('http://localhost:5000/api/auth/profile', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+
+    const result = await response.json();
+    console.log('Profile Response:', result);
+
+
+    if (!response.ok || !result.success) {
+      alert(result.message || 'Failed to load profile data');
+      return;
+    }
+
+
+    const user = result.user;
+
+
+    // 3. UI Element updates
+    const nameHeading = document.querySelector('h3.text-slate-900');
+    const phoneSpan = document.querySelector('span.font-medium');
+   
+    if (nameHeading) nameHeading.textContent = user.full_name || 'N/A';
+    if (phoneSpan) phoneSpan.textContent = user.phone || 'N/A';
+
+
+    // Status Pill Update
+    const statusPill = document.querySelector('[role="status"]');
+    if (statusPill) {
+      if (user.is_verified) {
+        statusPill.textContent = 'Verified Account';
+        statusPill.className = 'w-full bg-[#16a34a] text-white text-center py-2 px-4 rounded-xl text-xs font-bold tracking-wide shadow-xs';
+      } else {
+        statusPill.textContent = 'Non Verified Account';
+        statusPill.className = 'w-full bg-[#dc2626] text-white text-center py-2 px-4 rounded-xl text-xs font-bold tracking-wide shadow-xs';
+      }
+    }
+
+
+    // Helper Value Formatter
+    const val = (v) => (v && String(v).trim() !== '') ? v : '—';
+
+
+    // List Update
+    const dds = document.querySelectorAll('dl dd');
+    if (dds.length >= 10) {
+      dds[0].textContent = val(user.full_name);
+      dds[1].textContent = val(user.father_name);
+      dds[2].textContent = val(user.mother_name);
+      dds[3].textContent = user.date_of_birth ? new Date(user.date_of_birth).toLocaleDateString() : '—';
+      dds[4].textContent = val(user.gender);
+      dds[5].textContent = val(user.national_id);
+      dds[6].textContent = val(user.birth_certificate);
+      dds[7].textContent = val(user.occupation);
+      dds[8].textContent = val(user.present_address);
+      dds[9].textContent = val(user.permanent_address);
+    }
+
+
+  } catch (error) {
+    console.error('Network or Parsing Error:', error);
+  }
+}
+  </script>
   
 </body>
 </html>
