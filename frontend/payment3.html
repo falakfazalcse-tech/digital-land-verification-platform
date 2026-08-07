@@ -366,5 +366,16 @@
     });
 
   </script>
+  <script src="payment-api.js"></script>
+<script>
+  document.getElementById('otp-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const otp = document.getElementById('otp-input').value;
+    const res = await verifyOtp(otp);
+    if (res && res.status === 'success') {
+      window.location.href = 'payment4.html';
+    }
+  });
+</script>
 </body>
 </html>

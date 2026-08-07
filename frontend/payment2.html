@@ -283,5 +283,16 @@
       }
     });
   </script>
+  <script src="payment-api.js"></script>
+<script>
+  document.getElementById('phone-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const phone = document.getElementById('phone-input').value;
+    const res = await submitAccountDetails(phone);
+    if (res && res.status === 'success') {
+      window.location.href = 'payment3.html';
+    }
+  });
+</script>
 </body>
 </html>
