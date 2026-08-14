@@ -139,7 +139,7 @@
               </tr>
             </thead>
             <tbody id="table-body" class="divide-y divide-gray-100 text-xs">
-              <!-- Dynamically Populated from localStorage -->
+              <!-- Dynamically Populated from Backend -->
             </tbody>
           </table>
         </div>
@@ -217,57 +217,75 @@
     </div>
   </div>
 
-  <!-- JavaScript Logic -->
+  <script src="payment-api.js"></script>
   <script>
-    // Retrieve actual stored payment data from step 1-4 checkout flow
-    function loadSavedTransactions() {
-      let saved = JSON.parse(localStorage.getItem('landdeal_transactions') || '[]');
-      
-      // Check if session data from payment step 1-4 exists to populate if array is empty
-      const currentMethod = localStorage.getItem('selectedPaymentMethod') || 'bKash';
-      const currentTxnId = localStorage.getItem('lastTxnId') || ('TXN-2026-' + Math.floor(100000 + Math.random() * 900000));
-      const currentPropTitle = localStorage.getItem('selectedLandTitle') || '12.5 Katha Residential Plot';
-      const currentPropLoc = localStorage.getItem('selectedLandLocation') || 'Bashundhara, Dhaka';
-      const currentAmount = localStorage.getItem('selectedLandPrice') || '৳ 28,25,000';
-
-      // Method colors
-      const methodColorMap = {
-        'bkash': '#e2136e',
-        'nagad': '#f7941d',
-        'rocket': '#8c338d',
-        'card': '#1a1f71',
-        'bank': '#0b6b32'
-      };
-
-      // If no stored list exists yet, create an active record from payment1-4 steps
-      if (saved.length === 0) {
-        const now = new Date();
-        const dateStr = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-        const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-
-        const primaryTransaction = {
-          id: currentTxnId,
-          title: currentPropTitle,
-          location: currentPropLoc,
-          amount: currentAmount,
-          method: currentMethod.charAt(0).toUpperCase() + currentMethod.slice(1),
-          methodColor: methodColorMap[currentMethod.toLowerCase()] || '#0b6b32',
-          status: 'Completed',
-          date: dateStr,
-          time: timeStr
-        };
-
-        saved.push(primaryTransaction);
-        localStorage.setItem('landdeal_transactions', JSON.stringify(saved));
-      }
-
-      return saved;
-    }
-
-    let transactions = loadSavedTransactions();
+    let transactions = [];
     let currentFilter = 'all';
     let currentPage = 1;
     const itemsPerPage = 5;
+
+    const methodColorMap = {
+      'bkash': '#e2136e',
+      'nagad': '#f7941d',
+      'rocket': '#8c338d',
+      'card': '#1a1f71',
+      'bank': '#0b6b32'
+    };
+
+    // Formats method names properly (e.g., 'rocket' -> 'Rocket')
+    function formatMethodName(methodStr) {
+      if (!methodStr) return 'Rocket';
+      const clean = methodStr.toString().trim().toLowerCase();
+      if (clean === 'bkash') return 'bKash';
+      if (clean === 'nagad') return 'Nagad';
+      if (clean === 'rocket') return 'Rocket';
+      if (clean === 'card') return 'Card';
+      if (clean === 'bank') return 'Bank Transfer';
+      return clean.charAt(0).toUpperCase() + clean.slice(1);
+    }
+
+    // Transform Backend/DB items to frontend table structure
+    function mapDbTransaction(item) {
+      const createdAt = new Date(item.created_at);
+      const dateStr = createdAt.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      const timeStr = createdAt.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+      let formattedStatus = 'Pending';
+      if (item.status === 'completed' || item.status === 'Completed') formattedStatus = 'Completed';
+      else if (item.status === 'failed' || item.status === 'Failed') formattedStatus = 'Failed';
+
+      const rawMethod = item.payment_method || 'rocket';
+      const cleanKey = rawMethod.toLowerCase();
+
+      return {
+        id: item.transaction_id,
+        title: item.title || '12.5 Katha Residential Plot',
+        location: item.location || 'Bashundhara, Dhaka',
+        amount: `৳ ${Number(item.amount).toLocaleString('en-IN')}`,
+        method: formatMethodName(rawMethod),
+        methodColor: methodColorMap[cleanKey] || '#8c338d',
+        status: formattedStatus,
+        date: dateStr,
+        time: timeStr
+      };
+    }
+
+    async function fetchTransactionsFromApi() {
+      try {
+        const response = await fetch('http://localhost:5000/api/v1/payments');
+        const result = await response.json();
+
+        if (result.status === 'success' && Array.isArray(result.data)) {
+          transactions = result.data.map(mapDbTransaction);
+        } else {
+          transactions = [];
+        }
+      } catch (err) {
+        console.error('Failed to load transaction history from API:', err);
+        transactions = [];
+      }
+      renderTable();
+    }
 
     function getFilteredData() {
       if (currentFilter === 'all') return transactions;
@@ -337,7 +355,6 @@
         `).join('');
       }
 
-      // Update Pagination Info Text
       document.getElementById('showing-start').innerText = totalItems === 0 ? 0 : startIdx + 1;
       document.getElementById('showing-end').innerText = endIdx;
       document.getElementById('total-count').innerText = totalItems;
@@ -350,14 +367,12 @@
       const container = document.getElementById('pagination-buttons');
       let html = '';
 
-      // Prev Button
       html += `
         <button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled class="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-gray-300 cursor-not-allowed"' : 'class="w-8 h-8 rounded-lg border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"'}>
           <i data-lucide="chevron-left" class="w-4 h-4"></i>
         </button>
       `;
 
-      // Page Numbers
       for (let i = 1; i <= totalPages; i++) {
         if (i === currentPage) {
           html += `
@@ -374,7 +389,6 @@
         }
       }
 
-      // Next Button
       html += `
         <button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages || totalPages === 0 ? 'disabled class="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-gray-300 cursor-not-allowed"' : 'class="w-8 h-8 rounded-lg border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"'}>
           <i data-lucide="chevron-right" class="w-4 h-4"></i>
@@ -413,7 +427,6 @@
       document.getElementById('detail-modal').classList.add('hidden');
     }
 
-    // Setup Event Listeners for Tabs
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         document.querySelectorAll('.tab-btn').forEach(t => {
@@ -431,8 +444,7 @@
       });
     });
 
-    // Initial render
-    renderTable();
+    window.addEventListener('DOMContentLoaded', fetchTransactionsFromApi);
   </script>
 </body>
 </html>

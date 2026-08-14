@@ -303,15 +303,21 @@
     });
   });
 
-  // Handle Form Submission and Save Data
-  document.getElementById('paymentForm').addEventListener('submit', function(e) {
-    const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
-    
-    // Save selection in localStorage so payment2.html, payment3.html, etc., can access it
-    localStorage.setItem('selectedPaymentMethod', selectedMethod);
-    localStorage.setItem('totalAmount', '2825000');
-    localStorage.setItem('propertyName', '12.5 katha Residential Plot');
-  });
+document.getElementById('next-btn').addEventListener('click', async (e) => {
+  e.preventDefault();
+
+  // 1. Get dynamically selected payment method from radio buttons
+  const selectedRadio = document.querySelector('input[name="paymentMethod"]:checked');
+  const paymentMethod = selectedRadio ? selectedRadio.value.toLowerCase() : 'bkash';
+
+  // 2. Pass dynamic method to backend API
+  const res = await initiatePayment(1, paymentMethod);
+
+  // 3. Navigate only if API call succeeded
+  if (res && res.status === 'success') {
+    window.location.href = 'payment2.html';
+  }
+});
 </script>
 </body>
 </html>

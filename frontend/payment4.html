@@ -226,5 +226,12 @@
       document.getElementById('summary-date').textContent = `${dateString}, ${timeString}`;
     });
   </script>
+  <script src="payment-api.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', async () => {
+    const receiptData = await getReceipt();
+    console.log('Receipt data loaded from server:', receiptData);
+  });
+</script>
 </body>
 </html>
