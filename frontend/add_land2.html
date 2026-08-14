@@ -102,73 +102,91 @@
         </div>
 
         <!-- Document Upload Grid Card -->
-        <form
+        <form 
           id="upload-form"
           enctype="multipart/form-data"
           class="border border-gray-200 rounded-3xl p-6 sm:p-8 mt-12 bg-white shadow-xs">
-          <h3 class="text-xl font-bold text-gray-900 mb-8 tracking-tight">Upload Documents</h3>
 
+<h3 class="text-base font-bold text-gray-900 mt-5 mb-3 flex items-center gap-2">
+              Upload Documents
+            </h3>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             <!-- Box 1: Deed / Sales Deed -->
-            <label class="upload-card border-2 border-dashed border-gray-300 hover:border-[#0b6b32] rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-colors group bg-white">
-              <div class="w-12 h-12 mb-3 flex items-center justify-center">
-                <svg class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <label class="upload-card h-20 border-2 border-solid border-gray-300 hover:border-[#0b6b32] rounded-2xl p-6 flex flex-row items-center justify-center text-center cursor-pointer transition-colors group bg-white">
+              <div class="w-12 h-12 mb-3 items-center justify-center">
+                <svg class="w-10 h-12 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
               </div>
-              <span class="text-xs font-bold text-gray-800 mb-1">Deed / Sales Deed</span>
-              <span class="text-[11px] text-gray-400 file-status">Drag & drop or<br><span class="text-gray-500">click to upload</span></span>
+              <div class="flex flex-col items-center justify-center">
+              <span class="text-xs font-bold text-gray-800 mb-1">Sales Deed(Dalil)</span>
+              <span class="text-[11px] text-gray-400 file-status"><span class="text-green-700 font-bold">Upload File</span></span>
               <input type="file" name="deed" id="deed-input" class="hidden file-input" accept=".pdf,.png,.jpg,.jpeg" />
+              </div>
             </label>
 
             <!-- Box 2: Tax Receipt -->
-            <label class="upload-card border-2 border-dashed border-gray-300 hover:border-[#0b6b32] rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-colors group bg-white">
-              <div class="w-12 h-12 mb-3 flex items-center justify-center">
+            <label class="upload-card h-20 border-2 border-solid border-gray-300 hover:border-[#0b6b32] rounded-2xl p-6 flex flex-row items-center justify-center text-center cursor-pointer transition-colors group bg-white">
+              <div class="w-12 h-12 mb-3 items-center justify-center">
                 <svg class="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
               </div>
-              <span class="text-xs font-bold text-gray-800 mb-1">Tax Receipt</span>
-              <span class="text-[11px] text-gray-400 file-status">Drag & drop or<br><span class="text-gray-500">click to upload</span></span>
+              <div class="flex flex-col items-center justify-center">
+              <span class="text-xs font-bold text-gray-800 mb-1">Land Tax Receipt</span>
+              <span class="text-[11px] text-gray-400 file-status"><span class="text-green-700 font-bold">Upload File</span></span>
               <input type="file" name="taxReceipt" id="tax-input" class="hidden file-input" accept=".pdf,.png,.jpg,.jpeg" />
+              </div>
             </label>
 
+
             <!-- Box 3: National ID -->
-            <label class="upload-card border-2 border-dashed border-gray-300 hover:border-[#0b6b32] rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-colors group bg-white">
+            <label class="upload-card h-20 border-2 border-solid border-gray-300 hover:border-[#0b6b32] rounded-2xl p-6 flex flex-row items-center justify-center text-center cursor-pointer transition-colors group bg-white">
               <div class="w-12 h-12 mb-3 flex items-center justify-center">
                 <svg class="w-10 h-10 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h2a2 2 0 012 2v1m-4 0h4"/></svg>
               </div>
+              <div class="flex flex-col items-center justify-center">
               <span class="text-xs font-bold text-gray-800 mb-1">National ID</span>
-              <span class="text-[11px] text-gray-400 file-status">Drag & drop or<br><span class="text-gray-500">click to upload</span></span>
+              <span class="text-[11px] text-gray-400 file-status"><span class="text-green-700 font-bold">Upload File</span></span>
               <input type="file" name="nationalId" id="nid-input" class="hidden file-input" accept=".pdf,.png,.jpg,.jpeg" />
+              </div>
             </label>
 
             <!-- Box 4: Mutation Certificate -->
-            <label class="upload-card border-2 border-dashed border-gray-300 hover:border-[#0b6b32] rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-colors group bg-white">
+            <label class="upload-card h-20 border-2 border-solid border-gray-300 hover:border-[#0b6b32] rounded-2xl p-6 flex flex-row items-center justify-center text-center cursor-pointer transition-colors group bg-white">
               <div class="w-12 h-12 mb-3 flex items-center justify-center">
                 <svg class="w-10 h-10 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
               </div>
+              <div class="flex flex-col items-center justify-center">
               <span class="text-xs font-bold text-gray-800 mb-1">Mutation Certificate</span>
-              <span class="text-[11px] text-gray-400 file-status">Drag & drop or<br><span class="text-gray-500">click to upload</span></span>
+              <span class="text-[11px] text-gray-400 file-status"><span class="text-green-700 font-bold">Upload File</span></span>
               <input type="file" name="mutationCert" id="mutation-input" class="hidden file-input" accept=".pdf,.png,.jpg,.jpeg" />
+              </div>
             </label>
 
-            <!-- Box 5: Recent Survey -->
-            <label class="upload-card border-2 border-dashed border-gray-300 hover:border-[#0b6b32] rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-colors group bg-white">
+            <!-- Box 5: mouza  map -->
+            <label class="upload-card h-20 border-2 border-solid border-gray-300 hover:border-[#0b6b32] rounded-2xl p-6 flex flex-row items-center justify-center text-center cursor-pointer transition-colors group bg-white">
               <div class="w-12 h-12 mb-3 flex items-center justify-center">
                 <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
               </div>
-              <span class="text-xs font-bold text-gray-800 mb-1">Recent Survey</span>
-              <span class="text-[11px] text-gray-400 file-status">Drag & drop or<br><span class="text-gray-500">click to upload</span></span>
-              <input type="file" name="recentSurvey" id="survey-input" class="hidden file-input" accept=".pdf,.png,.jpg,.jpeg" />
+              <div class="flex flex-col items-center justify-center">
+              <span class="text-xs font-bold text-gray-800 mb-1">Mouza Map</span>
+              <span class="text-[11px] text-gray-400 file-status"><span class="text-green-700 font-bold">Upload File</span></span>
+              <input type="file" name="mouzaMap" id="mouza-input" class="hidden file-input" accept=".pdf,.png,.jpg,.jpeg" />
+              </div>
             </label>
 
             <!-- Box 6: Land Images -->
-            <label class="upload-card border-2 border-dashed border-gray-300 hover:border-[#0b6b32] rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-colors group bg-white">
+            <label class="upload-card h-20 border-2 border-solid border-gray-300 hover:border-[#0b6b32] rounded-2xl p-6 flex flex-row items-center justify-center text-center cursor-pointer transition-colors group bg-white">
               <div class="w-12 h-12 mb-3 flex items-center justify-center">
                 <svg class="w-10 h-10 text-[#0b6b32]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
               </div>
+              <div class="flex flex-col items-center justify-center">
               <span class="text-xs font-bold text-gray-800 mb-1">Land Images</span>
-              <span class="text-[11px] text-gray-400 file-status">Drag & drop or<br><span class="text-gray-500">click to upload</span></span>
+              <span class="text-[11px] text-gray-400 file-status"><span class="text-green-700 font-bold">Upload File</span></span>
               <input type="file" name="landImages" id="images-input" multiple class="hidden file-input" accept=".png,.jpg,.jpeg" />
+              </div>
+           
             </label>
+
+           
 
           </div>
 
@@ -194,143 +212,156 @@
 
   </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Validate Session Property ID
-      const propertyId = sessionStorage.getItem("currentPropertyId");
-      if (!propertyId) {
-        alert("Property ID not found. Please complete Step 1 first.");
-        window.location.href = "add_land1.html";
-        return;
-      }
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Validate Session Property ID
+    const propertyId = sessionStorage.getItem("currentPropertyId");
+    if (!propertyId) {
+      alert("Property ID not found. Please complete Step 1 first.");
+      window.location.href = "add_land1.html";
+      return;
+    }
 
-      // Sidebar Toggle Logic
-      const sidebar = document.getElementById('sidebar');
-      const backdrop = document.getElementById('sidebar-backdrop');
+    // Sidebar Toggle Logic
+    const sidebar = document.getElementById('sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (document.getElementById('open-sidebar-btn')) {
       document.getElementById('open-sidebar-btn').onclick = () => { sidebar.classList.remove('-translate-x-full'); backdrop.classList.remove('hidden'); };
+    }
+    if (document.getElementById('close-sidebar-btn')) {
       document.getElementById('close-sidebar-btn').onclick = () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); };
-      backdrop.onclick = () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); };
+    }
+    backdrop.onclick = () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); };
 
-      // Form Elements
-      const form = document.getElementById('upload-form');
-      const fileInputs = document.querySelectorAll('.file-input');
-      const uploadCards = document.querySelectorAll('.upload-card');
-      const statusMsg = document.getElementById('status-message');
-      const nextBtn = document.getElementById('next-btn');
+    // Toggle Groups
+    document.querySelectorAll('.toggle-group').forEach(group => {
+      const buttons = group.querySelectorAll('.toggle-btn');
+      const hiddenInput = group.querySelector('input[type="hidden"]');
 
-      // Update card interface on file selection
-      const updateCardUI = (input, files) => {
-        const card = input.closest('.upload-card');
-        const statusText = card.querySelector('.file-status');
-
-        if (files && files.length > 0) {
-          card.classList.add('border-[#0b6b32]', 'bg-green-50/50');
-          card.classList.remove('border-gray-300');
-
-          if (input.multiple) {
-            statusText.innerHTML = `<span class="text-[#0b6b32] font-semibold">${files.length} images selected</span>`;
-          } else {
-            const fileName = files[0].name;
-            const truncated = fileName.length > 18 ? fileName.substring(0, 15) + '...' : fileName;
-            statusText.innerHTML = `<span class="text-[#0b6b32] font-semibold">${truncated}</span>`;
-          }
-        }
-      };
-
-      // File input change listener
-      fileInputs.forEach(input => {
-        input.addEventListener('change', (e) => {
-          updateCardUI(e.target, e.target.files);
-        });
-      });
-
-      // Drag and Drop Visual Interactions
-      uploadCards.forEach(card => {
-        ['dragenter', 'dragover'].forEach(eventName => {
-          card.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            card.classList.add('border-[#0b6b32]', 'bg-green-50/30');
-          }, false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-          card.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            card.classList.remove('bg-green-50/30');
-          }, false);
-        });
-
-        card.addEventListener('drop', (e) => {
-          const input = card.querySelector('.file-input');
-          if (e.dataTransfer.files.length > 0) {
-            input.files = e.dataTransfer.files;
-            updateCardUI(input, e.dataTransfer.files);
-          }
-        });
-      });
-
-      // Form Submission Handler
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData();
-        formData.append('property_id', propertyId);
-
-        let hasFiles = false;
-        fileInputs.forEach(input => {
-          if (input.files.length > 0) {
-            hasFiles = true;
-            if (input.multiple) {
-              for (let i = 0; i < input.files.length; i++) {
-                formData.append(input.name, input.files[i]);
-              }
-            } else {
-              formData.append(input.name, input.files[0]);
-            }
-          }
-        });
-
-        // Set Loading State
-        nextBtn.disabled = true;
-        nextBtn.innerHTML = `<span>Uploading...</span>`;
-
-        try {
-          const response = await fetch('http://localhost:5000/api/properties/documents', {
-            method: 'POST',
-            body: formData
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => {
+            b.classList.remove('bg-white', 'text-gray-900', 'shadow-2xs');
+            b.classList.add('text-gray-500');
           });
+          btn.classList.add('bg-white', 'text-gray-900', 'shadow-2xs');
+          btn.classList.remove('text-gray-500');
+          hiddenInput.value = btn.getAttribute('data-val');
+        });
+      });
+    });
 
-          const data = await response.json();
+    // Form Elements
+    const form = document.getElementById('upload-form');
+    const fileInputs = document.querySelectorAll('.file-input');
+    const uploadCards = document.querySelectorAll('.upload-card');
+    const statusMsg = document.getElementById('status-message');
+    const nextBtn = document.getElementById('next-btn');
 
-          if (response.ok && data.success) {
-            showStatus('Documents uploaded successfully! Redirecting...', 'bg-green-100 text-[#0b6b32]');
-            setTimeout(() => {
-              window.location.href = 'add_land3.html';
-            }, 600);
+    // Update card interface on file selection
+    const updateCardUI = (input, files) => {
+      const card = input.closest('.upload-card');
+      const statusText = card.querySelector('.file-status');
+
+      if (files && files.length > 0) {
+        card.classList.add('border-[#0b6b32]', 'bg-green-50/50');
+        card.classList.remove('border-gray-300');
+
+        if (input.multiple) {
+          statusText.innerHTML = `<span class="text-[#0b6b32] font-semibold">${files.length} images selected</span>`;
+        } else {
+          const fileName = files[0].name;
+          const truncated = fileName.length > 18 ? fileName.substring(0, 15) + '...' : fileName;
+          statusText.innerHTML = `<span class="text-[#0b6b32] font-semibold">${truncated}</span>`;
+        }
+      }
+    };
+
+    // File input change listener
+    fileInputs.forEach(input => {
+      input.addEventListener('change', (e) => {
+        updateCardUI(e.target, e.target.files);
+      });
+    });
+
+    // Drag and Drop Visual Interactions
+    uploadCards.forEach(card => {
+      ['dragenter', 'dragover'].forEach(eventName => {
+        card.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          card.classList.add('border-[#0b6b32]', 'bg-green-50/30');
+        }, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        card.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          card.classList.remove('bg-green-50/30');
+        }, false);
+      });
+
+      card.addEventListener('drop', (e) => {
+        const input = card.querySelector('.file-input');
+        if (e.dataTransfer.files.length > 0) {
+          input.files = e.dataTransfer.files;
+          updateCardUI(input, e.dataTransfer.files);
+        }
+      });
+    });
+
+    // Form Submission Handler
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData();
+      formData.append('property_id', propertyId);
+
+      fileInputs.forEach(input => {
+        if (input.files.length > 0) {
+          if (input.multiple) {
+            for (let i = 0; i < input.files.length; i++) {
+              formData.append(input.name, input.files[i]);
+            }
           } else {
-            showStatus(data.message || 'Failed to upload documents.', 'bg-red-100 text-red-700');
-            resetButton();
+            formData.append(input.name, input.files[0]);
           }
-        } catch (error) {
-          console.error('Network Error:', error);
-          showStatus('Backend server unreachable. Advancing with local draft...', 'bg-yellow-100 text-yellow-800');
-          setTimeout(() => {
-            window.location.href = 'add_land3.html';
-          }, 3000);
         }
       });
 
-      function showStatus(msg, classes) {
-        statusMsg.className = `mt-6 p-4 rounded-xl text-sm font-semibold ${classes}`;
-        statusMsg.innerText = msg;
-        statusMsg.classList.remove('hidden');
-      }
+      nextBtn.disabled = true;
+      nextBtn.innerHTML = `<span>Saving...</span>`;
 
-      function resetButton() {
-        nextBtn.disabled = false;
-        nextBtn.innerHTML = `<span>Next</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>`;
+      try {
+        const response = await fetch('http://localhost:5000/api/properties/documents', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          window.location.href = 'add_land3.html';
+        } else {
+          showStatus(data.message || 'Failed to upload documents.', 'bg-red-100 text-red-700');
+          resetButton();
+        }
+      } catch (error) {
+        console.error('Network Error:', error);
+        window.location.href = 'add_land3.html';
       }
     });
-  </script>
+
+    function showStatus(msg, classes) {
+      statusMsg.className = `mt-6 p-4 rounded-xl text-sm font-semibold ${classes}`;
+      statusMsg.innerText = msg;
+      statusMsg.classList.remove('hidden');
+    }
+
+    function resetButton() {
+      nextBtn.disabled = false;
+      nextBtn.innerHTML = `<span>Next</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>`;
+    }
+  });
+</script>
 </body>
 </html>

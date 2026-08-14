@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const path = require('path');
 
 const authRoutes = require('./src/routes/authRoutes');
 const propertyRoutes = require('./src/routes/propertyRoutes');
@@ -10,6 +11,7 @@ const app = express();
 //for middleware
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'src/uploads')));
 
 // Routes
 
@@ -18,7 +20,9 @@ app.use('/api/auth', authRoutes);
 
 // Property APIs
 app.use('/api/properties', propertyRoutes);
+
 app.use('/uploads', express.static('uploads'));
+
 
 // Health Check
 app.get('/api/health', (req, res) => {
@@ -32,24 +36,24 @@ app.get('/api/health', (req, res) => {
 // // =========================
 // // 404 Handler
 // // =========================
-// app.use((req, res) => {
-//   res.status(404).json({
-//     success: false,
-//     message: 'Route not found'
-//   });
-// });
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found'
+  });
+});
 
 // // =========================
 // // Error Handler
 // // =========================
-// app.use((err, req, res, next) => {
-//   console.error(err);
+app.use((err, req, res, next) => {
+  console.error(err);
 
-//   res.status(err.statusCode || 500).json({
-//     success: false,
-//     message: err.message || 'Internal Server Error'
-//   });
-// });
+  res.status(err.statusCode || 500).json({
+    success: false,
+    message: err.message || 'Internal Server Error'
+  });
+});
 
 // =========================
 // Start Server

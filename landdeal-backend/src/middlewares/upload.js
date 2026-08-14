@@ -44,7 +44,7 @@ const uploadPropertyDocs = upload.fields([
   { name: 'taxReceipt', maxCount: 1 },
   { name: 'nationalId', maxCount: 1 },
   { name: 'mutationCert', maxCount: 1 },
-  { name: 'recentSurvey', maxCount: 1 },
+  { name: 'mouzaMap', maxCount: 1 },
   { name: 'landImages', maxCount: 10 }
 ]);
 

@@ -1,77 +1,68 @@
-const db = require('../config/db');
+const PropertyModel = require('../models/propertyModel');
 
-// @desc    Get all land properties (with optional search/filtering)
-// @route   GET /api/properties
-exports.getAllProperties = async (req, res, next) => {
+exports.getApprovedProperties = async (req, res, next) => {
   try {
     const { district, landType, search } = req.query;
-    let query = 'SELECT * FROM properties WHERE 1=1';
-    const queryParams = [];
 
-    if (district) {
-      query += ' AND district = ?';
-      queryParams.push(district);
-    }
-
-    if (landType) {
-      query += ' AND land_type = ?';
-      queryParams.push(landType);
-    }
-
-    if (search) {
-      query += ' AND (land_title LIKE ? OR mouza LIKE ? OR khatian_no LIKE ? OR dag_no LIKE ?)';
-      const searchPattern = `%${search}%`;
-      queryParams.push(searchPattern, searchPattern, searchPattern, searchPattern);
-    }
-
-    query += ' ORDER BY created_at DESC';
-
-    const [rows] = await db.query(query, queryParams);
+    // Delegates database operation to Model
+    const properties = await PropertyModel.findApproved({ district, landType, search });
 
     res.status(200).json({
       success: true,
-      count: rows.length,
-      data: rows
+      count: properties.length,
+      data: properties
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+exports.getAllProperties = async (req, res, next) => {
+  try {
+    const { status, district, landType, search } = req.query;
+
+    // Call Model with status filter
+    const properties = await PropertyModel.findAll({ status, district, landType, search });
+
+    res.status(200).json({
+      success: true,
+      count: properties.length,
+      data: properties
     });
   } catch (error) {
     next(error);
   }
 };
 
-// @desc    Get single land property by ID
-// @route   GET /api/properties/:id
-exports.getPropertyById = async (req, res, next) => {
+exports.getPropertyById = async (req, res) => {
   try {
     const { id } = req.params;
-    const [rows] = await db.query('SELECT * FROM properties WHERE id = ?', [id]);
+    const property = await PropertyModel.findById(id);
 
-    if (rows.length === 0) {
-      return res.status(404).json({ success: false, message: 'Land property not found' });
+    if (!property) {
+      return res.status(404).json({ success: false, message: 'Property not found' });
     }
 
-    res.status(200).json({ success: true, data: rows[0] });
+    res.status(200).json({
+      success: true,
+      data: property
+    });
   } catch (error) {
-    next(error);
+    console.error('Error fetching property details:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
   }
 };
 
-// @desc    Create a new land property (From Step 1/Step 3 Submission)
-// @route   POST /api/properties
 exports.createProperty = async (req, res, next) => {
   try {
     const {
- title,
- district,
- upazila,
- mouza,
- khatian_no,
- dag_no,
- area,
- land_type,
- description
-}=req.body;
+      title, district, upazila, mouza, khatian_no,
+      dag_no, area, land_type, price, negotiable
+    } = req.body;
 
-    // Server-side validation
+    const userId = req.user.id;
+    const numericPrice = parseFloat(price);
+    const isNegotiable = negotiable === 'Yes';
+
     if (!title || !district || !upazila || !mouza || !khatian_no || !dag_no || !area || !land_type) {
       return res.status(400).json({
         success: false,
@@ -79,49 +70,72 @@ exports.createProperty = async (req, res, next) => {
       });
     }
 
-    const query = `
-      INSERT INTO properties 
-      (land_title, district, upazila, mouza, khatian_no, dag_no, area, land_type, description)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
-
-    const values=[
- title,
- district,
- upazila,
- mouza,
- khatian_no,
- dag_no,
- area,
- land_type,
- description || null
-];
-
-    const [result] = await db.query(query, values);
+    const propertyId = await PropertyModel.create({
+      title, district, upazila, mouza, khatian_no,
+      dag_no, area, land_type, numericPrice, isNegotiable, userId
+    });
 
     res.status(201).json({
       success: true,
       message: 'Land property registered successfully!',
-      propertyId: result.insertId
+      propertyId
     });
   } catch (error) {
     next(error);
   }
 };
 
-// @desc    Delete property
-// @route   DELETE /api/properties/:id
 exports.deleteProperty = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const [result] = await db.query('DELETE FROM properties WHERE id = ?', [id]);
+    const isDeleted = await PropertyModel.deleteById(id);
 
-    if (result.affectedRows === 0) {
+    if (!isDeleted) {
       return res.status(404).json({ success: false, message: 'Property not found' });
     }
 
     res.status(200).json({ success: true, message: 'Property deleted successfully' });
   } catch (error) {
     next(error);
+  }
+};
+
+exports.getMetrics = async (req, res) => {
+  try {
+    const metrics = await PropertyModel.getMetrics();
+    res.status(200).json({
+      success: true,
+      metrics
+    });
+  } catch (error) {
+    console.error('Error fetching metrics:', error);
+    res.status(500).json({ success: false, message: 'Server Error' });
+  }
+};
+
+exports.updatePropertyStatus = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body; 
+
+    if (!['APPROVED', 'REJECTED', 'PENDING', 'approved', 'rejected', 'pending'].includes(status)) {
+      return res.status(400).json({ success: false, message: 'Invalid status value' });
+    }
+
+    const normalizedStatus = status.toLowerCase();
+    const isUpdated = await PropertyModel.updateStatus(id, normalizedStatus);
+
+    if (!isUpdated) {
+      return res.status(404).json({ success: false, message: 'Property not found' });
+    }
+
+    return res.status(200).json({ 
+      success: true, 
+      message: 'Status updated successfully',
+      status: normalizedStatus
+    });
+  } catch (error) {
+    console.error('Database Update Error:', error);
+    return res.status(500).json({ success: false, message: 'Database error' });
   }
 };

@@ -5,422 +5,271 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LandDeal - Officer Dashboard</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
   </style>
 </head>
 <body class="bg-[#f2f9f3] text-slate-900 antialiased min-h-screen">
 
-  <!-- WCAG 508 Accessibility Skip Link -->
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-green-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-md">
-    Skip to main content
-  </a>
+  <!-- Mobile Overlay for Sidebar -->
+  <div id="mobile-overlay" class="fixed inset-0 bg-slate-900/50 z-40 hidden lg:hidden" onclick="toggleSidebar()"></div>
 
-  <!-- Layout Container -->
   <div class="flex flex-col lg:flex-row min-h-screen p-3 md:p-6 gap-6 max-w-[1600px] mx-auto">
 
-    <!-- Sidebar Navigation -->
-    <aside class="w-full lg:w-64 bg-white rounded-3xl p-6 flex flex-col justify-between shadow-sm flex-shrink-0" aria-label="Sidebar Navigation">
+    <!-- Responsive Sidebar Navigation -->
+    <aside id="sidebar" class="fixed lg:static top-0 left-0 h-full w-64 bg-white rounded-r-3xl lg:rounded-3xl p-6 flex flex-col justify-between shadow-xl lg:shadow-sm flex-shrink-0 z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
       <div>
-        <!-- Logo Header -->
-        <div class="mb-8">
-          <a href="#" class="inline-block focus:outline-none focus:ring-2 focus:ring-green-600 rounded-md">
+        <div class="flex items-center justify-between mb-8">
+          <a href="#" class="inline-block focus:outline-none rounded-md">
             <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">LandDeal</h1>
             <span class="text-[9px] font-bold text-green-700 tracking-wider block bg-green-100 px-2 py-0.5 rounded-full inline-block mt-0.5">
               Secure . Verified . Transparent
             </span>
           </a>
+          <button onclick="toggleSidebar()" class="lg:hidden text-slate-500 hover:text-slate-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
         </div>
 
-        <!-- Navigation Links -->
         <nav aria-label="Officer Sidebar">
-          <ul class="space-y-1.5" role="list">
+          <ul class="space-y-1.5">
             <li>
-              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                </svg>
-                <span>Dashboard</span>
-              </a>
+              <button onclick="filterByStatus('all')" class="w-full text-left flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-100 hover:text-slate-900 font-semibold rounded-xl text-sm transition-all duration-200">
+                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
+                <span>All Properties</span>
+              </button>
             </li>
 
-            <!-- Section: Verification -->
-            <li class="pt-4 pb-1">
-              <span class="px-4 text-xs font-semibold text-slate-500 tracking-wider">Verification</span>
+            <li class="pt-4 pb-1"><span class="px-4 text-xs font-semibold text-slate-500 tracking-wider">Verification</span></li>
+            <li>
+              <button onclick="filterByStatus('pending')" class="w-full text-left flex items-center gap-3 px-4 py-2.5 text-slate-900 font-bold bg-slate-100 hover:bg-amber-50 hover:text-amber-700 rounded-xl text-sm transition-all duration-200">
+                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>Pending Requests</span>
+              </button>
             </li>
             <li>
-              <a href="#" aria-current="page" class="flex items-center gap-3 px-4 py-2.5 text-slate-900 font-bold rounded-xl text-sm hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                <span>Pending Request</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                </svg>
+              <button onclick="filterByStatus('approved')" class="w-full text-left flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-semibold rounded-xl text-sm transition-all duration-200">
+                <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <span>Approved</span>
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                </svg>
+              <button onclick="filterByStatus('rejected')" class="w-full text-left flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-rose-50 hover:text-rose-700 font-semibold rounded-xl text-sm transition-all duration-200">
+                <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <span>Rejected</span>
-              </a>
-            </li>
-
-            <!-- Section: Management -->
-            <li class="pt-4 pb-1">
-              <span class="px-4 text-xs font-semibold text-slate-500 tracking-wider">Management</span>
-            </li>
-            <li>
-              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span>Reports</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                <span>Users</span>
-              </a>
+              </button>
             </li>
           </ul>
         </nav>
       </div>
+
+      <!-- Logout Button with Hover -->
+      <div class="pt-6 border-t border-slate-100">
+        <button onclick="logout()" class="w-full flex items-center gap-3 px-4 py-2.5 text-red-600 hover:bg-rose-100 hover:text-rose-800 font-bold rounded-xl text-sm transition-all duration-200">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+          <span>Logout</span>
+        </button>
+      </div>
     </aside>
 
     <!-- Main Content Area -->
-    <main id="main-content" class="flex-1 bg-white rounded-3xl p-6 md:p-8 shadow-sm flex flex-col justify-between">
+    <main id="main-content" class="flex-1 bg-white rounded-3xl p-4 md:p-8 shadow-sm flex flex-col justify-between overflow-hidden">
       <div>
-        <!-- Top Bar Header -->
-        <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-3">
-          <div class="flex items-center gap-2">
-            <button type="button" aria-label="Toggle menu" class="lg:hidden text-slate-700 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-600 p-1 rounded-md">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+        <!-- Top Bar -->
+        <header class="flex justify-between items-center gap-4 mb-6">
+          <div class="flex items-center gap-3">
+            <button type="button" onclick="toggleSidebar()" aria-label="Toggle menu" class="lg:hidden text-slate-700 hover:text-slate-900 hover:bg-slate-200 p-2 rounded-xl bg-slate-100 transition-all duration-200">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
             </button>
-            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-1.5">
-              <span>Officer</span>
-              <span class="font-extrabold">Dashboard</span>
+            <h2 class="text-xl md:text-2xl font-bold text-slate-900">
+              Officer <span class="text-green-700">Dashboard</span>
             </h2>
           </div>
 
-          <div class="flex items-center gap-4 self-end sm:self-auto">
-            <!-- Notifications Button -->
-            <button type="button" aria-label="View notifications" class="p-2 text-green-600 hover:bg-green-50 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 22a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22zm7-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C8.63 5.36 7 7.92 7 11v5l-2 2v1h14v-1l-2-2z"/>
-              </svg>
-            </button>
-            <!-- User Profile Avatar Button -->
-            <button type="button" aria-label="Officer profile menu" class="text-slate-300 hover:text-slate-400 focus:outline-none focus:ring-2 focus:ring-green-600 rounded-full">
-              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
-              </svg>
-            </button>
+          <div class="flex items-center gap-3">
+            <div class="text-right hidden sm:block">
+              <div id="officer-name" class="text-xs font-bold text-slate-900">Officer Admin</div>
+              <div class="text-[10px] font-semibold text-slate-500">Verified Officer</div>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-green-100 text-green-800 flex items-center justify-center font-bold text-sm shadow-sm hover:scale-105 transition-transform duration-200">
+              OA
+            </div>
           </div>
         </header>
 
-        <!-- Page Heading & Subtitle -->
-        <div class="mb-6">
-          <h3 class="text-2xl font-bold text-slate-900">Pending Verification Requests</h3>
-          <p class="text-slate-500 text-xs sm:text-sm mt-1">
-            Review and verify land ownership documents submitted by land owners.
-          </p>
-        </div>
-
-        <!-- Search Bar and Filter Section -->
-        <div class="flex flex-col md:flex-row items-stretch md:items-center justify-end gap-3 mb-6">
-          <!-- Search Box -->
-          <div class="relative min-w-[280px] sm:min-w-[340px]">
-            <label for="land-search" class="sr-only">Search by owner name or land ID</label>
-            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-              <svg class="w-4 h-4 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-            <input 
-              type="text" 
-              id="land-search"
-              placeholder="Search by owner name or land ID..." 
-              class="w-full pl-10 pr-4 py-1.5 text-xs sm:text-sm text-slate-800 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 bg-white placeholder-slate-500"
-            />
-          </div>
-
-          <!-- Filter Button -->
-          <button type="button" class="inline-flex items-center justify-center gap-2 px-4 py-1.5 border border-slate-800 rounded-lg text-xs sm:text-sm font-bold text-slate-900 hover:bg-slate-50 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-            <svg class="w-4 h-4 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-            </svg>
-            <span>Filter</span>
-          </button>
-        </div>
-
-        <!-- Metric Overview Cards -->
-        <section aria-label="Verification Summary Metrics" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          
-          <!-- Metric 1: Pending -->
-          <div class="border border-slate-900 p-3 sm:p-4 bg-white flex items-center gap-3">
-            <div class="text-amber-600 flex-shrink-0" aria-hidden="true">
-              <!-- Hourglass Icon -->
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
+        <!-- Metric Overview Cards with Scale & Hover Effects -->
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-6">
+          <div class="border border-slate-200 p-4 rounded-2xl bg-amber-50/40 hover:bg-amber-100/60 hover:shadow-md transition-all duration-200 flex items-center gap-3 cursor-pointer">
+            <div class="text-amber-600 flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
             <div>
-              <div class="text-xl sm:text-2xl font-bold text-slate-900">12</div>
-              <div class="text-[11px] font-bold text-slate-800">Pending Requests</div>
-              <div class="text-[9px] text-slate-500">Awaiting verification</div>
+              <div id="metric-pending-count" class="text-xl sm:text-2xl font-bold text-slate-900">0</div>
+              <div class="text-[11px] font-bold text-slate-700">Pending</div>
             </div>
           </div>
 
-          <!-- Metric 2: Approved -->
-          <div class="border border-slate-900 p-3 sm:p-4 bg-white flex items-center gap-3">
-            <div class="text-emerald-500 flex-shrink-0" aria-hidden="true">
-              <!-- Check Circle Icon -->
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
+          <div class="border border-slate-200 p-4 rounded-2xl bg-emerald-50/40 hover:bg-emerald-100/60 hover:shadow-md transition-all duration-200 flex items-center gap-3 cursor-pointer">
+            <div class="text-emerald-600 flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
             <div>
-              <div class="text-xl sm:text-2xl font-bold text-slate-900">45</div>
-              <div class="text-[11px] font-bold text-slate-800">Approved</div>
-              <div class="text-[9px] text-slate-500">Total approved lands</div>
+              <div id="metric-approved-count" class="text-xl sm:text-2xl font-bold text-slate-900">0</div>
+              <div class="text-[11px] font-bold text-slate-700">Approved</div>
             </div>
           </div>
 
-          <!-- Metric 3: Rejected -->
-          <div class="border border-slate-900 p-3 sm:p-4 bg-white flex items-center gap-3">
-            <div class="text-red-500 flex-shrink-0" aria-hidden="true">
-              <!-- X Circle Icon -->
-              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>
-              </svg>
-            </div>
+          <div class="border border-slate-200 p-4 rounded-2xl bg-rose-50/40 hover:bg-rose-100/60 hover:shadow-md transition-all duration-200 flex items-center gap-3 cursor-pointer">
+            <div class="text-rose-600 flex-shrink-0"><svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg></div>
             <div>
-              <div class="text-xl sm:text-2xl font-bold text-slate-900">8</div>
-              <div class="text-[11px] font-bold text-slate-800">Rejected</div>
-              <div class="text-[9px] text-slate-500">Total rejected lands</div>
+              <div id="metric-rejected-count" class="text-xl sm:text-2xl font-bold text-slate-900">0</div>
+              <div class="text-[11px] font-bold text-slate-700">Rejected</div>
             </div>
           </div>
 
-          <!-- Metric 4: Total Requests -->
-          <div class="border border-slate-900 p-3 sm:p-4 bg-white flex items-center gap-3">
-            <div class="text-slate-400 flex-shrink-0" aria-hidden="true">
-              <!-- Document Icon -->
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
+          <div class="border border-slate-200 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 hover:shadow-md transition-all duration-200 flex items-center gap-3 cursor-pointer">
+            <div class="text-slate-500 flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
             <div>
-              <div class="text-xl sm:text-2xl font-bold text-slate-900">65</div>
-              <div class="text-[11px] font-bold text-slate-800">Total Requests</div>
-              <div class="text-[9px] text-slate-500">All verification requests</div>
+              <div id="metric-total-count" class="text-xl sm:text-2xl font-bold text-slate-900">0</div>
+              <div class="text-[11px] font-bold text-slate-700">Total Requests</div>
             </div>
           </div>
-
         </section>
 
-        <!-- Requests Data Table Section -->
-        <section aria-label="Pending Requests Table" class="border border-slate-200 rounded-3xl p-4 sm:p-6 bg-white shadow-xs">
-          <h4 class="text-lg font-bold text-slate-900 mb-4">Pending Requests List</h4>
+        <!-- Search Bar -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-6">
+          <h3 id="current-filter-title" class="text-lg font-bold text-slate-900">All Verification Requests</h3>
+          <div class="relative w-full sm:w-72">
+            <input type="text" id="land-search" placeholder="Search by name, RS/CS Plot..." class="w-full pl-9 pr-4 py-2 text-xs sm:text-sm text-slate-800 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent bg-white transition-all duration-200" />
+            <svg class="w-4 h-4 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          </div>
+        </div>
 
-          <!-- Table Wrapper for Horizontal Scroll on Small Screens -->
+        <!-- Data Table -->
+        <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-xs">
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse min-w-[650px]">
               <thead>
-                <tr class="bg-slate-100/80 text-slate-900 font-bold text-sm">
-                  <th scope="col" class="py-3 px-4 rounded-l-md">Owner</th>
-                  <th scope="col" class="py-3 px-4">Land ID</th>
-                  <th scope="col" class="py-3 px-4">Date Submitted</th>
-                  <th scope="col" class="py-3 px-4 text-center">Status</th>
-                  <th scope="col" class="py-3 px-4 text-center rounded-r-md">Action</th>
+                <tr class="bg-slate-50 text-slate-700 font-bold text-xs uppercase tracking-wider border-b border-slate-200">
+                  <th scope="col" class="py-3.5 px-4">Owner</th>
+                  <th scope="col" class="py-3.5 px-4">Land Info</th>
+                  <th scope="col" class="py-3.5 px-4">Date</th>
+                  <th scope="col" class="py-3.5 px-4 text-center">Status</th>
+                  <th scope="col" class="py-3.5 px-4 text-center">Action</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-dashed divide-slate-800/60 text-slate-900">
-                
-                <!-- Row 1 -->
-                <tr>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">Md. Rahman</div>
-                    <div class="text-xs text-slate-600 font-medium">01712-345678</div>
-                  </td>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">LT-2026-00111</div>
-                    <div class="text-xs text-slate-600 font-medium">Dhanmondi-15</div>
-                  </td>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">May 20, 2026</div>
-                    <div class="text-xs text-slate-600 font-medium">10:30 am</div>
-                  </td>
-                  <td class="py-3.5 px-4 text-center">
-                    <span class="inline-block bg-yellow-200/80 text-yellow-800 text-xs font-bold px-4 py-1 rounded-md">
-                      Pending
-                    </span>
-                  </td>
-                  <td class="py-3.5 px-4 text-center">
-                    <button type="button" class="inline-block text-green-700 hover:text-green-800 border border-green-600 px-3 py-1 rounded-md text-xs font-bold hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                      View Details
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Row 2 -->
-                <tr>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">Md. Nurul</div>
-                    <div class="text-xs text-slate-600 font-medium">01924-345778</div>
-                  </td>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">LT-2026-00122</div>
-                    <div class="text-xs text-slate-600 font-medium">Mohammadpur</div>
-                  </td>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">May 22, 2026</div>
-                    <div class="text-xs text-slate-600 font-medium">11:30 am</div>
-                  </td>
-                  <td class="py-3.5 px-4 text-center">
-                    <span class="inline-block bg-yellow-200/80 text-yellow-800 text-xs font-bold px-4 py-1 rounded-md">
-                      Pending
-                    </span>
-                  </td>
-                  <td class="py-3.5 px-4 text-center">
-                    <button type="button" class="inline-block text-green-700 hover:text-green-800 border border-green-600 px-3 py-1 rounded-md text-xs font-bold hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                      View Details
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Row 3 -->
-                <tr>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">Samia Rahman</div>
-                    <div class="text-xs text-slate-600 font-medium">01922-142357</div>
-                  </td>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">LT-2026-00211</div>
-                    <div class="text-xs text-slate-600 font-medium">Lalmatia</div>
-                  </td>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">May 23, 2026</div>
-                    <div class="text-xs text-slate-600 font-medium">11:10 am</div>
-                  </td>
-                  <td class="py-3.5 px-4 text-center">
-                    <span class="inline-block bg-yellow-200/80 text-yellow-800 text-xs font-bold px-4 py-1 rounded-md">
-                      Pending
-                    </span>
-                  </td>
-                  <td class="py-3.5 px-4 text-center">
-                    <button type="button" class="inline-block text-green-700 hover:text-green-800 border border-green-600 px-3 py-1 rounded-md text-xs font-bold hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                      View Details
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Row 4 -->
-                <tr>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">Tamim Iqbal</div>
-                    <div class="text-xs text-slate-600 font-medium">01993-874221</div>
-                  </td>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">LT-2026-00322</div>
-                    <div class="text-xs text-slate-600 font-medium">Keraniganj</div>
-                  </td>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">May 24, 2026</div>
-                    <div class="text-xs text-slate-600 font-medium">10:30 am</div>
-                  </td>
-                  <td class="py-3.5 px-4 text-center">
-                    <span class="inline-block bg-yellow-200/80 text-yellow-800 text-xs font-bold px-4 py-1 rounded-md">
-                      Pending
-                    </span>
-                  </td>
-                  <td class="py-3.5 px-4 text-center">
-                    <button type="button" class="inline-block text-green-700 hover:text-green-800 border border-green-600 px-3 py-1 rounded-md text-xs font-bold hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                      View Details
-                    </button>
-                  </td>
-                </tr>
-
-                <!-- Row 5 -->
-                <tr>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">Saki al Hasan</div>
-                    <div class="text-xs text-slate-600 font-medium">01712-348878</div>
-                  </td>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">LT-2026-00345</div>
-                    <div class="text-xs text-slate-600 font-medium">Uttara</div>
-                  </td>
-                  <td class="py-3.5 px-4">
-                    <div class="font-extrabold text-sm">May 28, 2026</div>
-                    <div class="text-xs text-slate-600 font-medium">10:55 am</div>
-                  </td>
-                  <td class="py-3.5 px-4 text-center">
-                    <span class="inline-block bg-yellow-200/80 text-yellow-800 text-xs font-bold px-4 py-1 rounded-md">
-                      Pending
-                    </span>
-                  </td>
-                  <td class="py-3.5 px-4 text-center">
-                    <button type="button" class="inline-block text-green-700 hover:text-green-800 border border-green-600 px-3 py-1 rounded-md text-xs font-bold hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                      View Details
-                    </button>
-                  </td>
-                </tr>
-
+              <tbody id="properties-table-body" class="divide-y divide-slate-100 text-slate-900 text-sm">
+                <!-- Rows Dynamic Inserted -->
               </tbody>
             </table>
           </div>
-
-          <!-- Pagination Footer -->
-          <div class="mt-8 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span class="text-xs sm:text-sm font-semibold text-slate-800">
-              Showing 1 to 5 of 12 results
-            </span>
-            <nav aria-label="Pagination" class="inline-flex items-center gap-1.5">
-              <button type="button" aria-label="Previous page" class="w-7 h-7 border border-slate-800 flex items-center justify-center text-xs font-bold rounded hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                &lt;
-              </button>
-              <button type="button" aria-current="page" class="w-7 h-7 border border-slate-800 flex items-center justify-center text-xs font-bold rounded bg-slate-100 focus:outline-none focus:ring-2 focus:ring-green-600">
-                1
-              </button>
-              <button type="button" class="w-7 h-7 border border-slate-800 flex items-center justify-center text-xs font-bold rounded hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                2
-              </button>
-              <button type="button" class="w-7 h-7 border border-slate-800 flex items-center justify-center text-xs font-bold rounded hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                3
-              </button>
-              <button type="button" aria-label="Next page" class="w-7 h-7 border border-slate-800 flex items-center justify-center text-xs font-bold rounded hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
-                &gt;
-              </button>
-            </nav>
-          </div>
-        </section>
+        </div>
       </div>
     </main>
-
   </div>
 
+  <script>
+    let currentFilter = 'all';
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('-translate-x-full');
+      document.getElementById('mobile-overlay').classList.toggle('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchDashboardMetrics();
+      fetchProperties();
+
+      document.getElementById('land-search').addEventListener('input', (e) => {
+        fetchProperties(e.target.value.trim());
+      });
+    });
+
+    async function fetchDashboardMetrics() {
+      try {
+        const token = localStorage.getItem('token');
+        const res = await fetch('http://localhost:5000/api/properties/metrics', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('metric-pending-count').textContent = data.metrics.pending || 0;
+          document.getElementById('metric-approved-count').textContent = data.metrics.approved || 0;
+          document.getElementById('metric-rejected-count').textContent = data.metrics.rejected || 0;
+          document.getElementById('metric-total-count').textContent = data.metrics.total || 0;
+        }
+      } catch (e) { console.error(e); }
+    }
+
+    async function fetchProperties(search = '') {
+      const tableBody = document.getElementById('properties-table-body');
+      try {
+        const token = localStorage.getItem('token');
+        let url = `http://localhost:5000/api/properties?status=${currentFilter}&search=${encodeURIComponent(search)}`;
+
+        const response = await fetch(url, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const result = await response.json();
+
+        if (!result.success || !result.data || result.data.length === 0) {
+          tableBody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-slate-500 font-medium">No land verification requests found.</td></tr>`;
+          return;
+        }
+
+        tableBody.innerHTML = result.data.map(land => {
+          const statusBadge = land.status === 'approved' 
+            ? '<span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">Approved</span>'
+            : land.status === 'rejected'
+            ? '<span class="bg-rose-100 text-rose-800 text-xs font-bold px-3 py-1 rounded-full">Rejected</span>'
+            : '<span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full">Pending</span>';
+
+          return `
+            <tr class="hover:bg-slate-50 transition-colors duration-150">
+              <td class="py-3.5 px-4">
+                <div class="font-bold text-slate-900">${land.owner_name || 'N/A'}</div>
+                <div class="text-xs text-slate-500">${land.phone || 'No Phone'}</div>
+              </td>
+              <td class="py-3.5 px-4">
+                <div class="font-bold text-slate-900">ID: LT-2026-${String(land.id).padStart(4, '0')}</div>
+                <div class="text-xs text-slate-500">${land.mouza || ''}, ${land.upazila || ''}</div>
+              </td>
+              <td class="py-3.5 px-4 text-xs text-slate-600">
+                ${new Date(land.created_at).toLocaleDateString()}
+              </td>
+              <td class="py-3.5 px-4 text-center">${statusBadge}</td>
+              <td class="py-3.5 px-4 text-center">
+                <!-- Redirects directly to property details page on click -->
+                <button 
+                  onclick="viewLandDetails(${land.id})" 
+                  class="text-green-700 hover:text-white border border-green-600 hover:bg-green-600 shadow-xs hover:shadow px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-200">
+                  View Details
+                </button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      } catch (err) {
+        tableBody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-red-500 font-medium">Error connecting to server.</td></tr>`;
+      }
+    }
+
+    function filterByStatus(status) {
+      currentFilter = status;
+      document.getElementById('current-filter-title').textContent = `${status.toUpperCase()} Verification Requests`;
+      fetchProperties();
+    }
+
+    function viewLandDetails(id) {
+      window.location.href = `verification.html?id=${id}`;
+    }
+
+    function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('registeredUser');
+      window.location.href = 'login.html';
+    }
+  </script>
 </body>
 </html>

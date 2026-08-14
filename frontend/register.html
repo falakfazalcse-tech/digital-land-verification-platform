@@ -281,10 +281,21 @@
             const data = await response.json();
 
             if (data.success) {
-                localStorage.setItem('registeredUser', JSON.stringify(data.data));
-                const userRole = data.data.role.toLowerCase();
-                const targetPage = (userRole === 'buyer' || userRole === 'seller') ? 'dashboard.html' : 'land_officer_dashboard.html';
-                window.location.href = `${targetPage}?status=registered`;
+                const token = data.token || (data.data && data.data.token);
+            if (token) {
+                localStorage.setItem('token', token);
+            }
+            
+            localStorage.setItem('registeredUser', JSON.stringify(data.data));
+
+            const userRole = (data.data?.role || values.role).toLowerCase();
+            
+            let targetPage = 'dashboard.html';
+            if (userRole === 'officer') {
+                targetPage = 'Land_officer_dashboard.html'; 
+            }
+
+            window.location.href = targetPage;
             } else {
                 const msg = data.message?.toLowerCase() || '';
                 if (msg.includes('email')) showError('email', data.message);

@@ -1,7 +1,5 @@
 const db = require('../config/db');
 
-// @desc    Upload documents and optionally finalize property creation
-// @route   POST /api/properties/documents
 exports.uploadDocuments = async (req, res, next) => {
   try {
 const propertyId = req.body.property_id;
@@ -15,20 +13,20 @@ const propertyId = req.body.property_id;
 
     const files = req.files || {};
 
-    const deedPath = files.deed ? files.deed[0].path : null;
-    const taxReceiptPath = files.taxReceipt ? files.taxReceipt[0].path : null;
-    const nationalIdPath = files.nationalId ? files.nationalId[0].path : null;
-    const mutationCertPath = files.mutationCert ? files.mutationCert[0].path : null;
-    const recentSurveyPath = files.recentSurvey ? files.recentSurvey[0].path : null;
-    
+    const deedPath = files.deed ? files.deed[0].filename : null;
+    const taxReceiptPath = files.taxReceipt ? files.taxReceipt[0].filename : null;
+    const nationalIdPath = files.nationalId ? files.nationalId[0].filename : null;
+    const mutationCertPath = files.mutationCert ? files.mutationCert[0].filename : null;
+    const mouzaMapPath = files.mouzaMap ? files.mouzaMap[0].filename : null;
+
     // Process multiple land images into a JSON array of paths
     const landImagesPaths = files.landImages 
-      ? JSON.stringify(files.landImages.map(file => file.path))
+      ? JSON.stringify(files.landImages.map(file => file.filename))
       : JSON.stringify([]);
 
     const query = `
       INSERT INTO property_documents 
-      (property_id, deed_path, tax_receipt_path, national_id_path, mutation_cert_path, recent_survey_path, land_images)
+      (property_id, deed_path, tax_receipt_path, national_id_path, mutation_cert_path, mouza_map_path, land_images)
       VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
 
@@ -38,7 +36,7 @@ const propertyId = req.body.property_id;
       taxReceiptPath,
       nationalIdPath,
       mutationCertPath,
-      recentSurveyPath,
+      mouzaMapPath,
       landImagesPaths
     ];
 

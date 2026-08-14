@@ -4,176 +4,192 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LandDeal - Step 3: Preview Property</title>
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
-</head>
-<body class="bg-[#eef8f0] text-gray-900 min-h-screen antialiased">
 
-  <div class="flex min-h-screen p-4 md:p-6 gap-6 max-w-[1600px] mx-auto">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white rounded-3xl p-6 hidden lg:flex flex-col justify-between shadow-sm flex-shrink-0">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
+</head>
+<body class="bg-[#f2f9f3] text-gray-900 antialiased min-h-screen">
+
+  <div id="sidebar-backdrop" class="fixed inset-0 bg-black/40 z-40 hidden lg:hidden transition-opacity"></div>
+
+  <div class="flex flex-col lg:flex-row min-h-screen p-3 md:p-6 gap-6 max-w-[1600px] mx-auto relative">
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed lg:static top-0 left-0 h-full lg:h-auto w-64 bg-white rounded-r-3xl lg:rounded-3xl p-6 flex flex-col justify-between shadow-lg lg:shadow-sm flex-shrink-0 z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
       <div>
-        <div class="mb-8">
-          <h1 class="text-2xl font-extrabold text-gray-900 tracking-tight">LandDeal</h1>
-          <span class="text-[9px] font-semibold text-[#0b6b32] tracking-wider bg-[#dcfce7] px-2 py-0.5 rounded-full inline-block mt-1">Secure . Verified . Transparent</span>
+        <div class="mb-8 flex items-center justify-between">
+          <a href="#" class="inline-block focus:outline-none focus:ring-2 focus:ring-[#0b6b32] rounded-md">
+            <h1 class="text-2xl font-extrabold text-gray-900 tracking-tight">LandDeal</h1>
+            <span class="text-[10px] font-semibold text-[#0b6b32] tracking-wider bg-green-100 px-2.5 py-0.5 rounded-full inline-block mt-1">
+              Secure . Verified . Transparent
+            </span>
+          </a>
+          <button id="close-sidebar-btn" class="lg:hidden p-1 text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
         </div>
-        <nav class="space-y-2">
-          <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs hover:bg-gray-50 transition-colors">Dashboard</a>
-          <a href="properties.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs hover:bg-gray-50 transition-colors">My Properties</a>
-          <a href="add_land1.html" class="flex items-center gap-3 px-4 py-3 bg-[#cbf7d5] text-[#0b6b32] font-bold rounded-xl text-xs">Add Land</a>
-          <a href="message_dashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs hover:bg-gray-50 transition-colors">Messages</a>
-          <a href="payment1.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs hover:bg-gray-50 transition-colors">Transactions</a>
-          <a href="profile.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs hover:bg-gray-50 transition-colors">Profile</a>
+
+        <nav aria-label="Main Navigation">
+          <ul class="space-y-1.5">
+            <li><a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#0b6b32] font-medium rounded-xl text-sm transition-colors"><svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg><span>Dashboard</span></a></li>
+            <li><a href="properties.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#0b6b32] font-medium rounded-xl text-sm transition-colors"><svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><span>My Properties</span></a></li>
+            <li><a href="add_land1.html" aria-current="page" class="flex items-center gap-3 px-4 py-3 bg-green-100 text-[#0b6b32] font-semibold rounded-xl text-sm transition-colors"><svg class="w-5 h-5 text-[#0b6b32]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg><span>Add Land</span></a></li>
+            <li><a href="message_dashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#0b6b32] font-medium rounded-xl text-sm transition-colors"><svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span>Messages</span></a></li>
+            <li><a href="payment1.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#0b6b32] font-medium rounded-xl text-sm transition-colors"><svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg><span>Transactions</span></a></li>
+            <li><a href="profile.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#0b6b32] font-medium rounded-xl text-sm transition-colors"><svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg><span>Profile</span></a></li>
+          </ul>
         </nav>
       </div>
-      <a href="home.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 font-semibold rounded-xl text-xs hover:bg-gray-50 transition-colors">Logout</a>
+
+      <div class="pt-6 border-t border-gray-100 mt-6 lg:mt-0">
+        <a href="home.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 font-medium rounded-xl text-sm transition-colors">
+          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+          <span>Logout</span>
+        </a>
+      </div>
     </aside>
 
-    <!-- Main Section -->
-    <main class="flex-1 bg-white rounded-3xl p-6 md:p-8 shadow-sm flex flex-col justify-between">
+    <!-- Main Content Panel -->
+    <main class="flex-1 bg-white rounded-3xl p-4 sm:p-6 md:p-8 shadow-sm flex flex-col justify-between">
       <div>
         <!-- Header -->
-        <header class="flex items-center justify-between pb-5 border-b border-gray-100 mb-8">
-          <h2 class="text-xl font-bold text-gray-900">Add Your Land</h2>
+        <header class="flex items-center justify-between pb-5 border-b border-gray-200 mb-8">
           <div class="flex items-center gap-3">
-            <span class="p-2 text-[#0b6b32] bg-green-50 rounded-full cursor-pointer">🔔</span>
-            <span class="text-gray-400 cursor-pointer">👤</span>
+            <button id="open-sidebar-btn" class="lg:hidden p-2 rounded-xl text-gray-700 hover:bg-gray-100"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+            <h2 class="text-xl font-bold text-gray-900 tracking-tight">Add Your Land</h2>
+          </div>
+          <div class="flex items-center gap-4">
+            <button type="button" class="p-2 text-[#0b6b32] hover:bg-green-50 rounded-full"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22a2.98 2.98 0 002.818-2H9.182A2.98 2.98 0 0012 22zm7-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C8.64 5.36 7 7.92 7 11v5l-2 2v1h14v-1l-2-2z"/></svg></button>
+            <button type="button" class="text-gray-300 hover:text-gray-500 rounded-full"><svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg></button>
           </div>
         </header>
 
-        <!-- Stepper Navigation -->
-        <div class="mb-10 pt-2 pb-4">
-          <div class="flex items-center justify-center max-w-xl mx-auto relative">
-            
-            <!-- Step 1 Clickable Link -->
-            <a href="add_land1.html" class="flex flex-col items-center z-10 group cursor-pointer">
-              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white flex items-center justify-center text-base shadow-sm group-hover:bg-[#085226] transition-colors">
-                ✓
+        <!-- Stepper -->
+        <div class="max-w-xl mx-auto my-6 px-4">
+          <div class="relative flex items-start justify-between">
+            <div class="absolute top-[22px] left-0 right-0 h-[1.5px] bg-[#0b6b32] -translate-y-1/2 z-0"></div>
+
+            <!-- Step 1 Completed -->
+            <a href="add_land1.html" class="relative z-10 flex flex-col items-center">
+              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white flex items-center justify-center text-base shadow-sm">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
               </div>
-              <span class="text-xs font-bold text-[#0b6b32] mt-2">Property Details</span>
+              <span class="mt-2 text-xs font-bold text-[#0b6b32] text-center">Property Details</span>
             </a>
 
-            <div class="flex-1 h-[2px] bg-[#0b6b32] mx-2 -mt-6"></div>
-
-            <!-- Step 2 Clickable Link -->
-            <a href="add_land2.html" class="flex flex-col items-center z-10 group cursor-pointer">
-              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white flex items-center justify-center text-base shadow-sm group-hover:bg-[#085226] transition-colors">
-                ✓
+            <!-- Step 2 Completed -->
+            <a href="add_land2.html" class="relative z-10 flex flex-col items-center">
+              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white flex items-center justify-center text-base shadow-sm">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
               </div>
-              <span class="text-xs font-bold text-[#0b6b32] mt-2">Documents</span>
+              <span class="mt-2 text-xs font-bold text-[#0b6b32] text-center">Documents</span>
             </a>
 
-            <div class="flex-1 h-[2px] bg-[#0b6b32] mx-2 -mt-6"></div>
-
-            <!-- Step 3 Active Link -->
-            <a href="add_land3.html" class="flex flex-col items-center z-10 group">
-              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white font-bold flex items-center justify-center text-base shadow-sm ring-4 ring-green-100">
+            <!-- Step 3 Active -->
+            <div class="relative z-10 flex flex-col items-center">
+              <div class="w-11 h-11 rounded-full bg-[#0b6b32] text-white font-bold flex items-center justify-center text-base shadow-sm">
                 3
               </div>
-              <span class="text-xs font-bold text-[#0b6b32] mt-2">Preview</span>
-            </a>
-
+              <span class="mt-2 text-xs font-bold text-[#0b6b32] text-center">Preview</span>
+            </div>
           </div>
         </div>
 
         <!-- Preview Card -->
-        <div class="border border-gray-100 rounded-3xl p-6 md:p-8 bg-white shadow-xs">
+        <div class="border border-gray-200 rounded-3xl p-6 md:p-8 mt-12 bg-white shadow-xs">
           <div class="flex items-center justify-between mb-6">
-            <h3 class="text-xl font-extrabold text-gray-900">Preview Property</h3>
-            <span id="data-status-tag" class="text-[10px] font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">Checking saved data...</span>
+            <h3 class="text-lg font-bold text-gray-900">Preview Property</h3>
+            <span id="data-status-tag" class="text-[10px] font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">Fetching from Server...</span>
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
-            <!-- Dynamic Data Display from Page 1 -->
-            <div class="border border-gray-100 rounded-2xl p-6 bg-white shadow-xs">
+            <!-- Dynamic Data Display -->
+            <div class="border border-gray-100 rounded-2xl p-6 bg-gray-50/50 shadow-xs">
               <div class="flex items-center justify-between mb-6">
-                <h4 class="text-sm font-bold text-gray-900">Property Summary</h4>
+                <h4 class="text-sm font-bold text-gray-900">Property Details Summary</h4>
                 <a href="add_land1.html" class="text-xs font-bold text-[#0b6b32] hover:underline">Edit Step 1</a>
               </div>
 
               <div class="space-y-3.5 text-xs font-medium text-gray-700">
-                <div class="grid grid-cols-2">
-                  <span class="text-gray-900 font-semibold">Land Title</span>
-                  <span id="preview-title" class="text-gray-600">--</span>
+                <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
+                  <span class="text-gray-500 font-semibold">Land Title</span>
+                  <span id="preview-title" class="text-gray-900 font-bold">--</span>
                 </div>
-                <div class="grid grid-cols-2">
-                  <span class="text-gray-900 font-semibold">District</span>
-                  <span id="preview-district" class="text-gray-600">--</span>
+                <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
+                  <span class="text-gray-500 font-semibold">District</span>
+                  <span id="preview-district" class="text-gray-900 font-bold">--</span>
                 </div>
-                <div class="grid grid-cols-2">
-                  <span class="text-gray-900 font-semibold">Upazila</span>
-                  <span id="preview-upazila" class="text-gray-600">--</span>
+                <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
+                  <span class="text-gray-500 font-semibold">Upazila</span>
+                  <span id="preview-upazila" class="text-gray-900 font-bold">--</span>
                 </div>
-                <div class="grid grid-cols-2">
-                  <span class="text-gray-900 font-semibold">Mouza</span>
-                  <span id="preview-mouza" class="text-gray-600">--</span>
+                <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
+                  <span class="text-gray-500 font-semibold">Mouza</span>
+                  <span id="preview-mouza" class="text-gray-900 font-bold">--</span>
                 </div>
-                <div class="grid grid-cols-2">
-                  <span class="text-gray-900 font-semibold">Khatian No</span>
-                  <span id="preview-khatian" class="text-gray-600">--</span>
+                <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
+                  <span class="text-gray-500 font-semibold">Khatian No</span>
+                  <span id="preview-khatian" class="text-gray-900 font-bold">--</span>
                 </div>
-                <div class="grid grid-cols-2">
-                  <span class="text-gray-900 font-semibold">Dag No</span>
-                  <span id="preview-dag" class="text-gray-600">--</span>
+                <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
+                  <span class="text-gray-500 font-semibold">Dag No</span>
+                  <span id="preview-dag" class="text-gray-900 font-bold">--</span>
                 </div>
-                <div class="grid grid-cols-2">
-                  <span class="text-gray-900 font-semibold">Area</span>
-                  <span id="preview-area" class="text-gray-600">--</span>
+                <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
+                  <span class="text-gray-500 font-semibold">Area</span>
+                  <span id="preview-area" class="text-gray-900 font-bold">--</span>
                 </div>
-                <div class="grid grid-cols-2">
-                  <span class="text-gray-900 font-semibold">Land Type</span>
-                  <span id="preview-type" class="text-gray-600">--</span>
+                <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
+                  <span class="text-gray-500 font-semibold">Land Type</span>
+                  <span id="preview-type" class="text-gray-900 font-bold">--</span>
                 </div>
-                <div class="grid grid-cols-2">
-                  <span class="text-gray-900 font-semibold">Description</span>
-                  <span id="preview-desc" class="text-gray-600 break-words">--</span>
+                <div class="grid grid-cols-2 pt-1">
+                  <span class="text-gray-500 font-semibold">Description</span>
+                  <span id="preview-desc" class="text-gray-900 font-bold break-words">--</span>
                 </div>
               </div>
             </div>
 
-            <!-- Dynamic Images Display from Page 2 -->
-            <div class="border border-gray-100 rounded-2xl p-6 bg-white shadow-xs flex flex-col justify-between">
+            <!-- Dynamic Media & Documents Display -->
+            <div class="border border-gray-100 rounded-2xl p-6 bg-gray-50/50 shadow-xs flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between mb-6">
-                  <h4 class="text-sm font-bold text-gray-900">Images & Attachments</h4>
+                  <h4 class="text-sm font-bold text-gray-900">Uploaded Property Images</h4>
                   <a href="add_land2.html" class="text-xs font-bold text-[#0b6b32] hover:underline">Edit Step 2</a>
                 </div>
 
                 <div id="image-grid" class="grid grid-cols-2 gap-3 mb-6">
-                  <!-- Fallback placeholders if none uploaded -->
-                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100 border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Placeholder Land Image" />
-                  </div>
-                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100 border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Placeholder Land Image" />
-                  </div>
-                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100 border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Placeholder Land Image" />
-                  </div>
-                  <div class="overflow-hidden rounded-xl h-32 bg-gray-100 border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Placeholder Land Image" />
-                  </div>
+                  <!-- Dynamic JS Images Will Be Rendered Here -->
+                  <div class="col-span-2 text-center py-8 text-gray-400 text-xs">Loading Backend Images...</div>
                 </div>
               </div>
 
-              <button type="button" id="view-all-btn" class="w-full py-2.5 bg-[#dcfce7] hover:bg-[#cbf7d5] text-[#0b6b32] font-bold text-xs rounded-xl transition-colors">
-                View all attached media
-              </button>
+              <div id="documents-summary-box" class="mt-4 p-4 bg-white rounded-xl border border-gray-200">
+                <span class="text-xs font-bold text-gray-800 block mb-2">Uploaded Attachments</span>
+                <div id="docs-list" class="flex flex-wrap gap-2 text-[11px] text-gray-600">
+                  <!-- Dynamic Document tags -->
+                </div>
+              </div>
             </div>
 
           </div>
 
           <!-- Bottom Action Buttons -->
-          <div class="mt-8 flex justify-between items-center">
-            <a href="add_land2.html" class="px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xs rounded-xl transition-all">
-              ← Back
+          <div class="mt-12 flex justify-between items-center">
+            <a href="add_land2.html" class="inline-flex items-center gap-2 px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xs rounded-xl transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+              <span>Back</span>
             </a>
-            <button type="button" id="submit-btn" onclick="submitData()" class="px-8 py-2.5 bg-[#0b6b32] hover:bg-[#085226] text-white font-bold text-xs rounded-xl transition-all shadow-sm">
-              Submit →
+            <button type="button" id="submit-btn" onclick="submitData()" class="inline-flex items-center gap-2 px-8 py-2.5 bg-[#0b6b32] hover:bg-[#095728] text-white font-bold text-xs rounded-xl transition-colors shadow-sm cursor-pointer">
+              <span>Submit Listing</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
           </div>
 
@@ -181,98 +197,149 @@
 
       </div>
     </main>
+
   </div>
 
   <script>
-    // Comprehensive Data Retrieval Engine
-    window.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", async () => {
+      // Sidebar Toggle Logic
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      if (document.getElementById('open-sidebar-btn')) {
+        document.getElementById('open-sidebar-btn').onclick = () => { sidebar.classList.remove('-translate-x-full'); backdrop.classList.remove('hidden'); };
+      }
+      if (document.getElementById('close-sidebar-btn')) {
+        document.getElementById('close-sidebar-btn').onclick = () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); };
+      }
+      if (backdrop) {
+        backdrop.onclick = () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); };
+      }
+
       const statusTag = document.getElementById('data-status-tag');
-      
-      // Attempt to load unified local/session storage items
-      let storedData = {};
-      try {
-        const rawLocal = localStorage.getItem('landDealData');
-        const rawSession = sessionStorage.getItem('landDealData');
-        
-        if (rawLocal) {
-          storedData = JSON.parse(rawLocal);
-        } else if (rawSession) {
-          storedData = JSON.parse(rawSession);
-        }
-      } catch (err) {
-        console.warn('Could not parse local draft data:', err);
-      }
+      const propertyId = sessionStorage.getItem("currentPropertyId");
+      const backendBaseUrl = 'http://localhost:5000'; // Adjust server URL/port if needed
 
-      // Check key-value overrides from standalone session/local keys
-      const landTitle = storedData.landTitle || localStorage.getItem('prop_title') || sessionStorage.getItem('prop_title');
-      const district = storedData.district || localStorage.getItem('prop_district') || sessionStorage.getItem('prop_district');
-      const upazila = storedData.upazila || localStorage.getItem('prop_upazila') || sessionStorage.getItem('prop_upazila');
-      const mouza = storedData.mouza || localStorage.getItem('prop_mouza') || sessionStorage.getItem('prop_mouza');
-      const khatianNo = storedData.khatianNo || localStorage.getItem('prop_khatian') || sessionStorage.getItem('prop_khatian');
-      const dagNo = storedData.dagNo || localStorage.getItem('prop_dag') || sessionStorage.getItem('prop_dag');
-      const area = storedData.area || localStorage.getItem('prop_area') || sessionStorage.getItem('prop_area');
-      const landType = storedData.landType || localStorage.getItem('prop_type') || sessionStorage.getItem('prop_type');
-      const description = storedData.description || localStorage.getItem('prop_desc') || sessionStorage.getItem('prop_desc');
-
-      // Populate text fields with real fetched data or fallback defaults
-      document.getElementById('preview-title').textContent = landTitle || 'Green Valley Plot';
-      document.getElementById('preview-district').textContent = district || 'Gazipur';
-      document.getElementById('preview-upazila').textContent = upazila || 'Kaliganj';
-      document.getElementById('preview-mouza').textContent = mouza || 'Tala';
-      document.getElementById('preview-khatian').textContent = khatianNo || '1234';
-      document.getElementById('preview-dag').textContent = dagNo || '5678';
-      document.getElementById('preview-area').textContent = area || '10 Decimals';
-      document.getElementById('preview-type').textContent = landType || 'Residential';
-      document.getElementById('preview-desc').textContent = description || 'Verified property ready for sale.';
-
-      // Check and populate Images from Step 2
-      let uploadedImages = storedData.landImages || [];
-      
-      // Fallback check if images are stored separately in local storage
-      if ((!uploadedImages || uploadedImages.length === 0) && localStorage.getItem('prop_images')) {
+      // Fetch Property Details & Uploaded Files from Backend API
+      if (propertyId) {
         try {
-          uploadedImages = JSON.parse(localStorage.getItem('prop_images'));
-        } catch (e) {
-          console.warn('Error parsing prop_images:', e);
+          const res = await fetch(`${backendBaseUrl}/api/properties/${propertyId}`);
+          const result = await res.json();
+
+          if (res.ok && (result.success || result.data)) {
+            const data = result.data || result;
+            populatePreviewData(data, backendBaseUrl);
+            
+            statusTag.textContent = 'Backend Data Verified';
+            statusTag.className = 'text-[10px] font-bold text-[#0b6b32] bg-green-100 px-3 py-1 rounded-full';
+            return;
+          }
+        } catch (error) {
+          console.warn('Backend fetch failed, falling back to local session data:', error);
         }
       }
 
-      if (uploadedImages && uploadedImages.length > 0) {
-        const grid = document.getElementById('image-grid');
-        grid.innerHTML = ''; // Clear hardcoded sample placeholders
-
-        uploadedImages.forEach((src) => {
-          const card = document.createElement('div');
-          card.className = 'overflow-hidden rounded-xl h-32 bg-gray-100 border border-gray-100 shadow-xs';
-          card.innerHTML = `<img src="${src}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" alt="Uploaded Land Image" />`;
-          grid.appendChild(card);
-        });
-
-        if (statusTag) {
-          statusTag.textContent = 'Live Saved Draft';
-          statusTag.className = 'text-[10px] font-bold text-[#0b6b32] bg-[#dcfce7] px-3 py-1 rounded-full';
-        }
-      } else {
-        if (statusTag) {
-          statusTag.textContent = 'Using Sample Data';
-        }
-      }
+      // Fallback: Read local draft from Session Storage if Backend fails or offline
+      loadLocalFallbackData();
     });
 
-    // Final Submission Action
+    function populatePreviewData(data, baseUrl) {
+      document.getElementById('preview-title').textContent = data.title || data.landTitle || 'N/A';
+      document.getElementById('preview-district').textContent = data.district || 'N/A';
+      document.getElementById('preview-upazila').textContent = data.upazila || 'N/A';
+      document.getElementById('preview-mouza').textContent = data.mouza || 'N/A';
+      document.getElementById('preview-khatian').textContent = data.khatianNo || data.khatian_no || 'N/A';
+      document.getElementById('preview-dag').textContent = data.dagNo || data.dag_no || 'N/A';
+      document.getElementById('preview-area').textContent = data.area ? `${data.area} Decimals` : 'N/A';
+      document.getElementById('preview-type').textContent = data.landType || data.land_type || 'N/A';
+      document.getElementById('preview-desc').textContent = data.description || 'No description provided.';
+
+      // Render Land Images from Backend
+      const imageGrid = document.getElementById('image-grid');
+      imageGrid.innerHTML = '';
+
+      let images = data.landImages || data.images || [];
+      if (typeof images === 'string') {
+        try { images = JSON.parse(images); } catch(e) { images = [images]; }
+      }
+
+      if (images && images.length > 0) {
+        images.forEach(imgSrc => {
+          const fullImgUrl = imgSrc.startsWith('http') ? imgSrc : `${baseUrl}/${imgSrc.replace(/^\//, '')}`;
+          const card = document.createElement('div');
+          card.className = 'overflow-hidden rounded-xl h-28 bg-gray-100 border border-gray-200 shadow-xs';
+          card.innerHTML = `<img src="${fullImgUrl}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt="Land Image" onerror="this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80'" />`;
+          imageGrid.appendChild(card);
+        });
+      } else {
+        imageGrid.innerHTML = `<div class="col-span-2 text-center py-6 text-gray-400 text-xs bg-white rounded-xl border border-gray-200">No Land Images Uploaded</div>`;
+      }
+
+      // Render Attached Document Tags
+      const docsList = document.getElementById('docs-list');
+      docsList.innerHTML = '';
+      const docKeys = ['deed', 'taxReceipt', 'nationalId', 'mutationCert', 'mouzaMap'];
+      
+      let foundDocs = 0;
+      docKeys.forEach(key => {
+        if (data[key]) {
+          foundDocs++;
+          const badge = document.createElement('span');
+          badge.className = 'bg-green-50 text-[#0b6b32] font-semibold px-2.5 py-1 rounded-lg border border-green-200/50 flex items-center gap-1';
+          badge.innerHTML = `✓ ${key.replace(/([A-Z])/g, ' $1')}`;
+          docsList.appendChild(badge);
+        }
+      });
+
+      if (foundDocs === 0) {
+        docsList.innerHTML = `<span class="text-gray-400 italic">No legal documents attached</span>`;
+      }
+    }
+
+    function loadLocalFallbackData() {
+      const statusTag = document.getElementById('data-status-tag');
+      statusTag.textContent = 'Local Session Mode';
+      statusTag.className = 'text-[10px] font-bold text-amber-700 bg-amber-100 px-3 py-1 rounded-full';
+
+      const localTitle = 
+      sessionStorage.getItem('prop_title') || 
+      sessionStorage.getItem('landTitle') || 
+      sessionStorage.getItem('title') || 
+      sessionStorage.getItem('land-title') || 
+      'Green Valley Plot';
+
+      document.getElementById('preview-title').textContent = localTitle;      
+      document.getElementById('preview-district').textContent = sessionStorage.getItem('prop_district') || 'Gazipur';
+      document.getElementById('preview-upazila').textContent = sessionStorage.getItem('prop_upazila') || 'Kaliganj';
+      document.getElementById('preview-mouza').textContent = sessionStorage.getItem('prop_mouza') || 'Tala';
+      document.getElementById('preview-khatian').textContent = sessionStorage.getItem('prop_khatian') || '1234';
+      document.getElementById('preview-dag').textContent = sessionStorage.getItem('prop_dag') || '5678';
+      document.getElementById('preview-area').textContent = sessionStorage.getItem('prop_area') || '10 Decimals';
+      document.getElementById('preview-type').textContent = sessionStorage.getItem('prop_type') || 'Residential';
+      document.getElementById('preview-desc').textContent = sessionStorage.getItem('prop_desc') || 'Verified property ready for sale.';
+
+      const imageGrid = document.getElementById('image-grid');
+      imageGrid.innerHTML = `
+        <div class="overflow-hidden rounded-xl h-28 bg-gray-100 border border-gray-200"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" /></div>
+        <div class="overflow-hidden rounded-xl h-28 bg-gray-100 border border-gray-200"><img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" /></div>
+      `;
+
+      document.getElementById('docs-list').innerHTML = `
+        <span class="bg-green-50 text-[#0b6b32] font-semibold px-2.5 py-1 rounded-lg border border-green-200">✓ Sales Deed</span>
+        <span class="bg-green-50 text-[#0b6b32] font-semibold px-2.5 py-1 rounded-lg border border-green-200">✓ Land Tax Receipt</span>
+      `;
+    }
+
+    // Final Submission Handler
     function submitData() {
       const submitBtn = document.getElementById('submit-btn');
       submitBtn.disabled = true;
-      submitBtn.innerText = 'Submitting...';
+      submitBtn.innerHTML = `<span>Submitting...</span>`;
 
-      // Clear local working draft upon successful completion
       setTimeout(() => {
-        alert('Listing submitted successfully!');
-        localStorage.removeItem('landDealData');
-        localStorage.removeItem('prop_images');
-        sessionStorage.clear();
-        window.location.href = 'add_land4.html';
-      }, 600);
+        alert('Property listing submitted successfully!');
+        sessionStorage.removeItem('currentPropertyId');
+        window.location.href = 'properties.html';
+      }, 1000);
     }
   </script>
 </body>

@@ -2,7 +2,6 @@ const db = require('../config/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// ------------------- REGISTER -------------------
 exports.register = async (req, res) => {
   try {
     const { full_name, phone, email, password, confirm_password, role, terms } = req.body;
@@ -48,8 +47,15 @@ exports.register = async (req, res) => {
       [custom_id, full_name, email, phone || null, hashedPassword, normalizedRole]
     );
 
+    const token = jwt.sign(
+      { id: result.insertId, role: normalizedRole },
+      process.env.JWT_SECRET || 'landdeal_secret',
+      { expiresIn: '1d' } 
+    );
+
     res.status(201).json({
       success: true,
+      token: token,
       message: 'Account created successfully!',
       data: {
         userId: custom_id,
@@ -68,7 +74,7 @@ exports.register = async (req, res) => {
 // ------------------- LOGIN -------------------
 exports.login = async (req, res) => {
   try {
-    const { email, password, role } = req.body;
+    const { email, password } = req.body;
 
     if (!email || !password) {
       return res.status(400).json({ success: false, message: 'Email/Mobile and Password are required.' });
@@ -96,7 +102,7 @@ exports.login = async (req, res) => {
     const token = jwt.sign(
       { id: user.id, custom_id: user.custom_id, role: user.role },
       process.env.JWT_SECRET || 'landdeal_secret',
-      { expiresIn: '1d' }
+      { expiresIn: '24h' }
     );
 
     res.status(200).json({
@@ -120,23 +126,24 @@ exports.login = async (req, res) => {
 // ------------------- GET PROFILE (PROTECTED) -------------------
 exports.getProfile = async (req, res) => {
   try {
+    // 💡 profile_pic ফিল্ডটি যুক্ত করা হয়েছে
     const [users] = await db.query(
-      'SELECT id, custom_id, full_name, email, phone, role, created_at FROM users WHERE id = ?',
+      `SELECT id, full_name, phone, father_name, mother_name, date_of_birth, 
+              gender, national_id, birth_certificate, occupation, 
+              present_address, permanent_address, is_verified, profile_pic 
+       FROM users WHERE id = ?`,
       [req.user.id]
     );
-
 
     if (users.length === 0) {
       return res.status(404).json({ success: false, message: 'User not found.' });
     }
-
 
     res.status(200).json({ success: true, user: users[0] });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };
-
 
 // ------------------- UPDATE PROFILE INFO -------------------
 exports.updateProfile = async (req, res) => {
@@ -149,16 +156,16 @@ exports.updateProfile = async (req, res) => {
 
     await db.query(
       `UPDATE users SET 
-        full_name = COALESCE(?, full_name),
-        father_name = COALESCE(?, father_name),
-        mother_name = COALESCE(?, mother_name),
-        date_of_birth = COALESCE(?, date_of_birth),
-        gender = COALESCE(?, gender),
-        national_id = COALESCE(?, national_id),
-        birth_certificate = COALESCE(?, birth_certificate),
-        occupation = COALESCE(?, occupation),
-        present_address = COALESCE(?, present_address),
-        permanent_address = COALESCE(?, permanent_address)
+        full_name = COALESCE(NULLIF(?, ''), full_name),
+        father_name = COALESCE(NULLIF(?, ''), father_name),
+        mother_name = COALESCE(NULLIF(?, ''), mother_name),
+        date_of_birth = COALESCE(NULLIF(?, ''), date_of_birth),
+        gender = COALESCE(NULLIF(?, ''), gender),
+        national_id = COALESCE(NULLIF(?, ''), national_id),
+        birth_certificate = COALESCE(NULLIF(?, ''), birth_certificate),
+        occupation = COALESCE(NULLIF(?, ''), occupation),
+        present_address = COALESCE(NULLIF(?, ''), present_address),
+        permanent_address = COALESCE(NULLIF(?, ''), permanent_address)
       WHERE id = ?`,
       [
         full_name, father_name, mother_name, date_of_birth,
@@ -170,5 +177,53 @@ exports.updateProfile = async (req, res) => {
     res.status(200).json({ success: true, message: 'Profile updated successfully.' });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// ------------------- UPLOAD PROFILE PIC -------------------
+exports.uploadProfilePic = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'No file received in backend.' 
+      });
+    }
+
+    const fileName = req.file.filename;
+    const userId = req.user.id || req.user.userId || req.user._id;
+
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: 'User ID not found in token payload.'
+      });
+    }
+
+    const query = 'UPDATE users SET profile_pic = ? WHERE id = ?';
+    const [result] = await db.query(query, [fileName, userId]);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found in database or no change made.'
+      });
+    }
+
+    console.log(`Profile picture updated in DB for User ID: ${userId}`);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Profile picture updated successfully!',
+      profile_pic: fileName
+    });
+
+  } catch (error) {
+    console.error('MySQL Update Error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Database error while saving profile picture.',
+      error: error.message
+    });
   }
 };

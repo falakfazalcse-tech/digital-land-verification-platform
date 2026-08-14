@@ -251,8 +251,19 @@
 
                 <!-- Column 3 -->
                 <div class="flex flex-col h-full">
-                  <label for="description" class="block text-xs font-bold text-gray-800 mb-1.5">Describe Your Property</label>
-                  <textarea id="description" name="description" placeholder="Describe Your Property..." class="w-full flex-1 min-h-[200px] lg:min-h-0 p-4 text-xs text-gray-800 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all placeholder-gray-400 resize-none"></textarea>
+                  <div>
+                    <label for="price" class="block text-xs font-bold text-gray-800 mb-1.5">Price</label>
+                    <input type="number" step="0.01" id="price" name="price" placeholder="Enter Price" required class="w-full px-4 py-2.5 text-xs text-gray-800 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0b6b32] focus:border-transparent outline-none transition-all placeholder-gray-400" />
+                  </div>
+                  <div class="mt-6">
+  <label class="block text-xs font-bold text-gray-800">Negotiable?</label><br>
+
+  <input type="radio" id="negotiable-yes" name="negotiable" value="Yes" required>
+  <label for="negotiable-yes" class="text-xs font-bold text-gray-800">Yes</label>
+
+  <input type="radio" id="negotiable-no" name="negotiable" value="No" class="ms-3">
+  <label for="negotiable-no" class="text-xs font-bold text-gray-800">No</label>
+</div>
                 </div>
               </div>
             </div>
@@ -313,6 +324,14 @@
     // Submit Step 1 to Backend API
     async function handleNextStep(event) {
       event.preventDefault();
+
+  const token = localStorage.getItem('token') || localStorage.getItem('authToken');
+
+  if (!token) {
+    alert('You are not logged in! Please log in to post a property.');
+    window.location.href = 'login.html'; // Adjust to your login page URL
+    return;
+  }
       
       const submitBtn = document.getElementById('next-btn');
       const btnText = document.getElementById('btn-text');
@@ -331,7 +350,9 @@
       try {
         const response = await fetch(API_BASE, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+           },
           body: JSON.stringify(propertyData)
         });
 

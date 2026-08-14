@@ -4,21 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LandDeal - Property Review</title>
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
   </style>
 </head>
 <body class="bg-[#f2f9f3] text-gray-900 min-h-screen p-4 md:p-6 lg:p-8">
@@ -29,9 +24,8 @@
     <!-- Sidebar Panel -->
     <aside class="w-full lg:w-64 bg-white rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shrink-0 shadow-sm">
       <div>
-        <!-- Logo & Tagline -->
         <div class="mb-8">
-          <a href="../dashboard.html" class="block">
+          <a href="officer-dashboard.html" class="block">
             <h1 class="text-2xl font-bold text-gray-900 tracking-tight">LandDeal</h1>
             <div class="mt-1 inline-block bg-green-50 border border-green-200 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">
               Secure • Verified • Transparent
@@ -39,46 +33,19 @@
           </a>
         </div>
 
-        <!-- Navigation Menu -->
         <nav class="space-y-1">
-          <a href="../dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="officer-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
             <i data-lucide="layout-grid" class="w-5 h-5"></i>
-            Dashboard
-          </a>
-          <!-- Active Nav Item -->
-          <a href="../search_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
-            <i data-lucide="search" class="w-5 h-5"></i>
-            Browse Land
-          </a>
-          <a href="../properties_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="home" class="w-5 h-5"></i>
-            My Properties
-          </a>
-          <a href="../verification.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="plus" class="w-5 h-5"></i>
-            Add Land
-          </a>
-          <a href="../message_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="mail" class="w-5 h-5"></i>
-            Messages
-          </a>
-          <a href="../payment.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="receipt" class="w-5 h-5"></i>
-            Transactions
-          </a>
-          <a href="../profile.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="user" class="w-5 h-5"></i>
-            Profile
+            Officer Dashboard
           </a>
         </nav>
       </div>
 
-      <!-- Logout -->
       <div class="pt-6 border-t border-gray-100 mt-6 lg:mt-0">
-        <a href="../index.html" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
+        <button onclick="logout()" class="w-full flex items-center gap-3 px-3 py-2 text-red-600 hover:bg-red-50 rounded-xl text-sm font-medium transition-colors">
           <i data-lucide="log-out" class="w-5 h-5"></i>
           Logout
-        </a>
+        </button>
       </div>
     </aside>
 
@@ -92,41 +59,39 @@
             <h2 class="text-xl font-bold text-gray-900">Property Proposal Review</h2>
           </div>
           <div class="flex items-center gap-4">
-            <button aria-label="Notifications" class="text-green-600 hover:text-green-700 relative p-1">
-              <i data-lucide="bell" class="w-5 h-5 fill-current"></i>
-            </button>
-            <a href="../profile.html" aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors">
-              <i data-lucide="user" class="w-5 h-5"></i>
-            </a>
+            <span id="current-status-badge" class="px-3 py-1 text-xs font-bold rounded-full bg-slate-100 text-slate-700">Loading...</span>
           </div>
         </header>
 
+        <!-- Loading State -->
+        <div id="loading-spinner" class="py-12 text-center text-gray-500 font-medium">
+          Loading property details...
+        </div>
+
         <!-- Grid Layout for Property View -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div id="details-content" class="grid grid-cols-1 lg:grid-cols-12 gap-6 hidden">
           
           <!-- Left Main Area (Image Gallery & Land Details) -->
           <div class="lg:col-span-8 space-y-6">
             
             <!-- Image Gallery Section -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <!-- Large Main Image -->
               <div class="md:col-span-2">
-                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80" alt="Main Plot Image" class="w-full h-80 md:h-[320px] object-cover rounded-xl shadow-sm" />
+                <img id="main-img" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80" alt="Main Plot Image" class="w-full h-80 md:h-[320px] object-cover rounded-xl shadow-sm" />
               </div>
-              <!-- Sub Images Column -->
               <div class="flex flex-col gap-3">
-                <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=500&q=80" alt="Plot View 1" class="w-full h-[98px] object-cover rounded-xl shadow-sm" />
-                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=500&q=80" alt="Plot View 2" class="w-full h-[98px] object-cover rounded-xl shadow-sm" />
-                <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=500&q=80" alt="Plot View 3" class="w-full h-[98px] object-cover rounded-xl shadow-sm" />
+                <img id="sub-img-1" src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=500&q=80" alt="Plot View 1" class="w-full h-[98px] object-cover rounded-xl shadow-sm" />
+                <img id="sub-img-2" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=500&q=80" alt="Plot View 2" class="w-full h-[98px] object-cover rounded-xl shadow-sm" />
+                <img id="sub-img-3" src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=500&q=80" alt="Plot View 3" class="w-full h-[98px] object-cover rounded-xl shadow-sm" />
               </div>
             </div>
 
             <!-- Title & Location -->
             <div>
-              <h3 class="text-2xl font-bold text-gray-900">12.5 Katha Residential Plot</h3>
+              <h3 id="prop-title" class="text-2xl font-bold text-gray-900">--</h3>
               <p class="flex items-center gap-1.5 text-xs text-gray-500 mt-2 font-medium">
                 <i data-lucide="map-pin" class="w-4 h-4 text-green-600"></i>
-                Bashundhara, Dhaka
+                <span id="prop-location">--</span>
               </p>
             </div>
 
@@ -135,50 +100,49 @@
               <h4 class="text-sm font-bold text-gray-900 mb-6">Land Details</h4>
               
               <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 relative">
-                <!-- Vertical Divider Line (Medium Screen Up) -->
                 <div class="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px bg-gray-200"></div>
 
                 <!-- Left Specs Column -->
                 <div class="space-y-4 text-xs">
                   <div class="flex justify-between md:justify-start gap-4">
                     <span class="text-gray-800 font-medium w-28">Land Title</span>
-                    <span class="text-gray-500">Green Valley Plot</span>
+                    <span id="val-title" class="text-gray-500">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
                     <span class="text-gray-800 font-medium w-28">District</span>
-                    <span class="text-gray-500">Gazipur</span>
+                    <span id="val-district" class="text-gray-500">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
                     <span class="text-gray-800 font-medium w-28">Upazila</span>
-                    <span class="text-gray-500">Kaliganj</span>
+                    <span id="val-upazila" class="text-gray-500">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
                     <span class="text-gray-800 font-medium w-28">Mouza</span>
-                    <span class="text-gray-500">Tala</span>
+                    <span id="val-mouza" class="text-gray-500">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
                     <span class="text-gray-800 font-medium w-28">Khatian No</span>
-                    <span class="text-gray-500">1234</span>
+                    <span id="val-khatian" class="text-gray-500">--</span>
                   </div>
                 </div>
 
                 <!-- Right Specs Column -->
                 <div class="space-y-4 text-xs md:pl-4">
                   <div class="flex justify-between md:justify-start gap-4">
-                    <span class="text-gray-800 font-medium w-28">Dag No</span>
-                    <span class="text-gray-500">5678</span>
+                    <span class="text-gray-800 font-medium w-28">Dag / Plot No</span>
+                    <span id="val-dag" class="text-gray-500">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
                     <span class="text-gray-800 font-medium w-28">Area</span>
-                    <span class="text-gray-500">abc</span>
+                    <span id="val-area" class="text-gray-500">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
                     <span class="text-gray-800 font-medium w-28">Land Type</span>
-                    <span class="text-gray-500">Residention</span>
+                    <span id="val-type" class="text-gray-500">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
                     <span class="text-gray-800 font-medium w-28">Description</span>
-                    <span class="text-gray-500">xyz</span>
+                    <span id="val-desc" class="text-gray-500">--</span>
                   </div>
                 </div>
               </div>
@@ -198,69 +162,34 @@
                   <i data-lucide="user" class="w-6 h-6 text-blue-600"></i>
                 </div>
                 <div>
-                  <p class="font-bold text-sm text-gray-900">Sajjatal Bashar</p>
+                  <p id="owner-name" class="font-bold text-sm text-gray-900">--</p>
                   <p class="text-xs text-gray-500">Land Owner</p>
                 </div>
               </div>
-
-              <a href="#" class="block text-center w-full bg-white border border-green-600 text-green-700 hover:bg-green-50 font-semibold text-xs py-2 rounded-lg mb-6 transition-colors">
-                View Profile
-              </a>
 
               <!-- Contact Information Details -->
               <div class="space-y-4 text-xs font-medium text-gray-700">
                 <div class="flex items-center gap-3">
                   <i data-lucide="phone" class="w-4 h-4 text-gray-600"></i>
-                  <span>01711-156321</span>
+                  <span id="owner-phone">--</span>
                 </div>
                 <div class="flex items-center gap-3">
                   <i data-lucide="mail" class="w-4 h-4 text-gray-600"></i>
-                  <span>sajjat@gmail.com</span>
+                  <span id="owner-email">--</span>
                 </div>
                 <div class="flex items-center gap-3">
                   <i data-lucide="clock" class="w-4 h-4 text-gray-600"></i>
-                  <span class="text-gray-500">Member since Jan 2023</span>
+                  <span id="owner-joined" class="text-gray-500">Member since --</span>
                 </div>
               </div>
             </div>
 
             <!-- Documents Card -->
             <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-              <h4 class="text-sm font-bold text-gray-900 mb-5">Documents</h4>
+              <h4 class="text-sm font-bold text-gray-900 mb-5">Uploaded Documents</h4>
 
-              <div class="space-y-4 text-xs font-semibold">
-                <!-- Item 1 -->
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2.5 text-gray-800">
-                    <i data-lucide="file-text" class="w-4 h-4 text-red-500"></i>
-                    <span>Deed copy</span>
-                  </div>
-                  <a href="#" class="text-green-700 hover:underline">View</a>
-                </div>
-                <!-- Item 2 -->
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2.5 text-gray-800">
-                    <i data-lucide="file-text" class="w-4 h-4 text-red-500"></i>
-                    <span>Khatian Document</span>
-                  </div>
-                  <a href="#" class="text-green-700 hover:underline">View</a>
-                </div>
-                <!-- Item 3 -->
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2.5 text-gray-800">
-                    <i data-lucide="file-text" class="w-4 h-4 text-red-500"></i>
-                    <span>Tax Receipt</span>
-                  </div>
-                  <a href="#" class="text-green-700 hover:underline">View</a>
-                </div>
-                <!-- Item 4 -->
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2.5 text-gray-800">
-                    <i data-lucide="file-text" class="w-4 h-4 text-red-500"></i>
-                    <span>Mutation</span>
-                  </div>
-                  <a href="#" class="text-green-700 hover:underline">View</a>
-                </div>
+              <div id="documents-container" class="space-y-4 text-xs font-semibold">
+                <!-- Dynamic Document Rows inserted via JS -->
               </div>
             </div>
 
@@ -269,20 +198,18 @@
         </div>
       </div>
 
-      <!-- Footer Actions Bar (Back & Proposal Decision Buttons) -->
-      <div class="mt-8 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <!-- Back Button -->
-        <button onclick="history.back()" class="inline-flex items-center gap-1.5 bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 text-xs font-semibold px-4 py-2 rounded-md shadow-xs transition-colors">
+      <!-- Footer Actions Bar -->
+      <div class="mt-8 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-100">
+        <button onclick="window.location.href='officer-dashboard.html'" class="inline-flex items-center gap-1.5 bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 text-xs font-semibold px-4 py-2 rounded-md shadow-xs transition-colors">
           <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-          Back
+          Back to Dashboard
         </button>
 
-        <!-- Proposal Actions -->
         <div class="flex items-center gap-3 w-full sm:w-auto">
-          <button class="flex-1 sm:flex-none bg-red-50 border border-red-300 hover:bg-red-100 text-red-600 font-semibold text-xs px-6 py-2.5 rounded-md transition-colors">
+          <button onclick="handleDecision('rejected')" class="flex-1 sm:flex-none bg-red-50 border border-red-300 hover:bg-red-100 text-red-600 font-semibold text-xs px-6 py-2.5 rounded-md transition-colors">
             Reject Proposal
           </button>
-          <button class="flex-1 sm:flex-none bg-[#0b6b32] hover:bg-[#095728] text-white font-semibold text-xs px-6 py-2.5 rounded-md shadow-sm transition-colors">
+          <button onclick="handleDecision('approved')" class="flex-1 sm:flex-none bg-[#0b6b32] hover:bg-[#095728] text-white font-semibold text-xs px-6 py-2.5 rounded-md shadow-sm transition-colors">
             Approved Proposal
           </button>
         </div>
@@ -292,9 +219,184 @@
 
   </div>
 
-  <!-- Initialize Lucide Icons -->
   <script>
     lucide.createIcons();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const propertyId = urlParams.get('id');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!propertyId) {
+        alert('Invalid Property ID!');
+        window.location.href = 'officer-dashboard.html';
+        return;
+      }
+      fetchPropertyDetails(propertyId);
+    });
+
+    async function fetchPropertyDetails(id) {
+      try {
+        const token = localStorage.getItem('token');
+        const res = await fetch(`http://localhost:5000/api/properties/${id}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const result = await res.json();
+
+        if (!result.success || !result.data) {
+          alert('Property not found');
+          window.location.href = 'officer-dashboard.html';
+          return;
+        }
+
+        const data = result.data;
+        populateUI(data);
+
+      } catch (err) {
+        console.error(err);
+        alert('Failed to connect with server.');
+      }
+    }
+
+    // 3. UI elements Populate Function
+    // 3. UI elements Populate Function
+function populateUI(land) {
+  document.getElementById('loading-spinner').classList.add('hidden');
+  document.getElementById('details-content').classList.remove('hidden');
+
+  // Status Badge
+  const badge = document.getElementById('current-status-badge');
+  badge.textContent = land.status.toUpperCase();
+  if (land.status === 'approved') badge.className = 'px-3 py-1 text-xs font-bold rounded-full bg-emerald-100 text-emerald-800';
+  else if (land.status === 'rejected') badge.className = 'px-3 py-1 text-xs font-bold rounded-full bg-rose-100 text-rose-800';
+  else badge.className = 'px-3 py-1 text-xs font-bold rounded-full bg-amber-100 text-amber-800';
+
+  populateImages(land);
+
+  // Title & Location
+  document.getElementById('prop-title').textContent = land.land_title || `${land.area || ''} Residential Plot`;
+  document.getElementById('prop-location').textContent = `${land.mouza || ''}, ${land.upazila || ''}, ${land.district || ''}`;
+
+  // Specs
+  document.getElementById('val-title').textContent = land.land_title || 'N/A';
+  document.getElementById('val-district').textContent = land.district || 'N/A';
+  document.getElementById('val-upazila').textContent = land.upazila || 'N/A';
+  document.getElementById('val-mouza').textContent = land.mouza || 'N/A';
+  document.getElementById('val-khatian').textContent = land.khatian_no || 'N/A';
+  document.getElementById('val-dag').textContent = land.dag_no || 'N/A';
+  document.getElementById('val-area').textContent = land.area ? `${land.area} Katha` : 'N/A';
+  document.getElementById('val-type').textContent = land.land_type || 'Residential';
+  document.getElementById('val-desc').textContent = land.description || 'N/A';
+
+  // Owner Info
+  document.getElementById('owner-name').textContent = land.owner_name || 'Unknown Owner';
+  document.getElementById('owner-phone').textContent = land.owner_phone || 'N/A';
+  document.getElementById('owner-email').textContent = land.owner_email || 'N/A';
+  if(land.owner_created_at) {
+    document.getElementById('owner-joined').textContent = `Member since ${new Date(land.owner_created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`;
+  }
+
+  // Documents List Generation
+  const docsContainer = document.getElementById('documents-container');
+  const docs = [
+    { name: 'Deed Document', rawPath: land.deed_path },
+    { name: 'Tax Receipt', rawPath: land.tax_receipt_path },
+    { name: 'National ID', rawPath: land.national_id_path },
+    { name: 'Mutation Cert', rawPath: land.mutation_cert_path },
+    { name: 'Mouza Map', rawPath: land.mouza_map_path }
+  ];
+
+  docsContainer.innerHTML = docs.map(doc => {
+    let fileUrl = null;
+
+    if (doc.rawPath) {
+      const filename = doc.rawPath.replace(/^.*[\\\/]/, '');
+      fileUrl = `http://localhost:5000/uploads/documents/${filename}`;
+    }
+
+    return `
+      <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+        <div class="flex items-center gap-2.5 text-gray-800">
+          <i data-lucide="file-text" class="w-4 h-4 text-red-500"></i>
+          <span>${doc.name}</span>
+        </div>
+        ${
+          fileUrl 
+            ? `<a href="${fileUrl}" target="_blank" class="text-green-700 hover:underline font-bold">View Document</a>`
+            : `<span class="text-gray-400 font-normal">Not Provided</span>`
+        }
+      </div>
+    `;
+  }).join('');
+
+  lucide.createIcons();
+}
+
+function populateImages(land) {
+  let images = [];
+
+  if (typeof land.land_images === 'string') {
+    try {
+      images = JSON.parse(land.land_images);
+    } catch (e) {
+      images = [];
+    }
+  } else if (Array.isArray(land.land_images)) {
+    images = land.land_images;
+  }
+
+  const defaultImg = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80';
+
+  const getImageUrl = (imgName) => {
+    if (!imgName) return defaultImg;
+    const fileName = imgName.replace(/^.*[\\\/]/, '');
+    return `http://localhost:5000/uploads/documents/${fileName}`;
+  };
+
+  const mainImgElem = document.getElementById('main-img');
+  if (mainImgElem) {
+    mainImgElem.src = images.length > 0 ? getImageUrl(images[0]) : defaultImg;
+  }
+
+  for (let i = 1; i <= 3; i++) {
+    const subImgElem = document.getElementById(`sub-img-${i}`);
+    if (subImgElem) {
+      subImgElem.src = images[i] ? getImageUrl(images[i]) : defaultImg;
+    }
+  }
+}
+
+    // 4. Approve & Reject API Action
+    async function handleDecision(status) {
+      const confirmAction = confirm(`Are you sure you want to set this proposal to ${status.toUpperCase()}?`);
+      if(!confirmAction) return;
+
+      try {
+        const token = localStorage.getItem('token');
+        const res = await fetch(`http://localhost:5000/api/properties/${propertyId}/status`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ status })
+        });
+
+        const result = await res.json();
+        if (result.success) {
+          alert(`Proposal has been successfully ${status}!`);
+          window.location.href = 'Land_officer_dashboard.html';
+        } else {
+          alert(result.message || 'Action failed');
+        }
+      } catch (err) {
+        alert('Server error occurred.');
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = 'login.html';
+    }
   </script>
 </body>
 </html>

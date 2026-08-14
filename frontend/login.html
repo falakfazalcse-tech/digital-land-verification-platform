@@ -179,6 +179,8 @@
 
     <!-- Script Section -->
     <script>
+    // 1. Centralized API Config
+    const API_BASE = 'http://localhost:5000/api';
     let selectedRole = 'user'; // default role
 
     // Handle Role Switching
@@ -312,7 +314,7 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
 
-            const response = await fetch('http://localhost:5000/api/auth/forgot-password', {
+            const response = await fetch(`${API_BASE}/auth/forgot-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: resetEmail })
@@ -345,6 +347,7 @@
 
         const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value;
+        const submitBtn = e.target.querySelector('button[type="submit"]');
 
         let hasError = false;
 
@@ -361,7 +364,11 @@
         if (hasError) return;
 
         try {
-            const response = await fetch('http://localhost:5000/api/auth/login', {
+            // Disable button during login request
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Logging in...';
+
+            const response = await fetch(`${API_BASE}/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password, role: selectedRole })
@@ -370,12 +377,13 @@
             const data = await response.json();
 
             if (data.success) {
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
+                // Save token & user info in sessionStorage
+                sessionStorage.setItem('token', data.token);
+                sessionStorage.setItem('user', JSON.stringify(data.user));
 
                 const userRole = data.user.role ? data.user.role.toLowerCase() : selectedRole;
                 if (userRole === 'officer') {
-                    window.location.href = 'officer-dashboard.html';
+                    window.location.href = 'land_officer_dashboard.html';
                 } else {
                     window.location.href = 'dashboard.html';
                 }
@@ -393,8 +401,11 @@
                 genError.textContent = 'Unable to connect to the backend server. Please check your connection.';
                 genError.classList.remove('hidden');
             }
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Login';
         }
     });
-    </script>
+</script>
 </body>
 </html>
