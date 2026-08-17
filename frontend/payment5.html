@@ -3,448 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LandDeal - My Payments</title>
-  
+  <title>LandDeal - Transaction History</title>
   <!-- Typography & Font Family -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-
   <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
   </style>
 </head>
 <body class="bg-[#f2f9f3] text-gray-900 min-h-screen p-4 md:p-6 lg:p-8">
 
-  <!-- Main Container -->
-  <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-6 items-stretch">
-    
-    <!-- Sidebar Panel -->
-    <aside class="w-full lg:w-64 bg-white rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shrink-0">
-      <div>
-        <!-- Logo & Tagline -->
-        <div class="mb-8">
-          <a href="dashboard.html" class="block">
-            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">LandDeal</h1>
-            <div class="mt-1 inline-block bg-green-50 border border-green-200 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">
-              Secure • Verified • Transparent
-            </div>
-          </a>
-        </div>
-
-        <!-- Navigation Menu -->
-        <nav class="space-y-1">
-          <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="layout-grid" class="w-5 h-5"></i>
-            Dashboard
-          </a>
-          <a href="search_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="search" class="w-5 h-5"></i>
-            Browse Land
-          </a>
-          <a href="properties_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="home" class="w-5 h-5"></i>
-            My Properties
-          </a>
-          <a href="verification.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="plus" class="w-5 h-5"></i>
-            Add Land
-          </a>
-          <a href="message_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="mail" class="w-5 h-5"></i>
-            Messages
-          </a>
-          <!-- Active Nav Item -->
-          <a href="payment5.html" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
-            <i data-lucide="receipt" class="w-5 h-5"></i>
-            Transactions
-          </a>
-          <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="user" class="w-5 h-5"></i>
-            Profile
-          </a>
-        </nav>
-      </div>
-
-      <!-- Logout -->
-      <div class="pt-6 border-t border-gray-100">
-        <a href="index.html" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
-          <i data-lucide="log-out" class="w-5 h-5"></i>
-          Logout
+<!-- Main Container -->
+<div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-6 items-stretch">
+  
+  <!-- Sidebar Panel -->
+  <aside class="w-full lg:w-64 bg-white rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shrink-0">
+    <div>
+      <!-- Logo & Tagline -->
+      <div class="mb-8">
+        <a href="dashboard.html" class="block">
+          <h1 class="text-2xl font-bold text-gray-900 tracking-tight">LandDeal</h1>
+          <div class="mt-1 inline-block bg-green-50 border border-green-200 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+            Secure • Verified • Transparent
+          </div>
         </a>
       </div>
-    </aside>
 
-    <!-- Main Content Panel -->
-    <main class="flex-1 bg-white rounded-2xl border border-gray-200 p-6 lg:p-8 flex flex-col justify-between">
-      
-      <div>
-        <!-- Top Bar -->
-        <header class="flex items-center justify-between pb-6 mb-4">
-          <div>
-            <h2 class="text-xl font-bold text-gray-900">My Payments</h2>
-            <p class="text-xs text-gray-600 mt-1">View your active payment transactions completed via checkout.</p>
-          </div>
-          <div class="flex items-center gap-4">
-            <button aria-label="Notifications" class="text-green-500 hover:text-green-600 relative p-1">
-              <i data-lucide="bell" class="w-5 h-5 fill-current"></i>
-            </button>
-            <a href="profile.html" aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600">
-              <i data-lucide="user" class="w-5 h-5"></i>
-            </a>
-          </div>
-        </header>
+      <!-- Navigation Menu -->
+      <nav class="space-y-1">
+        <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <i data-lucide="layout-grid" class="w-5 h-5"></i> Dashboard
+        </a>
+        <a href="properties.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <i data-lucide="home" class="w-5 h-5"></i> My Properties
+        </a>
+        <a href="add_land1.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <i data-lucide="plus" class="w-5 h-5"></i> Add Land
+        </a>
+        <a href="message_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <i data-lucide="mail" class="w-5 h-5"></i> Messages
+        </a>
+        <a href="payment1.html" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
+          <i data-lucide="receipt" class="w-5 h-5"></i> Transactions
+        </a>
+        <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <i data-lucide="user" class="w-5 h-5"></i> Profile
+        </a>
+      </nav>
+    </div>
 
-        <!-- Category Tabs -->
-        <div class="border-b border-gray-200 mb-6">
-          <nav class="flex gap-8 overflow-x-auto text-xs font-semibold" id="status-tabs">
-            <button data-status="all" class="tab-btn pb-3 border-b-2 border-[#0b6b32] text-[#0b6b32] whitespace-nowrap">
-              All Transactions
-            </button>
-            <button data-status="Pending" class="tab-btn pb-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap">
-              Pending
-            </button>
-            <button data-status="Completed" class="tab-btn pb-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap">
-              Completed
-            </button>
-            <button data-status="Failed" class="tab-btn pb-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap">
-              Failed
-            </button>
-            <button data-status="Refunded" class="tab-btn pb-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap">
-              Refunded
-            </button>
-          </nav>
+    <!-- Logout -->
+    <div class="pt-6 border-t border-gray-100">
+      <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
+        <i data-lucide="log-out" class="w-5 h-5"></i> Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content Panel -->
+  <main class="flex-1 bg-white rounded-2xl border border-gray-200 p-6 lg:p-8 flex flex-col justify-between">
+    <div>
+      <!-- Top Bar -->
+      <header class="flex items-center justify-between pb-6 border-b border-gray-200 mb-8">
+        <h2 class="text-lg font-bold text-gray-900">Payment & Purchase History</h2>
+        <div class="flex items-center gap-4">
+          <button aria-label="Notifications" class="text-green-500 hover:text-green-600 relative p-1">
+            <i data-lucide="bell" class="w-5 h-5 fill-current"></i>
+          </button>
+          <a href="profile.html" aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600">
+            <i data-lucide="user" class="w-5 h-5"></i>
+          </a>
         </div>
+      </header>
 
-        <!-- Transactions Table -->
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse min-w-[700px]">
-            <thead>
-              <tr class="bg-gray-100/80 text-gray-700 text-xs font-bold">
-                <th class="py-3 px-4 rounded-l-lg">Transaction ID</th>
-                <th class="py-3 px-4">Property</th>
-                <th class="py-3 px-4">Amount</th>
-                <th class="py-3 px-4">Method</th>
-                <th class="py-3 px-4">Status</th>
-                <th class="py-3 px-4">Date</th>
-                <th class="py-3 px-4 text-center rounded-r-lg">Action</th>
-              </tr>
-            </thead>
-            <tbody id="table-body" class="divide-y divide-gray-100 text-xs">
-              <!-- Dynamically Populated from Backend -->
-            </tbody>
-          </table>
-        </div>
-
-      </div>
-
-      <!-- Pagination Section -->
-      <div class="mt-8 pt-4 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-        <p class="text-gray-600 font-medium" id="pagination-info">
-          Showing <span class="font-bold text-gray-900" id="showing-start">0</span> to <span class="font-bold text-gray-900" id="showing-end">0</span> of <span class="font-bold text-gray-900" id="total-count">0</span> results
-        </p>
-        
-        <!-- Page Control Buttons -->
-        <div class="flex items-center gap-1.5" id="pagination-buttons">
-          <!-- Dynamically Populated via JS -->
-        </div>
-      </div>
-
-    </main>
-
-  </div>
-
-  <!-- Detail Modal -->
-  <div id="detail-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl relative border border-gray-200">
-      <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-1">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10 rounded-full bg-green-100 text-[#0b6b32] flex items-center justify-center font-bold">
-          <i data-lucide="receipt" class="w-5 h-5"></i>
-        </div>
+      <!-- Section Title -->
+      <div class="mb-6 flex justify-between items-center">
         <div>
-          <h3 class="text-base font-bold text-gray-900" id="modal-title">Transaction Details</h3>
-          <p class="text-xs text-gray-500" id="modal-id">TXN-0000</p>
+          <h3 class="text-lg font-bold text-gray-900">Transactions</h3>
         </div>
+        <a href="payment1.html" class="bg-[#0b6b32] hover:bg-[#095728] text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition-colors flex items-center gap-2">
+          <i data-lucide="plus" class="w-4 h-4"></i> New Payment
+        </a>
       </div>
 
-      <div class="space-y-3 bg-gray-50 rounded-xl p-4 text-xs border border-gray-100 mb-6">
-        <div class="flex justify-between text-gray-600">
-          <span>Property Name</span>
-          <span class="font-bold text-gray-900 text-right" id="modal-prop">--</span>
-        </div>
-        <div class="flex justify-between text-gray-600">
-          <span>Location</span>
-          <span class="font-medium text-gray-900" id="modal-loc">--</span>
-        </div>
-        <div class="flex justify-between text-gray-600">
-          <span>Total Amount</span>
-          <span class="font-extrabold text-[#0b6b32]" id="modal-amount">--</span>
-        </div>
-        <div class="flex justify-between text-gray-600">
-          <span>Payment Method</span>
-          <span class="font-semibold text-gray-900" id="modal-method">--</span>
-        </div>
-        <div class="flex justify-between text-gray-600">
-          <span>Date & Time</span>
-          <span class="font-medium text-gray-900" id="modal-datetime">--</span>
-        </div>
-        <div class="flex justify-between text-gray-600 items-center">
-          <span>Status</span>
-          <span id="modal-status">--</span>
-        </div>
-      </div>
-
-      <div class="flex justify-end gap-3">
-        <button onclick="window.print()" class="px-4 py-2 border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-xl text-xs font-semibold flex items-center gap-2">
-          <i data-lucide="printer" class="w-4 h-4"></i> Print Receipt
-        </button>
-        <button onclick="closeModal()" class="px-4 py-2 bg-[#0b6b32] hover:bg-[#095728] text-white rounded-xl text-xs font-semibold">
-          Close
-        </button>
+      <!-- Transactions Table -->
+      <div class="overflow-x-auto border border-gray-200 rounded-2xl">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-gray-50 border-b border-gray-200 text-gray-600 font-semibold">
+            <tr>
+              <th class="p-4">Transaction ID</th>
+              <th class="p-4">Method</th>
+              <th class="p-4">Amount</th>
+              <th class="p-4">Date</th>
+              <th class="p-4">Status</th>
+            </tr>
+          </thead>
+          <tbody id="history-table-body" class="divide-y divide-gray-100">
+            <tr><td colspan="5" class="p-6 text-center text-gray-500 font-medium">Loading history from MariaDB...</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
+  </main>
+</div>
 
-  <script src="payment-api.js"></script>
-  <script>
-    let transactions = [];
-    let currentFilter = 'all';
-    let currentPage = 1;
-    const itemsPerPage = 5;
+<script>
+  lucide.createIcons();
+  const API_BASE_URL = "http://localhost:5000";
 
-    const methodColorMap = {
-      'bkash': '#e2136e',
-      'nagad': '#f7941d',
-      'rocket': '#8c338d',
-      'card': '#1a1f71',
-      'bank': '#0b6b32'
-    };
+  document.addEventListener("DOMContentLoaded", async () => {
+    const tbody = document.getElementById("history-table-body");
 
-    // Formats method names properly (e.g., 'rocket' -> 'Rocket')
-    function formatMethodName(methodStr) {
-      if (!methodStr) return 'Rocket';
-      const clean = methodStr.toString().trim().toLowerCase();
-      if (clean === 'bkash') return 'bKash';
-      if (clean === 'nagad') return 'Nagad';
-      if (clean === 'rocket') return 'Rocket';
-      if (clean === 'card') return 'Card';
-      if (clean === 'bank') return 'Bank Transfer';
-      return clean.charAt(0).toUpperCase() + clean.slice(1);
-    }
-
-    // Transform Backend/DB items to frontend table structure
-    function mapDbTransaction(item) {
-      const createdAt = new Date(item.created_at);
-      const dateStr = createdAt.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-      const timeStr = createdAt.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-
-      let formattedStatus = 'Pending';
-      if (item.status === 'completed' || item.status === 'Completed') formattedStatus = 'Completed';
-      else if (item.status === 'failed' || item.status === 'Failed') formattedStatus = 'Failed';
-
-      const rawMethod = item.payment_method || 'rocket';
-      const cleanKey = rawMethod.toLowerCase();
-
-      return {
-        id: item.transaction_id,
-        title: item.title || '12.5 Katha Residential Plot',
-        location: item.location || 'Bashundhara, Dhaka',
-        amount: `৳ ${Number(item.amount).toLocaleString('en-IN')}`,
-        method: formatMethodName(rawMethod),
-        methodColor: methodColorMap[cleanKey] || '#8c338d',
-        status: formattedStatus,
-        date: dateStr,
-        time: timeStr
-      };
-    }
-
-    async function fetchTransactionsFromApi() {
-      try {
-        const response = await fetch('http://localhost:5000/api/v1/payments');
-        const result = await response.json();
-
-        if (result.status === 'success' && Array.isArray(result.data)) {
-          transactions = result.data.map(mapDbTransaction);
-        } else {
-          transactions = [];
-        }
-      } catch (err) {
-        console.error('Failed to load transaction history from API:', err);
-        transactions = [];
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/v1/payments`);
+      if (!response.ok) {
+        throw new Error(`Server status ${response.status}`);
       }
-      renderTable();
-    }
 
-    function getFilteredData() {
-      if (currentFilter === 'all') return transactions;
-      return transactions.filter(item => item.status.toLowerCase() === currentFilter.toLowerCase());
-    }
+      const result = await response.json();
 
-    function renderStatusBadge(status) {
-      if (status === 'Completed') {
-        return `<span class="inline-flex items-center gap-1 bg-green-100 text-green-700 text-[11px] font-semibold px-2.5 py-1 rounded-full">
-                  <i data-lucide="check-circle" class="w-3 h-3"></i> Completed
-                </span>`;
-      } else if (status === 'Pending') {
-        return `<span class="inline-flex items-center gap-1 bg-amber-100 text-amber-700 text-[11px] font-semibold px-2.5 py-1 rounded-full">
-                  <i data-lucide="clock" class="w-3 h-3"></i> Pending
-                </span>`;
-      } else if (status === 'Failed') {
-        return `<span class="inline-flex items-center gap-1 bg-rose-100 text-rose-700 text-[11px] font-semibold px-2.5 py-1 rounded-full">
-                  <i data-lucide="x-circle" class="w-3 h-3"></i> Failed
-                </span>`;
-      } else {
-        return `<span class="inline-flex items-center gap-1 bg-gray-100 text-gray-700 text-[11px] font-semibold px-2.5 py-1 rounded-full">
-                  <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Refunded
-                </span>`;
-      }
-    }
-
-    function renderTable() {
-      const filteredData = getFilteredData();
-      const totalItems = filteredData.length;
-      const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
-
-      if (currentPage > totalPages) currentPage = totalPages;
-
-      const startIdx = (currentPage - 1) * itemsPerPage;
-      const endIdx = Math.min(startIdx + itemsPerPage, totalItems);
-      const pageData = filteredData.slice(startIdx, endIdx);
-
-      const tbody = document.getElementById('table-body');
-      
-      if (pageData.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-gray-500 font-medium">No transaction records found in payment history.</td></tr>`;
-      } else {
-        tbody.innerHTML = pageData.map(item => `
-          <tr class="hover:bg-gray-50/50 transition-colors">
-            <td class="py-4 px-4 font-semibold text-gray-900">${item.id}</td>
-            <td class="py-4 px-4">
-              <p class="font-semibold text-gray-900">${item.title}</p>
-              <p class="text-[11px] text-gray-500">${item.location}</p>
-            </td>
-            <td class="py-4 px-4 font-bold text-gray-900">${item.amount}</td>
-            <td class="py-4 px-4">
-              <span class="font-bold" style="color: ${item.methodColor}">${item.method}</span>
-            </td>
-            <td class="py-4 px-4">
-              ${renderStatusBadge(item.status)}
-            </td>
-            <td class="py-4 px-4 text-gray-600">
-              <p>${item.date}</p>
-              <p class="text-[11px] text-gray-400">${item.time}</p>
-            </td>
-            <td class="py-4 px-4 text-center">
-              <button onclick="viewDetails('${item.id}')" class="px-3 py-1 border border-gray-800 text-gray-900 text-xs font-semibold rounded hover:bg-gray-50 transition-colors">
-                View
-              </button>
-            </td>
+      if (result.status === 'success' && result.data && result.data.length > 0) {
+        tbody.innerHTML = result.data.map(item => `
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="p-4 font-semibold text-gray-900">${item.transaction_id}</td>
+            <td class="p-4 uppercase font-semibold text-[#0b6b32]">${item.payment_method || 'BKASH'}</td>
+            <td class="p-4 font-bold text-gray-900">৳ ${Number(item.amount).toLocaleString('en-IN')}</td>
+            <td class="p-4 text-gray-500">${new Date(item.created_at || Date.now()).toLocaleDateString()}</td>
+            <td class="p-4"><span class="px-2.5 py-1 bg-green-100 text-green-800 rounded-md text-xs font-bold">${(item.status || 'completed').toUpperCase()}</span></td>
           </tr>
         `).join('');
+      } else {
+        tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-gray-500">No payment history found in MariaDB.</td></tr>`;
       }
 
-      document.getElementById('showing-start').innerText = totalItems === 0 ? 0 : startIdx + 1;
-      document.getElementById('showing-end').innerText = endIdx;
-      document.getElementById('total-count').innerText = totalItems;
-
-      renderPagination(totalPages);
-      lucide.createIcons();
+    } catch (err) {
+      console.error("Failed to fetch payments:", err);
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="5" class="p-6 text-center text-red-500 font-medium">
+            Failed to load data from backend server (${API_BASE_URL}). Ensure node server is running.
+          </td>
+        </tr>`;
     }
-
-    function renderPagination(totalPages) {
-      const container = document.getElementById('pagination-buttons');
-      let html = '';
-
-      html += `
-        <button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled class="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-gray-300 cursor-not-allowed"' : 'class="w-8 h-8 rounded-lg border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"'}>
-          <i data-lucide="chevron-left" class="w-4 h-4"></i>
-        </button>
-      `;
-
-      for (let i = 1; i <= totalPages; i++) {
-        if (i === currentPage) {
-          html += `
-            <button onclick="changePage(${i})" class="w-8 h-8 rounded-lg border border-gray-900 bg-white font-bold text-gray-900 flex items-center justify-center shadow-sm">
-              ${i}
-            </button>
-          `;
-        } else {
-          html += `
-            <button onclick="changePage(${i})" class="w-8 h-8 rounded-lg border border-gray-300 bg-white text-gray-600 hover:bg-gray-50 flex items-center justify-center transition-colors">
-              ${i}
-            </button>
-          `;
-        }
-      }
-
-      html += `
-        <button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages || totalPages === 0 ? 'disabled class="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-gray-300 cursor-not-allowed"' : 'class="w-8 h-8 rounded-lg border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"'}>
-          <i data-lucide="chevron-right" class="w-4 h-4"></i>
-        </button>
-      `;
-
-      container.innerHTML = html;
-    }
-
-    function changePage(page) {
-      const filteredData = getFilteredData();
-      const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-      if (page >= 1 && page <= totalPages) {
-        currentPage = page;
-        renderTable();
-      }
-    }
-
-    function viewDetails(id) {
-      const item = transactions.find(t => t.id === id);
-      if (!item) return;
-
-      document.getElementById('modal-id').textContent = item.id;
-      document.getElementById('modal-prop').textContent = item.title;
-      document.getElementById('modal-loc').textContent = item.location;
-      document.getElementById('modal-amount').textContent = item.amount;
-      document.getElementById('modal-method').textContent = item.method;
-      document.getElementById('modal-datetime').textContent = `${item.date}, ${item.time}`;
-      document.getElementById('modal-status').innerHTML = renderStatusBadge(item.status);
-
-      document.getElementById('detail-modal').classList.remove('hidden');
-      lucide.createIcons();
-    }
-
-    function closeModal() {
-      document.getElementById('detail-modal').classList.add('hidden');
-    }
-
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        document.querySelectorAll('.tab-btn').forEach(t => {
-          t.classList.remove('border-[#0b6b32]', 'text-[#0b6b32]');
-          t.classList.add('border-transparent', 'text-gray-600');
-        });
-
-        const activeTab = e.currentTarget;
-        activeTab.classList.remove('border-transparent', 'text-gray-600');
-        activeTab.classList.add('border-[#0b6b32]', 'text-[#0b6b32]');
-
-        currentFilter = activeTab.getAttribute('data-status');
-        currentPage = 1;
-        renderTable();
-      });
-    });
-
-    window.addEventListener('DOMContentLoaded', fetchTransactionsFromApi);
-  </script>
+  });
+</script>
 </body>
 </html>
