@@ -129,9 +129,10 @@
         </div>
         <div class="flex justify-between items-center text-xs pb-3 border-b border-gray-100">
           <span class="text-gray-500 font-medium">Total Paid</span>
-          <span class="font-bold text-gray-900">৳ 28,25,000</span>
-        </div>
+          <!-- Added id="txn-amount-display" -->
+          <span id="txn-amount-display" class="font-bold text-gray-900">৳ 28,25,000</span>
       </div>
+
 
       <div class="max-w-xl mx-auto flex gap-4">
         <a href="payment5.html" class="flex-1 bg-[#0b6b32] hover:bg-[#095728] text-white font-semibold py-3.5 px-4 rounded-xl text-sm text-center transition-colors flex items-center justify-center gap-2">
@@ -151,5 +152,30 @@
     document.getElementById("txn-method-display").innerText = (urlParams.get('payment_method') || 'bKash').toUpperCase();
   });
 </script>
+<script>
+  lucide.createIcons();
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. Read query parameters passed from backend Express redirect
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    const txnId = urlParams.get('transaction_id') || 'N/A';
+    const paymentMethod = urlParams.get('payment_method') || 'SSLCommerz';
+    const rawAmount = urlParams.get('amount') || '2825000';
+
+    // 2. Format the numeric amount with currency separators (e.g., 28,25,000)
+    const formattedAmount = Number(rawAmount).toLocaleString('en-IN');
+
+    // 3. Update DOM elements dynamically
+    const txnIdElem = document.getElementById("txn-id-display");
+    const methodElem = document.getElementById("txn-method-display");
+    const amountElem = document.getElementById("txn-amount-display");
+
+    if (txnIdElem) txnIdElem.textContent = txnId;
+    if (methodElem) methodElem.textContent = decodeURIComponent(paymentMethod).toUpperCase();
+    if (amountElem) amountElem.textContent = `৳ ${formattedAmount}`;
+  });
+</script>
+
 </body>
 </html>

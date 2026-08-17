@@ -12,7 +12,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.22.2",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.9.7",
+    "mysql2": "^3.23.3",
     "sslcommerz-lts": "^1.2.0"
   },
   "devDependencies": {
