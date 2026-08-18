@@ -2,7 +2,6 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// আপলোড ফোল্ডার না থাকলে স্বয়ংক্রিয়ভাবে তৈরি হবে
 const uploadDir = path.join(__dirname, '../uploads/documents');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
@@ -19,7 +18,6 @@ const storage = multer.diskStorage({
   }
 });
 
-// শুধুমাত্র ইমেজ ফাইল অ্যালাউ করার ফিল্টার
 const fileFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image/')) {
     cb(null, true);
@@ -31,7 +29,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ 
   storage: storage,
   fileFilter: fileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 } // ৫ মেগাবাইট লিমিট
+  limits: { fileSize: 5 * 1024 * 1024 } 
 });
 
 module.exports = upload;

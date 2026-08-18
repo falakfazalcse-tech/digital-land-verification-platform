@@ -240,206 +240,205 @@
 
   </div>
 
-  <script>
-    lucide.createIcons();
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script>
+  lucide.createIcons();
 
-    // Mock Chat Database for all conversations
-    const mockChats = {
-      '1': {
-        name: 'Sajjatal Bashar',
-        initials: 'SB',
-        bg: 'bg-blue-100',
-        color: 'text-blue-600',
-        property: '12.5 Katha Residential Plot',
-        messages: [
-          { sender: 'them', text: 'Hello! I saw you requested the verification documents for the Bashundhara plot.', time: '10:38 AM' },
-          { sender: 'me', text: 'Hi Sajjatal, yes! Could you confirm if the Mutation and Khatian documents are updated?', time: '10:40 AM' },
-          { sender: 'them', text: 'Yes, the documents are ready for inspection. I have already uploaded them to the platform.', time: '10:42 AM' }
-        ]
-      },
-      '2': {
-        name: 'Anisur Rahman',
-        initials: 'AR',
-        bg: 'bg-purple-100',
-        color: 'text-purple-600',
-        property: '5.0 Katha Commercial Plot',
-        messages: [
-          { sender: 'them', text: 'Hello, I received your proposal for the Uttara commercial plot.', time: 'Yesterday 4:15 PM' },
-          { sender: 'them', text: 'Can we negotiate on the service fee?', time: 'Yesterday 4:16 PM' }
-        ]
-      },
-      '3': {
-        name: 'Kabir Hossain',
-        initials: 'KH',
-        bg: 'bg-amber-100',
-        color: 'text-amber-600',
-        property: 'Gazipur Land Plot',
-        messages: [
-          { sender: 'me', text: 'Your property documents have been verified successfully.', time: 'Jul 24, 2:00 PM' },
-          { sender: 'them', text: 'Thank you for the quick verification.', time: 'Jul 24, 2:05 PM' }
-        ]
-      }
-    };
+  const API_BASE = 'http://localhost:5000/api/messages';
+  const TOKEN = localStorage.getItem('authToken'); // JWT token saved during login
+  const CURRENT_USER_ID = localStorage.getItem('userId'); // Logged in User ID
 
-    let activeContactId = '1';
+  const socket = io('http://localhost:5000');
+  let activeContactId = null;
+  let activePropertyId = null;
 
-    const chatBody = document.getElementById('chatBody');
-    const chatForm = document.getElementById('chatForm');
-    const messageInput = document.getElementById('messageInput');
-    const searchInput = document.getElementById('searchInput');
+  // Socket setup
+  socket.emit('registerUser', CURRENT_USER_ID);
 
-    function scrollToBottom() {
-      chatBody.scrollTop = chatBody.scrollHeight;
+  socket.on('newMessage', (msg) => {
+    if (String(msg.sender_id) === String(activeContactId)) {
+      appendSingleMessage(msg, 'them');
+      scrollToBottom();
+      markMessagesAsRead(activeContactId);
     }
+    loadConversations(); // Refresh list to update previews and unread badges
+  });
 
-    function escapeHTML(str) {
-      return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+  socket.on('messageSent', (msg) => {
+    if (String(msg.receiver_id) === String(activeContactId)) {
+      appendSingleMessage(msg, 'me');
+      scrollToBottom();
     }
+    loadConversations();
+  });
 
-    // Toggle active state & green bar across all conversations
-    function setActiveContactUI(selectedId) {
-      document.querySelectorAll('.contact-item').forEach(item => {
-        const id = item.getAttribute('data-contact-id');
-        const lastMsgEl = item.querySelector('.last-message');
-        const propTagEl = item.querySelector('.property-tag');
-
-        if (id === selectedId) {
-          // Add CSS class `.active` which guarantees green bar + light green background
-          item.classList.add('active');
-          
-          if (lastMsgEl) {
-            lastMsgEl.classList.remove('text-gray-500');
-            lastMsgEl.classList.add('text-gray-600', 'font-semibold');
-          }
-          if (propTagEl) {
-            propTagEl.classList.remove('text-gray-400');
-            propTagEl.classList.add('text-green-700', 'font-medium');
-          }
-        } else {
-          // Remove active state
-          item.classList.remove('active');
-
-          if (lastMsgEl) {
-            lastMsgEl.classList.remove('text-gray-600', 'font-semibold');
-            lastMsgEl.classList.add('text-gray-500');
-          }
-          if (propTagEl) {
-            propTagEl.classList.remove('text-green-700', 'font-medium');
-            propTagEl.classList.add('text-gray-400');
-          }
-        }
+  // Fetch Sidebar Conversations
+  async function loadConversations() {
+    try {
+      const res = await fetch(`${API_BASE}/conversations`, {
+        headers: { 'Authorization': `Bearer ${TOKEN}` }
       });
+      const result = await res.json();
+      if (!result.success) return;
+
+      const contactList = document.getElementById('contactList');
+      contactList.innerHTML = '';
+
+      result.data.forEach((conv, index) => {
+        if (!activeContactId && index === 0) {
+          activeContactId = conv.contact_id;
+          activePropertyId = conv.property_id;
+        }
+
+        const initials = conv.contact_name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
+        const isActive = String(conv.contact_id) === String(activeContactId);
+
+        const item = document.createElement('div');
+        item.className = `contact-item ${isActive ? 'active' : ''} p-4 cursor-pointer flex items-start gap-3 hover:bg-gray-100/60`;
+        item.setAttribute('data-contact-id', conv.contact_id);
+
+        item.innerHTML = `
+          <div class="relative shrink-0">
+            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm">
+              ${initials}
+            </div>
+            ${conv.unread_count > 0 ? `<span class="w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full absolute bottom-0 right-0"></span>` : ''}
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between mb-1">
+              <h4 class="text-xs font-bold text-gray-900 truncate">${escapeHTML(conv.contact_name)}</h4>
+              <span class="text-[10px] text-gray-400">${new Date(conv.last_message_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+            </div>
+            <p class="last-message text-xs ${isActive ? 'text-gray-600 font-semibold' : 'text-gray-500'} truncate">${escapeHTML(conv.last_message || '')}</p>
+            <p class="property-tag text-[10px] ${isActive ? 'text-green-700 font-medium' : 'text-gray-400'} mt-1 truncate">${escapeHTML(conv.property_title || 'General Inquiry')}</p>
+          </div>
+        `;
+
+        item.addEventListener('click', () => {
+          activeContactId = conv.contact_id;
+          activePropertyId = conv.property_id;
+          document.querySelectorAll('.contact-item').forEach(el => el.classList.remove('active'));
+          item.classList.add('active');
+          loadThread(conv.contact_id, conv.contact_name, conv.property_title, initials);
+        });
+
+        contactList.appendChild(item);
+      });
+
+      if (activeContactId) {
+        markMessagesAsRead(activeContactId);
+      }
+    } catch (err) {
+      console.error('Error loading conversations:', err);
     }
+  }
 
-    // Render Messages for Selected Conversation
-    function renderChat(contactId) {
-      const data = mockChats[contactId];
-      if (!data) return;
+  // Fetch Message Thread
+  async function loadThread(contactId, name, property, initials) {
+    document.getElementById('activeName').textContent = name;
+    document.getElementById('activeProperty').textContent = property || 'General Inquiry';
+    const avatar = document.getElementById('activeAvatar');
+    avatar.textContent = initials;
 
-      // Update Header
-      document.getElementById('activeName').textContent = data.name;
-      document.getElementById('activeProperty').textContent = data.property;
-      const avatarEl = document.getElementById('activeAvatar');
-      avatarEl.textContent = data.initials;
-      avatarEl.className = `w-10 h-10 rounded-full ${data.bg} flex items-center justify-center ${data.color} font-bold text-sm shrink-0`;
+    try {
+      const res = await fetch(`${API_BASE}/${contactId}`, {
+        headers: { 'Authorization': `Bearer ${TOKEN}` }
+      });
+      const result = await res.json();
+      if (!result.success) return;
 
-      // Render Messages Body
-      let html = `
+      const chatBody = document.getElementById('chatBody');
+      chatBody.innerHTML = `
         <div class="flex items-center justify-center my-2">
-          <span class="text-[10px] font-semibold bg-gray-200 text-gray-600 px-3 py-1 rounded-full">Today</span>
+          <span class="text-[10px] font-semibold bg-gray-200 text-gray-600 px-3 py-1 rounded-full">Conversation Started</span>
         </div>
       `;
 
-      data.messages.forEach(msg => {
-        if (msg.sender === 'me') {
-          html += `
-            <div class="flex items-start justify-end gap-3 max-w-[80%] ml-auto">
-              <div class="text-right">
-                <div class="bg-[#0b6b32] text-white text-xs p-3.5 rounded-2xl rounded-tr-none shadow-xs">
-                  ${escapeHTML(msg.text)}
-                </div>
-                <span class="text-[10px] text-gray-400 mt-1 block">${msg.time}</span>
-              </div>
-            </div>
-          `;
-        } else {
-          html += `
-            <div class="flex items-start gap-3 max-w-[80%]">
-              <div class="w-8 h-8 rounded-full ${data.bg} flex items-center justify-center ${data.color} font-bold text-xs shrink-0">
-                ${data.initials}
-              </div>
-              <div>
-                <div class="bg-white border border-gray-200 text-gray-800 text-xs p-3.5 rounded-2xl rounded-tl-none shadow-xs">
-                  ${escapeHTML(msg.text)}
-                </div>
-                <span class="text-[10px] text-gray-400 mt-1 block">${msg.time}</span>
-              </div>
-            </div>
-          `;
-        }
+      result.data.forEach(msg => {
+        const type = String(msg.sender_id) === String(CURRENT_USER_ID) ? 'me' : 'them';
+        appendSingleMessage(msg, type);
       });
 
-      chatBody.innerHTML = html;
       scrollToBottom();
+      markMessagesAsRead(contactId);
+    } catch (err) {
+      console.error('Error loading thread:', err);
     }
+  }
 
-    // Attach click listener to every contact
-    document.querySelectorAll('.contact-item').forEach(item => {
-      item.addEventListener('click', function() {
-        activeContactId = this.getAttribute('data-contact-id');
-        setActiveContactUI(activeContactId);
-        renderChat(activeContactId);
-      });
+  function appendSingleMessage(msg, type) {
+    const chatBody = document.getElementById('chatBody');
+    const timeStr = new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    let html = '';
+    if (type === 'me') {
+      html = `
+        <div class="flex items-start justify-end gap-3 max-w-[80%] ml-auto">
+          <div class="text-right">
+            <div class="bg-[#0b6b32] text-white text-xs p-3.5 rounded-2xl rounded-tr-none shadow-xs">
+              ${escapeHTML(msg.message)}
+            </div>
+            <span class="text-[10px] text-gray-400 mt-1 block">${timeStr}</span>
+          </div>
+        </div>
+      `;
+    } else {
+      html = `
+        <div class="flex items-start gap-3 max-w-[80%]">
+          <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs shrink-0">
+            ${document.getElementById('activeAvatar').textContent}
+          </div>
+          <div>
+            <div class="bg-white border border-gray-200 text-gray-800 text-xs p-3.5 rounded-2xl rounded-tl-none shadow-xs">
+              ${escapeHTML(msg.message)}
+            </div>
+            <span class="text-[10px] text-gray-400 mt-1 block">${timeStr}</span>
+          </div>
+        </div>
+      `;
+    }
+    chatBody.insertAdjacentHTML('beforeend', html);
+  }
+
+  async function markMessagesAsRead(senderId) {
+    await fetch(`${API_BASE}/read`, {
+      method: 'PUT',
+      headers: { 
+        'Authorization': `Bearer ${TOKEN}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ sender_id: senderId })
+    });
+  }
+
+  // Handle Send Form
+  document.getElementById('chatForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = document.getElementById('messageInput');
+    const text = input.value.trim();
+    if (!text || !activeContactId) return;
+
+    socket.emit('privateMessage', {
+      sender_id: CURRENT_USER_ID,
+      receiver_id: activeContactId,
+      property_id: activePropertyId,
+      message: text
     });
 
-    // Handle Form Submit
-    chatForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const text = messageInput.value.trim();
-      if (!text) return;
+    input.value = '';
+  });
 
-      const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  function scrollToBottom() {
+    const chatBody = document.getElementById('chatBody');
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
 
-      mockChats[activeContactId].messages.push({
-        sender: 'me',
-        text: text,
-        time: currentTime
-      });
+  function escapeHTML(str) {
+    return str ? str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)) : '';
+  }
 
-      const activeItem = document.querySelector(`.contact-item[data-contact-id="${activeContactId}"] .last-message`);
-      if (activeItem) activeItem.textContent = text;
-
-      renderChat(activeContactId);
-      messageInput.value = '';
-
-      // Auto Reply Simulator
-      setTimeout(() => {
-        const replies = ["Got it, thanks!", "I will review this shortly.", "Perfect, let me check with the team."];
-        const randomReply = replies[Math.floor(Math.random() * replies.length)];
-
-        mockChats[activeContactId].messages.push({
-          sender: 'them',
-          text: randomReply,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        });
-
-        if (activeItem) activeItem.textContent = randomReply;
-        renderChat(activeContactId);
-      }, 1500);
-    });
-
-    // Filter Contacts by Search
-    searchInput.addEventListener('input', function() {
-      const term = this.value.toLowerCase();
-      document.querySelectorAll('.contact-item').forEach(item => {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(term) ? 'flex' : 'none';
-      });
-    });
-
-    // Initial load setup
-    setActiveContactUI(activeContactId);
-    renderChat(activeContactId);
-  </script>
+  // Initialize
+  loadConversations();
+</script>
 </body>
 </html>

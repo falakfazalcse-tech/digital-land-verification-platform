@@ -105,6 +105,24 @@ class PropertyModel {
     return rows[0] || null;
   }
 
+  // Fetch properties added by a specific logged-in user
+static async findByUserId(userId) {
+  const query = `
+    SELECT 
+      p.*, 
+      pd.land_images,
+      u.full_name AS owner_name, 
+      u.phone AS owner_phone 
+    FROM properties p 
+    LEFT JOIN property_documents pd ON p.id = pd.property_id
+    LEFT JOIN users u ON p.user_id = u.id 
+    WHERE p.user_id = ?
+    ORDER BY p.created_at DESC
+  `;
+  const [rows] = await db.query(query, [userId]);
+  return rows;
+}
+
   // Create a new property entry
   static async create(propertyData) {
     const query = `

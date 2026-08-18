@@ -4,32 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LandDeal - Property Details</title>
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
   </style>
 </head>
 <body class="bg-[#b8e3be] text-gray-900 min-h-screen p-4 md:p-6 lg:p-8">
 
-  <!-- Main Container -->
   <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-6 items-stretch">
 
     <!-- Sidebar Panel -->
     <aside class="w-full lg:w-64 bg-white rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shrink-0 shadow-sm">
       <div>
-        <!-- Logo & Tagline -->
         <div class="mb-8">
           <a href="dashboard.html" class="block">
             <h1 class="text-2xl font-bold text-gray-900 tracking-tight">LandDeal</h1>
@@ -39,41 +32,31 @@
           </a>
         </div>
 
-        <!-- Navigation Menu -->
         <nav class="space-y-1">
           <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="layout-grid" class="w-5 h-5"></i>
-            Dashboard
+            <i data-lucide="layout-grid" class="w-5 h-5"></i> Dashboard
           </a>
-          
           <a href="properties.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="home" class="w-5 h-5"></i>
-            My Properties
+            <i data-lucide="home" class="w-5 h-5"></i> My Properties
           </a>
           <a href="add_land.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="plus" class="w-5 h-5"></i>
-            Add Land
+            <i data-lucide="plus" class="w-5 h-5"></i> Add Land
           </a>
           <a href="message_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="mail" class="w-5 h-5"></i>
-            Messages
+            <i data-lucide="mail" class="w-5 h-5"></i> Messages
           </a>
           <a href="payment.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="receipt" class="w-5 h-5"></i>
-            Transactions
+            <i data-lucide="receipt" class="w-5 h-5"></i> Transactions
           </a>
           <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="user" class="w-5 h-5"></i>
-            Profile
+            <i data-lucide="user" class="w-5 h-5"></i> Profile
           </a>
         </nav>
       </div>
 
-      <!-- Logout -->
       <div class="pt-6 border-t border-gray-100 mt-6 lg:mt-0">
-        <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
-          <i data-lucide="log-out" class="w-5 h-5"></i>
-          Logout
+        <a href="home.html" id="logoutBtn" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
+          <i data-lucide="log-out" class="w-5 h-5"></i> Logout
         </a>
       </div>
     </aside>
@@ -81,7 +64,6 @@
     <!-- Main Content Panel -->
     <main class="flex-1 bg-white rounded-2xl border border-gray-200 p-6 lg:p-8 shadow-sm">
       
-      <!-- Top Bar Header -->
       <header class="flex items-center justify-between pb-6 border-b border-gray-100 mb-6">
         <div>
           <h2 class="text-xl font-bold text-gray-900">Property Details</h2>
@@ -90,7 +72,7 @@
           <button aria-label="Notifications" class="text-green-600 hover:text-green-700 relative p-1">
             <i data-lucide="bell" class="w-5 h-5 fill-current"></i>
           </button>
-          <a href="../profile.html" aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors">
+          <a href="profile.html" aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors">
             <i data-lucide="user" class="w-5 h-5"></i>
           </a>
         </div>
@@ -102,30 +84,21 @@
         <p class="text-sm font-medium">Loading property details...</p>
       </div>
 
-      <!-- Main Property View Content -->
+      <!-- Main Content View -->
       <div id="details-content" class="hidden">
-        
-        <!-- Grid Layout for Property View -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           
-          <!-- Left Main Area (Image Gallery & Land Details) -->
+          <!-- Left Side Gallery & Specifications -->
           <div class="lg:col-span-8 space-y-8">
             
-            <!-- Image Gallery Section -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <!-- Large Main Image -->
               <div class="md:col-span-2">
                 <img id="main-img" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80" alt="Main Plot Image" class="w-full h-80 md:h-[340px] object-cover rounded-xl shadow-sm" />
               </div>
-              <!-- Sub Images Column -->
               <div class="flex flex-col gap-3">
-                <img id="sub-img-1" src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=500&q=80" alt="Plot View 1" class="w-full h-[106px] object-cover rounded-xl shadow-sm" />
-                <img id="sub-img-2" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=500&q=80" alt="Plot View 2" class="w-full h-[106px] object-cover rounded-xl shadow-sm" />
-                <img id="sub-img-3" src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=500&q=80" alt="Plot View 3" class="w-full h-[106px] object-cover rounded-xl shadow-sm" />
-              </div>
+               </div>
             </div>
 
-            <!-- Property Overview Header -->
             <div>
               <div class="flex flex-wrap items-center gap-3">
                 <h3 id="prop-title" class="text-2xl font-bold text-gray-900">Loading Plot...</h3>
@@ -143,10 +116,12 @@
                 <button class="bg-[#0b6b32] hover:bg-[#095728] text-white font-medium text-xs px-5 py-2.5 rounded-lg shadow-sm transition-colors">
                   Contact Owner
                 </button>
-                <a href="payment3.html">
-                <button class="bg-white border border-green-600 text-green-700 hover:bg-green-50 font-medium text-xs px-5 py-2.5 rounded-lg transition-colors">
-                  Make Payment
-                </button>
+                
+                <!-- Dynamic Link Added for Make Payment -->
+                <a id="pay-btn-link" href="payment3.html">
+                  <button class="bg-white border border-green-600 text-green-700 hover:bg-green-50 font-medium text-xs px-5 py-2.5 rounded-lg transition-colors cursor-pointer">
+                    Make Payment
+                  </button>
                 </a>
               </div>
             </div>
@@ -156,10 +131,8 @@
               <h4 class="text-sm font-bold text-gray-900 mb-6">Land Details</h4>
               
               <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 relative">
-                <!-- Vertical Divider Line -->
                 <div class="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px bg-gray-200"></div>
 
-                <!-- Left Specs Column -->
                 <div class="space-y-4 text-xs">
                   <div class="flex justify-between md:justify-start gap-4">
                     <span class="text-gray-800 font-medium w-28">Land Title</span>
@@ -183,7 +156,6 @@
                   </div>
                 </div>
 
-                <!-- Right Specs Column -->
                 <div class="space-y-4 text-xs md:pl-4">
                   <div class="flex justify-between md:justify-start gap-4">
                     <span class="text-gray-800 font-medium w-28">Dag No</span>
@@ -204,24 +176,19 @@
                 </div>
               </div>
 
-              <!-- Back Button -->
               <div class="mt-8">
-                <button onclick="history.back()" class="inline-flex items-center gap-1.5 bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 text-xs font-semibold px-3 py-1.5 rounded-md shadow-xs transition-colors">
-                  <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-                  Back
+                <button onclick="history.back()" class="inline-flex items-center gap-1.5 bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
+                  <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Back
                 </button>
               </div>
             </div>
 
           </div>
 
-          <!-- Right Sidebar Area (Owner Info & Documents) -->
+          <!-- Right Sidebar -->
           <div class="lg:col-span-4 space-y-6">
-            
-            <!-- Owner Information Card -->
             <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
               <h4 class="text-sm font-bold text-gray-900 mb-5">Owner Information</h4>
-              
               <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
                   <i data-lucide="user" class="w-6 h-6 text-blue-600"></i>
@@ -236,7 +203,6 @@
                 View Profile
               </a>
 
-              <!-- Contact Information Details -->
               <div class="space-y-4 text-xs font-medium text-gray-700">
                 <div class="flex items-center gap-3">
                   <i data-lucide="phone" class="w-4 h-4 text-gray-600"></i>
@@ -253,32 +219,25 @@
               </div>
             </div>
 
-            <!-- Documents Card -->
             <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
               <h4 class="text-sm font-bold text-gray-900 mb-5">Documents</h4>
-
-              <div id="documents-container" class="space-y-4 text-xs font-semibold">
-                <!-- Populated dynamically via JS -->
-              </div>
-
-              <!-- View All Documents Button -->
+              <div id="documents-container" class="space-y-4 text-xs font-semibold"></div>
               <button class="w-full mt-6 bg-green-100 hover:bg-green-200 text-green-800 text-xs font-medium py-2.5 rounded-lg transition-colors">
                 View All Documents
               </button>
             </div>
-
           </div>
 
         </div>
       </div>
-
     </main>
-
   </div>
 
-  <!-- JavaScript Initialization and Data Fetching -->
   <script>
     lucide.createIcons();
+
+    // Dynamically match API base host with current browser URL (Avoid 127.0.0.1 vs localhost mix)
+    const API_BASE = `${window.location.protocol}//${window.location.hostname}:5000`;
 
     const urlParams = new URLSearchParams(window.location.search);
     const propertyId = urlParams.get('id');
@@ -286,16 +245,23 @@
     document.addEventListener('DOMContentLoaded', () => {
       if (!propertyId || propertyId === 'undefined') {
         alert('Invalid Property ID!');
-        window.location.href = 'home.html'; 
+        window.location.href = 'dashboard.html'; 
         return;
       }
+
+      // Automatically attach Property ID to Payment button link
+      const payBtnLink = document.getElementById('pay-btn-link');
+      if (payBtnLink) {
+        payBtnLink.href = `payment3.html?property_id=${propertyId}`;
+      }
+
       fetchPropertyDetails(propertyId);
     });
 
     async function fetchPropertyDetails(id) {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch(`http://localhost:5000/api/properties/${id}`, {
+        const res = await fetch(`${API_BASE}/api/properties/${id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const result = await res.json();
@@ -306,9 +272,7 @@
           return;
         }
 
-        const data = result.data;
-        populateUI(data);
-
+        populateUI(result.data);
       } catch (err) {
         console.error(err);
         alert('Failed to connect with server.');
@@ -316,13 +280,11 @@
     }
 
     function populateUI(land) {
-      // Hide loading spinner and display main content
       const spinner = document.getElementById('loading-spinner');
       const content = document.getElementById('details-content');
       if (spinner) spinner.classList.add('hidden');
       if (content) content.classList.remove('hidden');
 
-      // Status Badge
       const badge = document.getElementById('current-status-badge');
       if (badge) {
         const statusText = (land.status || 'pending').toLowerCase();
@@ -337,14 +299,11 @@
         }
       }
 
-      // Populate Images
       populateImages(land);
 
-      // Main header fields
       setElementText('prop-title', land.land_title || `${land.area ? land.area + ' Katha' : ''} Residential Plot`);
       setElementText('prop-location', `${land.mouza ? land.mouza + ', ' : ''}${land.upazila ? land.upazila + ', ' : ''}${land.district || ''}`);
 
-      // Detailed specifications
       setElementText('val-title', land.land_title || 'N/A');
       setElementText('val-district', land.district || 'N/A');
       setElementText('val-upazila', land.upazila || 'N/A');
@@ -355,7 +314,6 @@
       setElementText('val-type', land.land_type || 'Residential');
       setElementText('val-desc', land.description || 'N/A');
 
-      // Owner Info
       setElementText('owner-name', land.owner_name || 'Unknown Owner');
       setElementText('owner-phone', land.owner_phone || 'N/A');
       setElementText('owner-email', land.owner_email || 'N/A');
@@ -363,7 +321,6 @@
         setElementText('owner-joined', `Member since ${new Date(land.owner_created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`);
       }
 
-      // Documents List
       const docsContainer = document.getElementById('documents-container');
       if (docsContainer) {
         const docs = [
@@ -378,7 +335,7 @@
           let fileUrl = null;
           if (doc.rawPath) {
             const filename = doc.rawPath.replace(/^.*[\\\/]/, '');
-            fileUrl = `http://localhost:5000/uploads/documents/${filename}`;
+            fileUrl = `${API_BASE}/uploads/documents/${filename}`;
           }
 
           return `
@@ -397,7 +354,6 @@
         }).join('');
       }
 
-      // Re-initialize Lucide icons for dynamically added HTML
       lucide.createIcons();
     }
 
@@ -408,13 +364,8 @@
 
     function populateImages(land) {
       let images = [];
-
       if (typeof land.land_images === 'string') {
-        try {
-          images = JSON.parse(land.land_images);
-        } catch (e) {
-          images = [land.land_images];
-        }
+        try { images = JSON.parse(land.land_images); } catch (e) { images = [land.land_images]; }
       } else if (Array.isArray(land.land_images)) {
         images = land.land_images;
       }
@@ -424,7 +375,7 @@
       const getImageUrl = (imgName) => {
         if (!imgName) return defaultImg;
         const fileName = imgName.replace(/^.*[\\\/]/, '').replace(/^[\[\]"'\s]+|[\[\]"'\s]+$/g, '');
-        return `http://localhost:5000/uploads/documents/${fileName}`;
+        return `${API_BASE}/uploads/documents/${fileName}`;
       };
 
       const mainImgElem = document.getElementById('main-img');

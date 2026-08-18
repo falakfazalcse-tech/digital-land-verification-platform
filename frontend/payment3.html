@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LandDeal - Payment Step 3</title>
-  <!-- Typography & Font Family -->
+  <title>LandDeal - Payment </title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Tailwind CSS CDN -->
+  
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
   </style>
 </head>
-<body class="bg-[#f2f9f3] text-gray-900 min-h-screen p-4 md:p-6 lg:p-8">
+<body class="bg-[#b8e3be] text-gray-900 min-h-screen p-4 md:p-6 lg:p-8">
 
 <!-- Main Container -->
 <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-6 items-stretch">
@@ -24,7 +23,6 @@
   <!-- Sidebar Panel -->
   <aside class="w-full lg:w-64 bg-white rounded-2xl border border-gray-200 p-6 flex flex-col justify-between shrink-0">
     <div>
-      <!-- Logo & Tagline -->
       <div class="mb-8">
         <a href="dashboard.html" class="block">
           <h1 class="text-2xl font-bold text-gray-900 tracking-tight">LandDeal</h1>
@@ -34,7 +32,6 @@
         </a>
       </div>
 
-      <!-- Navigation Menu -->
       <nav class="space-y-1">
         <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
           <i data-lucide="layout-grid" class="w-5 h-5"></i> Dashboard
@@ -45,9 +42,7 @@
         <a href="add_land1.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
           <i data-lucide="plus" class="w-5 h-5"></i> Add Land
         </a>
-        <a href="message_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-          <i data-lucide="mail" class="w-5 h-5"></i> Messages
-        </a>
+      
         <a href="payment1.html" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
           <i data-lucide="receipt" class="w-5 h-5"></i> Transactions
         </a>
@@ -57,9 +52,8 @@
       </nav>
     </div>
 
-    <!-- Logout -->
     <div class="pt-6 border-t border-gray-100">
-      <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
+      <a href="#" id="logoutBtn" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
         <i data-lucide="log-out" class="w-5 h-5"></i> Logout
       </a>
     </div>
@@ -68,74 +62,68 @@
   <!-- Main Content Panel -->
   <main class="flex-1 bg-white rounded-2xl border border-gray-200 p-6 lg:p-8 flex flex-col justify-between">
     <div>
-      <!-- Top Bar -->
       <header class="flex items-center justify-between pb-6 border-b border-gray-200 mb-8">
-        <h2 class="text-lg font-bold text-gray-900">Payment – Step 3 : Make Payment</h2>
-        <div class="flex items-center gap-4">
-          <button aria-label="Notifications" class="text-green-500 hover:text-green-600 relative p-1">
-            <i data-lucide="bell" class="w-5 h-5 fill-current"></i>
-          </button>
-          <a href="profile.html" aria-label="User profile" class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600">
-            <i data-lucide="user" class="w-5 h-5"></i>
-          </a>
-        </div>
+        <h2 class="text-lg font-bold text-gray-900">Make Payment</h2>
+       
+        <!-- notifications and profile -->
+          <div class="flex items-center gap-4">
+            <!-- Notifications Button -->
+            <button type="button" aria-label="View notifications" class="p-2 text-gray-400 hover:text-green-600 rounded-full hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+            </button>
+
+  <!-- Profile Button -->
+
+<div class="relative" id="profile-dropdown-container">
+  <button 
+    onclick="toggleProfileDropdown(event)" 
+    class="flex items-center gap-3 p-1 rounded-2xl hover:bg-slate-100 transition-all duration-200 focus:outline-none">
+    <div class="text-right hidden sm:block">
+      <div id="user_name" class="text-xs font-bold text-slate-900"> User</div>
+    </div>
+    <div 
+      id="profile-avatar-ring" 
+      class="w-10 h-10 rounded-full ring-2 ring-emerald-600/30 overflow-hidden flex items-center justify-center bg-slate-800 text-white shadow-sm transition-all duration-200">
+    </div>
+  </button>
+
+  <div 
+    id="profile-dropdown" 
+    class="hidden absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 p-4 z-50 transition-all duration-200 animate-in fade-in slide-in-from-top-2">
+    
+    <div class="pb-3 border-b border-slate-100">
+      <p id="dropdown-user-name" class="text-sm font-bold text-slate-900">Officer Admin</p>
+      <p id="dropdown-user-email" class="text-xs text-slate-500 truncate mt-0.5">officer@landdeal.gov.bd</p>
+    </div>
+
+    <div class="pt-2">
+      <button 
+        onclick="logout()" 
+        class="w-full flex items-center gap-2 px-3 py-2 text-rose-600 hover:bg-rose-50 font-bold rounded-xl text-xs transition-colors duration-150">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+        </svg>
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>
+</div>
+          </div>
       </header>
 
-      <!-- Stepper -->
-      <div class="max-w-2xl mx-auto mb-10 px-4">
-        <div class="relative flex items-center justify-between">
-          <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 bg-gray-200 -z-0"></div>
-          <div class="absolute left-0 top-1/2 -translate-y-1/2 w-2/3 h-0.5 bg-green-800 -z-0"></div>
+      
 
-          <!-- Step 1 -->
-          <a href="payment1.html" class="relative z-10 flex flex-col items-center">
-            <div class="w-10 h-10 rounded-full bg-green-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">
-              <i data-lucide="check" class="w-5 h-5"></i>
-            </div>
-            <span class="mt-2 text-xs font-semibold text-green-700">Select Method</span>
-          </a>
+     
 
-          <!-- Step 2 -->
-          <a href="payment2.html" class="relative z-10 flex flex-col items-center">
-            <div class="w-10 h-10 rounded-full bg-green-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">
-              <i data-lucide="check" class="w-5 h-5"></i>
-            </div>
-            <span class="mt-2 text-xs font-semibold text-green-700">Review Order</span>
-          </a>
-
-          <!-- Step 3 (Active) -->
-          <div class="relative z-10 flex flex-col items-center">
-            <div class="w-10 h-10 rounded-full bg-green-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">
-              3
-            </div>
-            <span class="mt-2 text-xs font-semibold text-green-700">Make Payment</span>
-          </div>
-
-          <!-- Step 4 -->
-          <div class="relative z-10 flex flex-col items-center">
-            <div class="w-10 h-10 rounded-full bg-white border-2 border-gray-300 text-gray-700 flex items-center justify-center font-bold text-sm">
-              4
-            </div>
-            <span class="mt-2 text-xs font-medium text-gray-700">Confirmation</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Section Title -->
-      <div class="mb-6">
-        <h3 class="text-lg font-bold text-gray-900">Enter Payment Details</h3>
-        <p class="text-sm text-gray-600 mt-1">Provide account information to process payment into the verification ledger.</p>
-      </div>
-
-      <!-- Form & Summary Layout -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <!-- Gateway Inputs -->
         <div class="lg:col-span-7">
           <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
             <div class="flex items-center justify-between mb-6">
-              <h4 id="gateway-title" class="font-bold text-base text-gray-900">Pay with bKash</h4>
-              <div id="gateway-badge" class="px-3 py-1 bg-[#e2136e] rounded-lg text-white font-extrabold text-xs tracking-wider">BKASH</div>
+              <h4 id="title" class="font-bold text-base text-yellow-700">Make Payment</h4>
             </div>
 
             <form id="payForm" class="space-y-5">
@@ -146,7 +134,8 @@
 
               <div>
                 <label for="amount" class="block font-bold text-xs text-gray-900 mb-2">Amount Payable</label>
-                <input type="text" id="amount" value="৳ 28,25,000" readonly class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm font-semibold bg-gray-50/50 cursor-not-allowed text-gray-700" />
+                <!-- DYNAMIC AMOUNT FIELD -->
+                <input type="text" id="amount" value="Loading..." readonly class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm font-semibold bg-gray-50/50 cursor-not-allowed text-gray-700" />
               </div>
 
               <button type="submit" id="submitBtn" class="w-full bg-[#0b6b32] hover:bg-[#095728] text-white font-semibold py-3.5 rounded-xl transition-colors shadow-sm text-sm cursor-pointer flex items-center justify-center gap-2">
@@ -157,43 +146,36 @@
           </div>
         </div>
 
-        <!-- Sidebar: Property Summary -->
         <div class="lg:col-span-5 space-y-4">
           <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
-            <h4 class="font-bold text-base text-gray-900 pb-4">Property Summary</h4>
-            <div class="flex items-center gap-3 pb-4">
-              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=160&q=80" alt="Plot image" class="w-12 h-12 object-cover rounded-2xl" />
-              <div>
-                <p class="font-bold text-xs text-gray-900">12.5 katha Residential Plot</p>
-                <p class="text-xs text-gray-600 mt-0.5">Bashundhara, Dhaka</p>
-              </div>
-            </div>
+            <h4 class="font-bold text-base text-yellow-700 pb-4">Payment Details</h4>
+            
 
             <hr class="border-gray-200 mb-4" />
 
+            <!-- DYNAMIC PRICE BREAKDOWN -->
             <div class="space-y-3 text-xs">
               <div class="flex justify-between items-center text-gray-600">
                 <span>Land Price</span>
-                <span class="font-semibold text-gray-900">৳ 2,00,000</span>
+                <span id="prop-price" class="font-semibold text-gray-900">৳ 0</span>
               </div>
               <div class="flex justify-between items-center text-gray-600">
                 <span>Service Fee</span>
-                <span class="font-semibold text-gray-900">৳ 20,000</span>
+                <span id="service-fee" class="font-semibold text-gray-900">৳ 0</span>
               </div>
               <div class="flex justify-between items-center text-gray-600">
                 <span>Verification Fee</span>
-                <span class="font-semibold text-gray-900">৳ 5,000</span>
+                <span id="verification-fee" class="font-semibold text-gray-900">৳ 0</span>
               </div>
               <hr class="border-gray-200 my-3" />
 
               <div class="flex justify-between items-center pt-1">
                 <span class="font-bold text-sm text-gray-900">Total Amount</span>
-                <span class="font-bold text-base text-gray-900">৳ 2,25,000</span>
+                <span id="total-price" class="font-bold text-base text-gray-900">৳ 0</span>
               </div>
             </div>
           </div>
 
-          <!-- Secure Payment Box -->
           <div class="bg-white rounded-2xl border border-gray-200 p-4 flex items-center gap-3 shadow-sm">
             <div class="w-10 h-10 rounded-xl bg-blue-500 text-white flex items-center justify-center shrink-0">
               <i data-lucide="shield-check" class="w-6 h-6"></i>
@@ -210,81 +192,291 @@
   </main>
 </div>
 
-
 <script>
-  lucide.createIcons();
-  let selectedMethod = 'bKash';
+  function toggleProfileDropdown(event) {
+  event.stopPropagation();
+  const dropdown = document.getElementById('profile-dropdown');
+  dropdown.classList.toggle('hidden');
+}
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    selectedMethod = urlParams.get('payment_method') || localStorage.getItem('selectedPaymentMethod') || 'bKash';
-    document.getElementById('gateway-title').textContent = `Pay with ${selectedMethod}`;
-    document.getElementById('gateway-badge').textContent = selectedMethod.toUpperCase();
-  });
+document.addEventListener('click', (e) => {
+  const container = document.getElementById('profile-dropdown-container');
+  const dropdown = document.getElementById('profile-dropdown');
+  if (container && !container.contains(e.target)) {
+    dropdown.classList.add('hidden');
+  }
+});
 
-  document.getElementById('payForm').addEventListener('submit', async (e) => {
+
+
+// Load User Data into Profile & Dropdown
+const BACKEND_URL = 'http://localhost:5000'; 
+
+async function loadUserProfile() {
+  const avatarRing = document.getElementById('profile-avatar-ring');
+  
+  // local-এর বদলে sessionStorage ব্যবহার করা হচ্ছে
+  const token = sessionStorage.getItem('token');
+  const defaultDarkUserIcon = `
+    <svg class="w-6 h-6 text-slate-300" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+    </svg>
+  `;
+
+  let user = null;
+
+  // শুধুমাত্র sessionStorage থেকে ডেটা আনা হচ্ছে
+  const userDataStr = sessionStorage.getItem('user');
+
+  if (userDataStr) {
+    try {
+      user = JSON.parse(userDataStr);
+    } catch (e) {
+      console.error('Error parsing session user data:', e);
+    }
+  }
+
+  if (!user && token) {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/auth/profile`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      const result = await response.json();
+      
+      if (result.success) {
+        user = result.user || result.data;
+        if (user) {
+          // API থেকে পাওয়ার পর sessionStorage-এ সেভ করা হচ্ছে
+          sessionStorage.setItem('user', JSON.stringify(user));
+        }
+      }
+    } catch (err) {
+      console.error('Error fetching profile from API:', err);
+    }
+  }
+
+  // DOM Elements
+  const userNameEl = document.getElementById('user_name');
+  const dropdownNameEl = document.getElementById('dropdown-user-name');
+  const dropdownEmailEl = document.getElementById('dropdown-user-email');
+
+  if (user) {
+    // ইউজারের নাম Extract করা
+    const name = user.full_name || user.name || user.user_name || user.username || user.first_name || 'User';
+    const email = user.email || 'user@landdeal.com';
+
+    if (userNameEl) userNameEl.textContent = name;
+    if (dropdownNameEl) dropdownNameEl.textContent = name;
+    if (dropdownEmailEl) dropdownEmailEl.textContent = email;
+
+    // প্রোফাইল ছবি সেটিং
+    const userPic = user.profile_pic || user.avatar || user.image || user.profile_image;
+
+    if (userPic && avatarRing) {
+      let imgPath = userPic;
+      if (!userPic.startsWith('http://') && !userPic.startsWith('https://')) {
+        const cleanPath = userPic.startsWith('/') ? userPic : `/${userPic}`;
+        imgPath = `${BACKEND_URL}${cleanPath.includes('/uploads') ? cleanPath : '/uploads/documents' + cleanPath}`;
+      }
+
+      avatarRing.innerHTML = `
+        <img 
+          src="${imgPath}" 
+          alt="Profile" 
+          class="w-full h-full object-cover rounded-full" 
+          onerror="this.onerror=null; this.parentElement.innerHTML=\`${defaultDarkUserIcon.replace(/'/g, "\\'")}\`;" 
+        />
+      `;
+    } else if (avatarRing) {
+      avatarRing.innerHTML = defaultDarkUserIcon;
+    }
+  } else {
+    // সেশনে তথ্য না পাওয়া গেলে
+    if (userNameEl) userNameEl.textContent = 'Guest';
+    if (dropdownNameEl) dropdownNameEl.textContent = 'Guest User';
+    if (dropdownEmailEl) dropdownEmailEl.textContent = 'Not logged in';
+    if (avatarRing) avatarRing.innerHTML = defaultDarkUserIcon;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadUserProfile();
+});
+
+lucide.createIcons();
+
+// Dynamic origin setup
+const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:5000`;
+let selectedMethod = 'bKash';
+let propertyId = null;
+let dynamicAmount = 0;
+
+document.addEventListener('DOMContentLoaded', async () => {
+  // Safe token verification
+  const token = sessionStorage.getItem('token');
+  if (!token) {
+    alert("Please log in to proceed with payment.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  // Get query parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  selectedMethod = urlParams.get('payment_method') || urlParams.get('method') || sessionStorage.getItem('selectedPaymentMethod') || 'bKash';
+  propertyId = urlParams.get('property_id') || urlParams.get('id');
+
+  if (!propertyId) {
+    alert("Property ID missing!");
+    window.location.href = "dashboard.html";
+    return;
+  }
+
+  // Gateway Badge UI setup
+  const titleEl = document.getElementById('gateway-title');
+  const badgeEl = document.getElementById('gateway-badge');
+
+  if (titleEl) titleEl.textContent = `Pay with ${selectedMethod}`;
+  if (badgeEl) {
+    badgeEl.textContent = selectedMethod.toUpperCase();
+    const lowerMethod = selectedMethod.toLowerCase();
+    if (lowerMethod === 'bkash') {
+      badgeEl.className = "px-3 py-1 bg-[#e2136e] rounded-lg text-white font-extrabold text-xs tracking-wider";
+    } else if (lowerMethod === 'nagad') {
+      badgeEl.className = "px-3 py-1 bg-[#f7921e] rounded-lg text-white font-extrabold text-xs tracking-wider";
+    } else if (lowerMethod === 'rocket') {
+      badgeEl.className = "px-3 py-1 bg-[#8c3494] rounded-lg text-white font-extrabold text-xs tracking-wider";
+    } else {
+      badgeEl.className = "px-3 py-1 bg-green-700 rounded-lg text-white font-extrabold text-xs tracking-wider";
+    }
+  }
+
+  // Fetch dynamic property details and populate UI
+  dynamicAmount = await fetchPropertyPrice(propertyId, token);
+});
+
+// Helper to fetch dynamic property details and populate HTML elements
+async function fetchPropertyPrice(propId, token) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/properties/${propId}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    const result = await res.json();
+
+    if (result.success && result.data) {
+      const prop = result.data;
+
+      // Extract price from response
+      const basePrice = Number(prop.price || prop.amount || 0);
+      const serviceFee = Number(prop.service_fee || 20000); 
+      const verificationFee = Number(prop.verification_fee || 5000);
+      const totalPrice = basePrice + serviceFee + verificationFee;
+
+      // Update UI Text Elements
+      const titleEl = document.getElementById('prop-title');
+      if (titleEl) titleEl.textContent = prop.title || prop.name || `${prop.size || ''} Land Plot`;
+
+      const locationEl = document.getElementById('prop-location');
+      if (locationEl) locationEl.textContent = prop.location || prop.address || 'Location unavailable';
+
+      const imgEl = document.getElementById('prop-img');
+      if (imgEl && (prop.image || prop.image_url)) {
+        imgEl.src = prop.image || prop.image_url;
+      }
+
+      // Update Financial Breakdowns
+      const formatCurrency = (val) => `৳ ${Number(val).toLocaleString('en-BD')}`;
+
+      const priceEl = document.getElementById('prop-price');
+      if (priceEl) priceEl.textContent = formatCurrency(basePrice);
+
+      const serviceEl = document.getElementById('service-fee');
+      if (serviceEl) serviceEl.textContent = formatCurrency(serviceFee);
+
+      const verifyEl = document.getElementById('verification-fee');
+      if (verifyEl) verifyEl.textContent = formatCurrency(verificationFee);
+
+      const totalEl = document.getElementById('total-price');
+      if (totalEl) totalEl.textContent = formatCurrency(totalPrice);
+
+      // Update Form Amount Input Field
+      const amountInput = document.getElementById('amount');
+      if (amountInput) amountInput.value = formatCurrency(totalPrice);
+
+      return totalPrice;
+    }
+  } catch (err) {
+    console.error("Error fetching property details:", err);
+  }
+  return 0;
+}
+
+// Logout event listener
+document.getElementById('logoutBtn')?.addEventListener('click', (e) => {
   e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  btn.innerText = "Redirecting to SSLCommerz Gateway...";
-  btn.disabled = true;
+  sessionStorage.removeItem('token');
+  window.location.href = "home.html";
+});
 
-  const API_BASE_URL = "http://localhost:5000";
+// Form Submission Event Listener
+document.getElementById('payForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const token = sessionStorage.getItem('token');
+  if (!token) {
+    alert("Your session has expired. Please log in again.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  if (!dynamicAmount || Number(dynamicAmount) <= 0) {
+    alert("Invalid property amount. Unable to process payment.");
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  if (btn) {
+    btn.innerText = "Redirecting to SSLCommerz Gateway...";
+    btn.disabled = true;
+  }
 
   try {
     const response = await fetch(`${API_BASE_URL}/api/v1/sslcommerz/initiate`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify({
-        amount: 225000.00,
-        selectedMethod: selectedMethod
+        amount: Number(dynamicAmount),                
+        selectedMethod: selectedMethod.toLowerCase(),   
+        property_id: Number(propertyId)                
       })
     });
 
     const resData = await response.json();
 
-    if (resData.status === 'success' && resData.GatewayPageURL) {
-      // Redirect user to SSLCommerz Sandbox payment page
+    if (response.ok && resData.status === 'success' && resData.GatewayPageURL) {
       window.location.href = resData.GatewayPageURL;
     } else {
-      alert("Failed to connect to SSLCommerz Sandbox: " + (resData.message || 'Unknown error'));
-      btn.innerText = "Confirm & Complete Payment";
-      btn.disabled = false;
+      alert("Payment initiation failed: " + (resData.message || 'Unknown error'));
+      if (btn) {
+        btn.innerText = "Confirm & Complete Payment";
+        btn.disabled = false;
+      }
     }
   } catch (err) {
     console.error("Network error:", err);
-    alert("Could not reach server at http://localhost:5000");
-    btn.innerText = "Confirm & Complete Payment";
-    btn.disabled = false;
+    alert(`Could not reach backend server at ${API_BASE_URL}. Ensure Express server is running on port 5000.`);
+    if (btn) {
+      btn.innerText = "Confirm & Complete Payment";
+      btn.disabled = false;
+    }
   }
 });
-// Get Token saved at Login
-const token = localStorage.getItem('token'); 
-
-if (!token) {
-  alert("Please log in to proceed with payment.");
-  window.location.href = "login.html";
-} else {
-  fetch('http://localhost:5000/api/v1/sslcommerz/initiate', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}` // Send Token
-    },
-    body: JSON.stringify({
-      amount: 225000.00,
-      selectedMethod: 'bkash',
-      property_id: 1
-    })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.GatewayPageURL) {
-      window.location.href = data.GatewayPageURL;
-    } else {
-      alert("Error initiating payment: " + data.message);
-    }
-  });
-}
 </script>
 </body>
 </html>

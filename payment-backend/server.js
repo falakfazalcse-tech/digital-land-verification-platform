@@ -4,6 +4,9 @@ const cors = require('cors');
 const mysql = require('mysql2/promise');
 const SSLCommerzPayment = require('sslcommerz-lts');
 
+const { initSocket } = require('./src/sockets/socketManager');
+const messageRoutes = require('./routes/messageRoutes');
+
 const app = express();
 app.use(cors());
 app.use(express.json());

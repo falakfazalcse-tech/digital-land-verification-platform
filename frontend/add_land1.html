@@ -75,16 +75,9 @@
                 <span>Add Land</span>
               </a>
             </li>
+            
             <li>
-              <a href="message_dashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#0b6b32] font-medium rounded-xl text-sm transition-colors group focus:outline-none focus:ring-2 focus:ring-[#0b6b32]">
-                <svg class="w-5 h-5 text-gray-500 group-hover:text-[#0b6b32] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span>Messages</span>
-              </a>
-            </li>
-            <li>
-              <a href="payment1.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#0b6b32] font-medium rounded-xl text-sm transition-colors group focus:outline-none focus:ring-2 focus:ring-[#0b6b32]">
+              <a href="payment5.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#0b6b32] font-medium rounded-xl text-sm transition-colors group focus:outline-none focus:ring-2 focus:ring-[#0b6b32]">
                 <svg class="w-5 h-5 text-gray-500 group-hover:text-[#0b6b32] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
@@ -341,13 +334,11 @@ document.addEventListener('click', (e) => {
 
 
 
-// Load User Data into Profile & Dropdown
 const BACKEND_URL = 'http://localhost:5000'; 
 
 async function loadUserProfile() {
   const avatarRing = document.getElementById('profile-avatar-ring');
   
-  // local-এর বদলে sessionStorage ব্যবহার করা হচ্ছে
   const token = sessionStorage.getItem('token');
   const defaultDarkUserIcon = `
     <svg class="w-6 h-6 text-slate-300" fill="currentColor" viewBox="0 0 24 24">
@@ -357,7 +348,6 @@ async function loadUserProfile() {
 
   let user = null;
 
-  // শুধুমাত্র sessionStorage থেকে ডেটা আনা হচ্ছে
   const userDataStr = sessionStorage.getItem('user');
 
   if (userDataStr) {
@@ -368,7 +358,6 @@ async function loadUserProfile() {
     }
   }
 
-  // sessionStorage-এ ইউজার না থাকলে কিন্তু token থাকলে API দিয়ে Fetch করা
   if (!user && token) {
     try {
       const response = await fetch(`${BACKEND_URL}/api/auth/profile`, {
@@ -383,7 +372,6 @@ async function loadUserProfile() {
       if (result.success) {
         user = result.user || result.data;
         if (user) {
-          // API থেকে পাওয়ার পর sessionStorage-এ সেভ করা হচ্ছে
           sessionStorage.setItem('user', JSON.stringify(user));
         }
       }
@@ -392,13 +380,11 @@ async function loadUserProfile() {
     }
   }
 
-  // DOM Elements
   const userNameEl = document.getElementById('user_name');
   const dropdownNameEl = document.getElementById('dropdown-user-name');
   const dropdownEmailEl = document.getElementById('dropdown-user-email');
 
   if (user) {
-    // ইউজারের নাম Extract করা
     const name = user.full_name || user.name || user.user_name || user.username || user.first_name || 'User';
     const email = user.email || 'user@landdeal.com';
 
@@ -406,7 +392,6 @@ async function loadUserProfile() {
     if (dropdownNameEl) dropdownNameEl.textContent = name;
     if (dropdownEmailEl) dropdownEmailEl.textContent = email;
 
-    // প্রোফাইল ছবি সেটিং
     const userPic = user.profile_pic || user.avatar || user.image || user.profile_image;
 
     if (userPic && avatarRing) {
@@ -428,7 +413,6 @@ async function loadUserProfile() {
       avatarRing.innerHTML = defaultDarkUserIcon;
     }
   } else {
-    // সেশনে তথ্য না পাওয়া গেলে
     if (userNameEl) userNameEl.textContent = 'Guest';
     if (dropdownNameEl) dropdownNameEl.textContent = 'Guest User';
     if (dropdownEmailEl) dropdownEmailEl.textContent = 'Not logged in';
@@ -448,14 +432,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('close-sidebar-btn')?.addEventListener('click', () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); });
   backdrop?.addEventListener('click', () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); });
 
-  // Populate existing values if coming back to Step 1
   window.addEventListener('DOMContentLoaded', () => {
-    // sessionStorage থেকে টোকেন চেক করা হচ্ছে
     const token = sessionStorage.getItem('token') || sessionStorage.getItem('authToken');
     
     if (!token) {
       alert('You are not logged in! Please log in to post a property.');
-      window.location.href = 'login.html'; // লগইন না থাকলে সরাসরি রিডাইরেক্ট করবে
+      window.location.href = 'login.html';
       return;
     }
 
@@ -488,11 +470,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Submit Step 1 to Backend API
   async function handleNextStep(event) {
     event.preventDefault();
 
-    // local-এর বদলে sessionStorage ব্যবহার করা হয়েছে
     const token = sessionStorage.getItem('token') || sessionStorage.getItem('authToken');
 
     if (!token) {
@@ -528,7 +508,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await response.json();
 
       if (result.success) {
-        // Store property ID for steps 2 & 3
         sessionStorage.setItem('currentPropertyId', result.propertyId);
         sessionStorage.setItem('landPropertyDetails', JSON.stringify(propertyData));
 

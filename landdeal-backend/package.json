@@ -21,6 +21,7 @@
     "multer": "^2.2.0",
     "mysql2": "^3.23.2",
     "sequelize": "^6.37.8",
+    "socket.io": "^4.8.3",
     "sslcommerz-lts": "^1.2.0"
   },
   "devDependencies": {
