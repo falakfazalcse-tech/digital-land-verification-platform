@@ -236,7 +236,6 @@
   <script>
     lucide.createIcons();
 
-    // Dynamically match API base host with current browser URL (Avoid 127.0.0.1 vs localhost mix)
     const API_BASE = `${window.location.protocol}//${window.location.hostname}:5000`;
 
     const urlParams = new URLSearchParams(window.location.search);

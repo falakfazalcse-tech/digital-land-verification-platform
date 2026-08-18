@@ -3,10 +3,6 @@ const router = express.Router();
 const uploadPropertyDocs = require('../middlewares/upload');
 const verifyToken = require('../middlewares/authMiddleware');
 
-
-
-
-
 const { uploadDocuments,getDocumentsByProperty } = require('../controllers/documentController');
 const { 
   createProperty, 

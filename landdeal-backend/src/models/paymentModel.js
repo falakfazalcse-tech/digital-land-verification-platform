@@ -17,7 +17,6 @@ class PaymentModel {
   return result;
 }
 
-  // UPDATED: Now accepts optional payment_method parameter
   static async updatePaymentStatus(transaction_id, status, val_id = null, payment_method = null) {
     let query;
     let params;
@@ -42,7 +41,6 @@ class PaymentModel {
     return result;
   }
 
-  // ADDED: Updates payment method, val_id, and status simultaneously
   static async updatePaymentDetails(transaction_id, status, val_id, payment_method) {
     const query = `
       UPDATE payments 
@@ -76,7 +74,6 @@ class PaymentModel {
     return rows;
   }
 
-  // ADDED: Fallback method for payment5.html to return all rows if user_id matching is bypassed
   static async getAllPayments() {
     const query = `
       SELECT p.*, pr.land_title, pr.district 

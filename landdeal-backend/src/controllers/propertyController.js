@@ -35,7 +35,6 @@ exports.getAllProperties = async (req, res, next) => {
 
 exports.getUserProperties = async (req, res, next) => {
   try {
-    // Token Payload থেকে User ID চেক
     const userId = req.user ? (req.user.id || req.user.userId) : null;
 
     if (!userId) {
@@ -45,7 +44,6 @@ exports.getUserProperties = async (req, res, next) => {
       });
     }
 
-    // Model-এর মেথডকে কল করা হচ্ছে
     const properties = await PropertyModel.findByUserId(userId);
 
     res.status(200).json({

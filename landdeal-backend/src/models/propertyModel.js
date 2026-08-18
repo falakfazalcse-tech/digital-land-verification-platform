@@ -1,7 +1,6 @@
 const db = require('../config/db');
 
 class PropertyModel {
-  // Fetch only APPROVED properties with filters
   static async findApproved({ district, landType, search }) {
     let query = `
       SELECT 
@@ -53,7 +52,6 @@ class PropertyModel {
       
     const queryParams = [];
 
-    // status 'all' না হলে কেবল নির্দিষ্ট status দিয়ে ফিল্টার করবে
     if (status && status.toLowerCase() !== 'all') {
       query += ' AND LOWER(p.status) = LOWER(?)';
       queryParams.push(status);

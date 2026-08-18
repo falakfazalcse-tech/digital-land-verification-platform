@@ -179,7 +179,6 @@ const BACKEND_URL = 'http://localhost:5000';
 async function loadUserProfile() {
   const avatarRing = document.getElementById('profile-avatar-ring');
   
-  // local-এর বদলে sessionStorage ব্যবহার করা হচ্ছে
   const token = sessionStorage.getItem('token');
   const defaultDarkUserIcon = `
     <svg class="w-6 h-6 text-slate-300" fill="currentColor" viewBox="0 0 24 24">
@@ -189,7 +188,6 @@ async function loadUserProfile() {
 
   let user = null;
 
-  // শুধুমাত্র sessionStorage থেকে ডেটা আনা হচ্ছে
   const userDataStr = sessionStorage.getItem('user');
 
   if (userDataStr) {
@@ -214,7 +212,6 @@ async function loadUserProfile() {
       if (result.success) {
         user = result.user || result.data;
         if (user) {
-          // API থেকে পাওয়ার পর sessionStorage-এ সেভ করা হচ্ছে
           sessionStorage.setItem('user', JSON.stringify(user));
         }
       }
@@ -229,7 +226,6 @@ async function loadUserProfile() {
   const dropdownEmailEl = document.getElementById('dropdown-user-email');
 
   if (user) {
-    // ইউজারের নাম Extract করা
     const name = user.full_name || user.name || user.user_name || user.username || user.first_name || 'User';
     const email = user.email || 'user@landdeal.com';
 
@@ -237,7 +233,6 @@ async function loadUserProfile() {
     if (dropdownNameEl) dropdownNameEl.textContent = name;
     if (dropdownEmailEl) dropdownEmailEl.textContent = email;
 
-    // প্রোফাইল ছবি সেটিং
     const userPic = user.profile_pic || user.avatar || user.image || user.profile_image;
 
     if (userPic && avatarRing) {
@@ -259,7 +254,6 @@ async function loadUserProfile() {
       avatarRing.innerHTML = defaultDarkUserIcon;
     }
   } else {
-    // সেশনে তথ্য না পাওয়া গেলে
     if (userNameEl) userNameEl.textContent = 'Guest';
     if (dropdownNameEl) dropdownNameEl.textContent = 'Guest User';
     if (dropdownEmailEl) dropdownEmailEl.textContent = 'Not logged in';
