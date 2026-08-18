@@ -16,7 +16,7 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
   </style>
 </head>
-<body class="bg-[#f2f9f3] text-gray-900 min-h-screen p-4 md:p-6 lg:p-8">
+<body class="bg-[#b8e3be] text-gray-900 min-h-screen p-4 md:p-6 lg:p-8">
 
   <!-- Main Container -->
   <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-6 items-stretch">
@@ -36,7 +36,7 @@
         <nav class="space-y-1">
           <a href="officer-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 bg-green-100 text-green-700 font-semibold rounded-xl text-sm transition-colors">
             <i data-lucide="layout-grid" class="w-5 h-5"></i>
-            Officer Dashboard
+            Verification 
           </a>
         </nav>
       </div>
@@ -56,7 +56,7 @@
         <!-- Top Bar Header -->
         <header class="flex items-center justify-between pb-6 border-b border-gray-100 mb-6">
           <div>
-            <h2 class="text-xl font-bold text-gray-900">Property Proposal Review</h2>
+            <h2 class="text-xl font-bold text-gray-900">Property Verification Proposal </h2>
           </div>
           <div class="flex items-center gap-4">
             <span id="current-status-badge" class="px-3 py-1 text-xs font-bold rounded-full bg-slate-100 text-slate-700">Loading...</span>
@@ -80,10 +80,7 @@
                 <img id="main-img" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80" alt="Main Plot Image" class="w-full h-80 md:h-[320px] object-cover rounded-xl shadow-sm" />
               </div>
               <div class="flex flex-col gap-3">
-                <img id="sub-img-1" src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=500&q=80" alt="Plot View 1" class="w-full h-[98px] object-cover rounded-xl shadow-sm" />
-                <img id="sub-img-2" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=500&q=80" alt="Plot View 2" class="w-full h-[98px] object-cover rounded-xl shadow-sm" />
-                <img id="sub-img-3" src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=500&q=80" alt="Plot View 3" class="w-full h-[98px] object-cover rounded-xl shadow-sm" />
-              </div>
+               </div>
             </div>
 
             <!-- Title & Location -->
@@ -103,46 +100,46 @@
                 <div class="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px bg-gray-200"></div>
 
                 <!-- Left Specs Column -->
-                <div class="space-y-4 text-xs">
+                <div class="space-y-4 text-ls">
                   <div class="flex justify-between md:justify-start gap-4">
-                    <span class="text-gray-800 font-medium w-28">Land Title</span>
-                    <span id="val-title" class="text-gray-500">--</span>
+                    <span class="text-green-800 font-semibold w-28">Land Title</span>
+                    <span id="val-title" class="text-gray-800">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
-                    <span class="text-gray-800 font-medium w-28">District</span>
-                    <span id="val-district" class="text-gray-500">--</span>
+                    <span class="text-green-800 font-semibold w-28">District</span>
+                    <span id="val-district" class="text-gray-800">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
-                    <span class="text-gray-800 font-medium w-28">Upazila</span>
-                    <span id="val-upazila" class="text-gray-500">--</span>
+                    <span class="text-green-800 font-semibold w-28">Upazila</span>
+                    <span id="val-upazila" class="text-gray-800">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
-                    <span class="text-gray-800 font-medium w-28">Mouza</span>
-                    <span id="val-mouza" class="text-gray-500">--</span>
+                    <span class="text-green-800 font-semibold w-28">Mouza</span>
+                    <span id="val-mouza" class="text-gray-800">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
-                    <span class="text-gray-800 font-medium w-28">Khatian No</span>
-                    <span id="val-khatian" class="text-gray-500">--</span>
+                    <span class="text-green-800 font-semibold w-28">Khatian No</span>
+                    <span id="val-khatian" class="text-gray-800">--</span>
                   </div>
                 </div>
 
                 <!-- Right Specs Column -->
-                <div class="space-y-4 text-xs md:pl-4">
+                <div class="space-y-4 text-ls md:pl-4">
                   <div class="flex justify-between md:justify-start gap-4">
-                    <span class="text-gray-800 font-medium w-28">Dag / Plot No</span>
-                    <span id="val-dag" class="text-gray-500">--</span>
+                    <span class="text-green-800 font-semibold w-28">Dag / Plot No</span>
+                    <span id="val-dag" class="text-gray-800">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
-                    <span class="text-gray-800 font-medium w-28">Area</span>
-                    <span id="val-area" class="text-gray-500">--</span>
+                    <span class="text-green-800 font-semibold w-28">Area</span>
+                    <span id="val-area" class="text-gray-800">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
-                    <span class="text-gray-800 font-medium w-28">Land Type</span>
-                    <span id="val-type" class="text-gray-500">--</span>
+                    <span class="text-green-800 font-semibold w-28">Land Type</span>
+                    <span id="val-type" class="text-gray-800">--</span>
                   </div>
                   <div class="flex justify-between md:justify-start gap-4">
-                    <span class="text-gray-800 font-medium w-28">Description</span>
-                    <span id="val-desc" class="text-gray-500">--</span>
+                    <span class="text-green-800 font-semibold w-28">Description</span>
+                    <span id="val-desc" class="text-gray-800">--</span>
                   </div>
                 </div>
               </div>
@@ -371,7 +368,7 @@ function populateImages(land) {
       if(!confirmAction) return;
 
       try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const res = await fetch(`http://localhost:5000/api/properties/${propertyId}/status`, {
           method: 'PATCH',
           headers: {

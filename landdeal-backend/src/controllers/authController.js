@@ -48,10 +48,10 @@ exports.register = async (req, res) => {
     );
 
     const token = jwt.sign(
-      { id: result.insertId, role: normalizedRole },
-      process.env.JWT_SECRET || 'landdeal_secret',
-      { expiresIn: '1d' } 
-    );
+  { id: result.insertId, custom_id: custom_id, role: normalizedRole },
+  process.env.JWT_SECRET || 'landdeal_secret',
+  { expiresIn: '7d' }
+);
 
     res.status(201).json({
       success: true,
@@ -102,7 +102,7 @@ exports.login = async (req, res) => {
     const token = jwt.sign(
       { id: user.id, custom_id: user.custom_id, role: user.role },
       process.env.JWT_SECRET || 'landdeal_secret',
-      { expiresIn: '24h' }
+      { expiresIn: '7d' }
     );
 
     res.status(200).json({
@@ -126,9 +126,8 @@ exports.login = async (req, res) => {
 // ------------------- GET PROFILE (PROTECTED) -------------------
 exports.getProfile = async (req, res) => {
   try {
-    // 💡 profile_pic ফিল্ডটি যুক্ত করা হয়েছে
     const [users] = await db.query(
-      `SELECT id, full_name, phone, father_name, mother_name, date_of_birth, 
+      `SELECT id, full_name,email, phone, father_name, mother_name, date_of_birth, 
               gender, national_id, birth_certificate, occupation, 
               present_address, permanent_address, is_verified, profile_pic 
        FROM users WHERE id = ?`,

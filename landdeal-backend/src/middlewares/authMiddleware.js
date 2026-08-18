@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
   
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'landdeal_secret');
-    req.user = decoded; // Attach user payload ({ id, custom_id, role }) to request
+    req.user = decoded; 
     next();
   } catch (error) {
     res.status(400).json({ success: false, message: 'Invalid or expired token.' });

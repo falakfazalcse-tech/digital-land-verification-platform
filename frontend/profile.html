@@ -151,7 +151,6 @@
   <!-- Hidden File Input -->
   <input type="file" id="profile-pic-input" accept="image/*" class="hidden" onchange="uploadProfileImage(this)">
 
-  <!-- Camera Overlay Button (ছবির ওপর মাউস আনলে বা ক্লিক করলে ছবি সিলেক্ট হবে) -->
   <button 
     type="button" 
     onclick="document.getElementById('profile-pic-input').click()" 
@@ -342,12 +341,12 @@ async function fetchUserProfile() {
 const imgContainer = document.getElementById('profile-image-container');
 
 if (user.profile_pic && imgContainer) {
-  const imgUrl = user.profile_pic.startsWith('http') 
-    ? user.profile_pic 
-    : `http://localhost:5000/uploads/documents/${user.profile_pic}`;
-
+const imgUrl = `http://localhost:5000/uploads/documents/${user.profile_pic}`;
   imgContainer.innerHTML = `
-    <img src="${imgUrl}" alt="Profile Picture" class="w-full h-full object-cover rounded-full" />
+    <img src="${imgUrl}" 
+         alt="Profile Picture" 
+         class="w-full h-full object-cover rounded-full" 
+         onerror="this.onerror=null; console.error('Image load failed at:', this.src);" />
   `;
 }
 
@@ -398,8 +397,8 @@ if (user.profile_pic && imgContainer) {
   }
 }
 
-async function updateProfileImage(fileInput) {
-  const file = fileInput.files[0];
+async function uploadProfileImage(input) {
+  const file = input.files[0];
   if (!file) return;
 
   const formData = new FormData();
@@ -412,20 +411,20 @@ async function updateProfileImage(fileInput) {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`
-        
       },
       body: formData
     });
 
     const result = await response.json();
-    if (result.success) {
-      alert('Profile picture uploaded successfully!');
+
+    if (response.ok && result.success) {
+      alert('Profile picture updated successfully!');
       location.reload(); 
     } else {
-      alert(result.message);
+      alert(result.message || 'Upload failed');
     }
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error('Upload Error:', error);
   }
 }
 

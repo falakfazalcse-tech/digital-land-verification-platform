@@ -14,7 +14,7 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
   </style>
 </head>
-<body class="bg-[#f2f9f3] text-gray-900 antialiased min-h-screen">
+<body class="bg-[#b8e3be] text-gray-900 antialiased min-h-screen">
 
   <div id="sidebar-backdrop" class="fixed inset-0 bg-black/40 z-40 hidden lg:hidden transition-opacity"></div>
 
@@ -64,9 +64,51 @@
             <button id="open-sidebar-btn" class="lg:hidden p-2 rounded-xl text-gray-700 hover:bg-gray-100"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
             <h2 class="text-xl font-bold text-gray-900 tracking-tight">Add Your Land</h2>
           </div>
+          
           <div class="flex items-center gap-4">
-            <button type="button" class="p-2 text-[#0b6b32] hover:bg-green-50 rounded-full"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22a2.98 2.98 0 002.818-2H9.182A2.98 2.98 0 0012 22zm7-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C8.64 5.36 7 7.92 7 11v5l-2 2v1h14v-1l-2-2z"/></svg></button>
-            <button type="button" class="text-gray-300 hover:text-gray-500 rounded-full"><svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg></button>
+            <!-- Notifications Button -->
+            <button type="button" aria-label="View notifications" class="p-2 text-gray-400 hover:text-green-600 rounded-full hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+            </button>
+
+  <!-- Profile Button -->
+
+<div class="relative" id="profile-dropdown-container">
+  <button 
+    onclick="toggleProfileDropdown(event)" 
+    class="flex items-center gap-3 p-1 rounded-2xl hover:bg-slate-100 transition-all duration-200 focus:outline-none">
+    <div class="text-right hidden sm:block">
+      <div id="user_name" class="text-xs font-bold text-slate-900"> User</div>
+    </div>
+    <div 
+      id="profile-avatar-ring" 
+      class="w-10 h-10 rounded-full ring-2 ring-emerald-600/30 overflow-hidden flex items-center justify-center bg-slate-800 text-white shadow-sm transition-all duration-200">
+    </div>
+  </button>
+
+  <div 
+    id="profile-dropdown" 
+    class="hidden absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 p-4 z-50 transition-all duration-200 animate-in fade-in slide-in-from-top-2">
+    
+    <div class="pb-3 border-b border-slate-100">
+      <p id="dropdown-user-name" class="text-sm font-bold text-slate-900">Officer Admin</p>
+      <p id="dropdown-user-email" class="text-xs text-slate-500 truncate mt-0.5">officer@landdeal.gov.bd</p>
+    </div>
+
+    <div class="pt-2">
+      <button 
+        onclick="logout()" 
+        class="w-full flex items-center gap-2 px-3 py-2 text-rose-600 hover:bg-rose-50 font-bold rounded-xl text-xs transition-colors duration-150">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+        </svg>
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>
+</div>
           </div>
         </header>
 
@@ -114,44 +156,43 @@
             <div class="border border-gray-100 rounded-2xl p-6 bg-gray-50/50 shadow-xs">
               <div class="flex items-center justify-between mb-6">
                 <h4 class="text-sm font-bold text-gray-900">Property Details Summary</h4>
-                <a href="add_land1.html" class="text-xs font-bold text-[#0b6b32] hover:underline">Edit Step 1</a>
               </div>
 
               <div class="space-y-3.5 text-xs font-medium text-gray-700">
                 <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
-                  <span class="text-gray-500 font-semibold">Land Title</span>
+                  <span class="text-green-800 font-semibold">Land Title</span>
                   <span id="preview-title" class="text-gray-900 font-bold">--</span>
                 </div>
                 <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
-                  <span class="text-gray-500 font-semibold">District</span>
+                  <span class="text-green-800 font-semibold">District</span>
                   <span id="preview-district" class="text-gray-900 font-bold">--</span>
                 </div>
                 <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
-                  <span class="text-gray-500 font-semibold">Upazila</span>
+                  <span class="text-green-800 font-semibold">Upazila</span>
                   <span id="preview-upazila" class="text-gray-900 font-bold">--</span>
                 </div>
                 <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
-                  <span class="text-gray-500 font-semibold">Mouza</span>
+                  <span class="text-green-800 font-semibold">Mouza</span>
                   <span id="preview-mouza" class="text-gray-900 font-bold">--</span>
                 </div>
                 <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
-                  <span class="text-gray-500 font-semibold">Khatian No</span>
+                  <span class="text-green-800 font-semibold">Khatian No</span>
                   <span id="preview-khatian" class="text-gray-900 font-bold">--</span>
                 </div>
                 <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
-                  <span class="text-gray-500 font-semibold">Dag No</span>
+                  <span class="text-green-800 font-semibold">Dag No</span>
                   <span id="preview-dag" class="text-gray-900 font-bold">--</span>
                 </div>
                 <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
-                  <span class="text-gray-500 font-semibold">Area</span>
+                  <span class="text-green-800 font-semibold">Area</span>
                   <span id="preview-area" class="text-gray-900 font-bold">--</span>
                 </div>
                 <div class="grid grid-cols-2 border-b border-gray-200/60 pb-2">
-                  <span class="text-gray-500 font-semibold">Land Type</span>
+                  <span class="text-green-800 font-semibold">Land Type</span>
                   <span id="preview-type" class="text-gray-900 font-bold">--</span>
                 </div>
                 <div class="grid grid-cols-2 pt-1">
-                  <span class="text-gray-500 font-semibold">Description</span>
+                  <span class="text-green-800 font-semibold">Description</span>
                   <span id="preview-desc" class="text-gray-900 font-bold break-words">--</span>
                 </div>
               </div>
@@ -162,7 +203,6 @@
               <div>
                 <div class="flex items-center justify-between mb-6">
                   <h4 class="text-sm font-bold text-gray-900">Uploaded Property Images</h4>
-                  <a href="add_land2.html" class="text-xs font-bold text-[#0b6b32] hover:underline">Edit Step 2</a>
                 </div>
 
                 <div id="image-grid" class="grid grid-cols-2 gap-3 mb-6">
@@ -201,6 +241,121 @@
   </div>
 
   <script>
+    
+function toggleProfileDropdown(event) {
+  event.stopPropagation();
+  const dropdown = document.getElementById('profile-dropdown');
+  dropdown.classList.toggle('hidden');
+}
+
+document.addEventListener('click', (e) => {
+  const container = document.getElementById('profile-dropdown-container');
+  const dropdown = document.getElementById('profile-dropdown');
+  if (container && !container.contains(e.target)) {
+    dropdown.classList.add('hidden');
+  }
+});
+
+
+
+// Load User Data into Profile & Dropdown
+const BACKEND_URL = 'http://localhost:5000'; 
+
+async function loadUserProfile() {
+  const avatarRing = document.getElementById('profile-avatar-ring');
+  
+  // local-এর বদলে sessionStorage ব্যবহার করা হচ্ছে
+  const token = sessionStorage.getItem('token');
+  const defaultDarkUserIcon = `
+    <svg class="w-6 h-6 text-slate-300" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+    </svg>
+  `;
+
+  let user = null;
+
+  // শুধুমাত্র sessionStorage থেকে ডেটা আনা হচ্ছে
+  const userDataStr = sessionStorage.getItem('user');
+
+  if (userDataStr) {
+    try {
+      user = JSON.parse(userDataStr);
+    } catch (e) {
+      console.error('Error parsing session user data:', e);
+    }
+  }
+
+  // sessionStorage-এ ইউজার না থাকলে কিন্তু token থাকলে API দিয়ে Fetch করা
+  if (!user && token) {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/auth/profile`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      const result = await response.json();
+      
+      if (result.success) {
+        user = result.user || result.data;
+        if (user) {
+          // API থেকে পাওয়ার পর sessionStorage-এ সেভ করা হচ্ছে
+          sessionStorage.setItem('user', JSON.stringify(user));
+        }
+      }
+    } catch (err) {
+      console.error('Error fetching profile from API:', err);
+    }
+  }
+
+  // DOM Elements
+  const userNameEl = document.getElementById('user_name');
+  const dropdownNameEl = document.getElementById('dropdown-user-name');
+  const dropdownEmailEl = document.getElementById('dropdown-user-email');
+
+  if (user) {
+    // ইউজারের নাম Extract করা
+    const name = user.full_name || user.name || user.user_name || user.username || user.first_name || 'User';
+    const email = user.email || 'user@landdeal.com';
+
+    if (userNameEl) userNameEl.textContent = name;
+    if (dropdownNameEl) dropdownNameEl.textContent = name;
+    if (dropdownEmailEl) dropdownEmailEl.textContent = email;
+
+    // প্রোফাইল ছবি সেটিং
+    const userPic = user.profile_pic || user.avatar || user.image || user.profile_image;
+
+    if (userPic && avatarRing) {
+      let imgPath = userPic;
+      if (!userPic.startsWith('http://') && !userPic.startsWith('https://')) {
+        const cleanPath = userPic.startsWith('/') ? userPic : `/${userPic}`;
+        imgPath = `${BACKEND_URL}${cleanPath.includes('/uploads') ? cleanPath : '/uploads/documents' + cleanPath}`;
+      }
+
+      avatarRing.innerHTML = `
+        <img 
+          src="${imgPath}" 
+          alt="Profile" 
+          class="w-full h-full object-cover rounded-full" 
+          onerror="this.onerror=null; this.parentElement.innerHTML=\`${defaultDarkUserIcon.replace(/'/g, "\\'")}\`;" 
+        />
+      `;
+    } else if (avatarRing) {
+      avatarRing.innerHTML = defaultDarkUserIcon;
+    }
+  } else {
+    // সেশনে তথ্য না পাওয়া গেলে
+    if (userNameEl) userNameEl.textContent = 'Guest';
+    if (dropdownNameEl) dropdownNameEl.textContent = 'Guest User';
+    if (dropdownEmailEl) dropdownEmailEl.textContent = 'Not logged in';
+    if (avatarRing) avatarRing.innerHTML = defaultDarkUserIcon;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadUserProfile();
+});
     document.addEventListener("DOMContentLoaded", async () => {
       // Sidebar Toggle Logic
       const sidebar = document.getElementById('sidebar');
@@ -229,7 +384,7 @@
             const data = result.data || result;
             populatePreviewData(data, backendBaseUrl);
             
-            statusTag.textContent = 'Backend Data Verified';
+            statusTag.textContent = '';
             statusTag.className = 'text-[10px] font-bold text-[#0b6b32] bg-green-100 px-3 py-1 rounded-full';
             return;
           }
@@ -257,18 +412,37 @@
       const imageGrid = document.getElementById('image-grid');
       imageGrid.innerHTML = '';
 
-      let images = data.landImages || data.images || [];
-      if (typeof images === 'string') {
-        try { images = JSON.parse(images); } catch(e) { images = [images]; }
+      // Check all possible image array key names from different DB models
+      let rawImages = data.landImages || data.land_images || data.images || data.image_urls || [];
+      let images = [];
+
+      // Parse JSON string if images are stored as a stringified array in DB
+      if (typeof rawImages === 'string') {
+        try { 
+          images = JSON.parse(rawImages); 
+        } catch(e) { 
+          images = rawImages.split(',').map(s => s.trim()); 
+        }
+      } else if (Array.isArray(rawImages)) {
+        images = rawImages;
       }
 
       if (images && images.length > 0) {
-        images.forEach(imgSrc => {
-          const fullImgUrl = imgSrc.startsWith('http') ? imgSrc : `${baseUrl}/${imgSrc.replace(/^\//, '')}`;
-          const card = document.createElement('div');
-          card.className = 'overflow-hidden rounded-xl h-28 bg-gray-100 border border-gray-200 shadow-xs';
-          card.innerHTML = `<img src="${fullImgUrl}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt="Land Image" onerror="this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80'" />`;
-          imageGrid.appendChild(card);
+        images.forEach(img => {
+          // Handle object type images or string paths
+          let imgPath = typeof img === 'object' ? (img.url || img.path || img.image_url || '') : img;
+
+          if (imgPath) {
+            // Build absolute URL for the image
+            const fullImgUrl = imgPath.startsWith('http') ? imgPath : `${baseUrl}/${imgPath.replace(/^\//, '')}`;
+            
+            const card = document.createElement('div');
+            card.className = 'overflow-hidden rounded-xl h-28 bg-gray-100 border border-gray-200 shadow-xs relative group';
+            card.innerHTML = `
+              <img src="${fullImgUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Land Image" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80'" />
+            `;
+            imageGrid.appendChild(card);
+          }
         });
       } else {
         imageGrid.innerHTML = `<div class="col-span-2 text-center py-6 text-gray-400 text-xs bg-white rounded-xl border border-gray-200">No Land Images Uploaded</div>`;
@@ -277,7 +451,7 @@
       // Render Attached Document Tags
       const docsList = document.getElementById('docs-list');
       docsList.innerHTML = '';
-      const docKeys = ['deed', 'taxReceipt', 'nationalId', 'mutationCert', 'mouzaMap'];
+      const docKeys = ['deed', 'taxReceipt', 'nationalId', 'mutationCert', 'mouzaMap', 'tax_receipt', 'national_id', 'mutation_cert', 'mouza_map'];
       
       let foundDocs = 0;
       docKeys.forEach(key => {
@@ -285,7 +459,7 @@
           foundDocs++;
           const badge = document.createElement('span');
           badge.className = 'bg-green-50 text-[#0b6b32] font-semibold px-2.5 py-1 rounded-lg border border-green-200/50 flex items-center gap-1';
-          badge.innerHTML = `✓ ${key.replace(/([A-Z])/g, ' $1')}`;
+          badge.innerHTML = `✓ ${key.replace(/([A-Z])/g, ' $1').replace(/_/g, ' ')}`;
           docsList.appendChild(badge);
         }
       });

@@ -1,4 +1,4 @@
-const db = require('../config/db'); // Adjust path to your db pool file if needed
+const db = require('../config/db');
 
 // Save direct payment from payment3.html into MariaDB
 exports.createDirectPayment = async (req, res) => {
@@ -39,7 +39,32 @@ exports.getUserPayments = async (req, res) => {
   }
 };
 
-exports.initiatePayment = async (req, res) => { /* Gateway logic if needed */ };
+exports.initiatePayment = async (req, res) => {
+  try {
+    const { amount, selectedMethod, user_id, property_id } = req.body;
+
+    // Fix null/undefined values safely
+    const validUserId = user_id && user_id !== 'null' ? parseInt(user_id) : 1; 
+    const validPropertyId = property_id && property_id !== 'null' ? parseInt(property_id) : 1;
+
+    const tran_id = `TXN_${Date.now()}`;
+
+    // Insert into MariaDB safely without violating NOT NULL constraint
+    await PaymentModel.createPayment({
+      transaction_id: tran_id,
+      user_id: validUserId,        // Ensured non-null integer
+      property_id: validPropertyId, // Ensured non-null integer
+      amount: amount || 225000.00,
+      payment_method: selectedMethod || 'bKash',
+      status: 'pending'
+    });
+
+    // ... proceed with SSLCommerz init payload
+  } catch (error) {
+    console.error('[DB ERROR]:', error.message);
+    return res.status(500).json({ status: 'error', message: error.message });
+  }
+};
 exports.paymentSuccess = async (req, res) => { /* Gateway logic if needed */ };
 exports.paymentFail = async (req, res) => { /* Gateway logic if needed */ };
 exports.paymentCancel = async (req, res) => { /* Gateway logic if needed */ };

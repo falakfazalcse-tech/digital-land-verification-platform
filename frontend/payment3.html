@@ -210,6 +210,7 @@
   </main>
 </div>
 
+
 <script>
   lucide.createIcons();
   let selectedMethod = 'bKash';
@@ -256,6 +257,34 @@
     btn.disabled = false;
   }
 });
+// Get Token saved at Login
+const token = localStorage.getItem('token'); 
+
+if (!token) {
+  alert("Please log in to proceed with payment.");
+  window.location.href = "login.html";
+} else {
+  fetch('http://localhost:5000/api/v1/sslcommerz/initiate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}` // Send Token
+    },
+    body: JSON.stringify({
+      amount: 225000.00,
+      selectedMethod: 'bkash',
+      property_id: 1
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.GatewayPageURL) {
+      window.location.href = data.GatewayPageURL;
+    } else {
+      alert("Error initiating payment: " + data.message);
+    }
+  });
+}
 </script>
 </body>
 </html>

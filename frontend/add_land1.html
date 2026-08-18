@@ -19,7 +19,7 @@
     }
   </style>
 </head>
-<body class="bg-[#f2f9f3] text-gray-900 antialiased min-h-screen">
+<body class="bg-[#b8e3be] text-gray-900 antialiased min-h-screen">
 
   <!-- Accessibility Skip Link -->
   <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-[#0b6b32] focus:text-white focus:px-4 focus:py-2 focus:rounded-md">
@@ -127,17 +127,50 @@
             <h2 class="text-xl font-bold text-gray-900 tracking-tight">Add Your Land</h2>
           </div>
           
-          <div class="flex items-center gap-3 sm:gap-4">
-            <button type="button" aria-label="Notifications" class="p-2 text-[#0b6b32] hover:bg-green-50 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#0b6b32]">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 22a2.98 2.98 0 002.818-2H9.182A2.98 2.98 0 0012 22zm7-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C8.64 5.36 7 7.92 7 11v5l-2 2v1h14v-1l-2-2z" />
+          <div class="flex items-center gap-4">
+            <!-- Notifications Button -->
+            <button type="button" aria-label="View notifications" class="p-2 text-gray-400 hover:text-green-600 rounded-full hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-green-600">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
               </svg>
             </button>
-            <button type="button" aria-label="User Profile" class="text-gray-300 hover:text-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-[#0b6b32] rounded-full">
-              <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
-              </svg>
-            </button>
+
+  <!-- Profile Button -->
+
+<div class="relative" id="profile-dropdown-container">
+  <button 
+    onclick="toggleProfileDropdown(event)" 
+    class="flex items-center gap-3 p-1 rounded-2xl hover:bg-slate-100 transition-all duration-200 focus:outline-none">
+    <div class="text-right hidden sm:block">
+      <div id="user_name" class="text-xs font-bold text-slate-900"> User</div>
+    </div>
+    <div 
+      id="profile-avatar-ring" 
+      class="w-10 h-10 rounded-full ring-2 ring-emerald-600/30 overflow-hidden flex items-center justify-center bg-slate-800 text-white shadow-sm transition-all duration-200">
+    </div>
+  </button>
+
+  <div 
+    id="profile-dropdown" 
+    class="hidden absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 p-4 z-50 transition-all duration-200 animate-in fade-in slide-in-from-top-2">
+    
+    <div class="pb-3 border-b border-slate-100">
+      <p id="dropdown-user-name" class="text-sm font-bold text-slate-900">Officer Admin</p>
+      <p id="dropdown-user-email" class="text-xs text-slate-500 truncate mt-0.5">officer@landdeal.gov.bd</p>
+    </div>
+
+    <div class="pt-2">
+      <button 
+        onclick="logout()" 
+        class="w-full flex items-center gap-2 px-3 py-2 text-rose-600 hover:bg-rose-50 font-bold rounded-xl text-xs transition-colors duration-150">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+        </svg>
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>
+</div>
           </div>
         </header>
 
@@ -291,92 +324,228 @@
   </div>
 
   <script>
-    const API_BASE = 'http://localhost:5000/api/properties';
+    
+function toggleProfileDropdown(event) {
+  event.stopPropagation();
+  const dropdown = document.getElementById('profile-dropdown');
+  dropdown.classList.toggle('hidden');
+}
 
-    // Sidebar Mobile Controls
-    const sidebar = document.getElementById('sidebar');
-    const backdrop = document.getElementById('sidebar-backdrop');
-    document.getElementById('open-sidebar-btn')?.addEventListener('click', () => { sidebar.classList.remove('-translate-x-full'); backdrop.classList.remove('hidden'); });
-    document.getElementById('close-sidebar-btn')?.addEventListener('click', () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); });
-    backdrop?.addEventListener('click', () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); });
+document.addEventListener('click', (e) => {
+  const container = document.getElementById('profile-dropdown-container');
+  const dropdown = document.getElementById('profile-dropdown');
+  if (container && !container.contains(e.target)) {
+    dropdown.classList.add('hidden');
+  }
+});
 
-    // Populate existing values if coming back to Step 1
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedDetails = sessionStorage.getItem('landPropertyDetails');
-      if (savedDetails) {
-        try {
-          const details = JSON.parse(savedDetails);
-          if (details.title) document.getElementById('land-title').value = details.title;
-          if (details.district) document.getElementById('district').value = details.district;
-          if (details.upazila) document.getElementById('upazila').value = details.upazila;
-          if (details.mouza) document.getElementById('mouza').value = details.mouza;
-          if (details.khatian_no) document.getElementById('khatian-no').value = details.khatian_no;
-          if (details.dag_no) document.getElementById('dag-no').value = details.dag_no;
-          if (details.area) document.getElementById('area').value = details.area;
-          if (details.land_type) document.getElementById('land-type').value = details.land_type;
-          if (details.description) document.getElementById('description').value = details.description;
-        } catch (e) {
-          console.error('Error parsing cached details:', e);
+
+
+// Load User Data into Profile & Dropdown
+const BACKEND_URL = 'http://localhost:5000'; 
+
+async function loadUserProfile() {
+  const avatarRing = document.getElementById('profile-avatar-ring');
+  
+  // local-এর বদলে sessionStorage ব্যবহার করা হচ্ছে
+  const token = sessionStorage.getItem('token');
+  const defaultDarkUserIcon = `
+    <svg class="w-6 h-6 text-slate-300" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+    </svg>
+  `;
+
+  let user = null;
+
+  // শুধুমাত্র sessionStorage থেকে ডেটা আনা হচ্ছে
+  const userDataStr = sessionStorage.getItem('user');
+
+  if (userDataStr) {
+    try {
+      user = JSON.parse(userDataStr);
+    } catch (e) {
+      console.error('Error parsing session user data:', e);
+    }
+  }
+
+  // sessionStorage-এ ইউজার না থাকলে কিন্তু token থাকলে API দিয়ে Fetch করা
+  if (!user && token) {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/auth/profile`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      const result = await response.json();
+      
+      if (result.success) {
+        user = result.user || result.data;
+        if (user) {
+          // API থেকে পাওয়ার পর sessionStorage-এ সেভ করা হচ্ছে
+          sessionStorage.setItem('user', JSON.stringify(user));
         }
       }
+    } catch (err) {
+      console.error('Error fetching profile from API:', err);
+    }
+  }
+
+  // DOM Elements
+  const userNameEl = document.getElementById('user_name');
+  const dropdownNameEl = document.getElementById('dropdown-user-name');
+  const dropdownEmailEl = document.getElementById('dropdown-user-email');
+
+  if (user) {
+    // ইউজারের নাম Extract করা
+    const name = user.full_name || user.name || user.user_name || user.username || user.first_name || 'User';
+    const email = user.email || 'user@landdeal.com';
+
+    if (userNameEl) userNameEl.textContent = name;
+    if (dropdownNameEl) dropdownNameEl.textContent = name;
+    if (dropdownEmailEl) dropdownEmailEl.textContent = email;
+
+    // প্রোফাইল ছবি সেটিং
+    const userPic = user.profile_pic || user.avatar || user.image || user.profile_image;
+
+    if (userPic && avatarRing) {
+      let imgPath = userPic;
+      if (!userPic.startsWith('http://') && !userPic.startsWith('https://')) {
+        const cleanPath = userPic.startsWith('/') ? userPic : `/${userPic}`;
+        imgPath = `${BACKEND_URL}${cleanPath.includes('/uploads') ? cleanPath : '/uploads/documents' + cleanPath}`;
+      }
+
+      avatarRing.innerHTML = `
+        <img 
+          src="${imgPath}" 
+          alt="Profile" 
+          class="w-full h-full object-cover rounded-full" 
+          onerror="this.onerror=null; this.parentElement.innerHTML=\`${defaultDarkUserIcon.replace(/'/g, "\\'")}\`;" 
+        />
+      `;
+    } else if (avatarRing) {
+      avatarRing.innerHTML = defaultDarkUserIcon;
+    }
+  } else {
+    // সেশনে তথ্য না পাওয়া গেলে
+    if (userNameEl) userNameEl.textContent = 'Guest';
+    if (dropdownNameEl) dropdownNameEl.textContent = 'Guest User';
+    if (dropdownEmailEl) dropdownEmailEl.textContent = 'Not logged in';
+    if (avatarRing) avatarRing.innerHTML = defaultDarkUserIcon;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadUserProfile();
+});
+  const API_BASE = 'http://localhost:5000/api/properties';
+
+  // Sidebar Mobile Controls
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  document.getElementById('open-sidebar-btn')?.addEventListener('click', () => { sidebar.classList.remove('-translate-x-full'); backdrop.classList.remove('hidden'); });
+  document.getElementById('close-sidebar-btn')?.addEventListener('click', () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); });
+  backdrop?.addEventListener('click', () => { sidebar.classList.add('-translate-x-full'); backdrop.classList.add('hidden'); });
+
+  // Populate existing values if coming back to Step 1
+  window.addEventListener('DOMContentLoaded', () => {
+    // sessionStorage থেকে টোকেন চেক করা হচ্ছে
+    const token = sessionStorage.getItem('token') || sessionStorage.getItem('authToken');
+    
+    if (!token) {
+      alert('You are not logged in! Please log in to post a property.');
+      window.location.href = 'login.html'; // লগইন না থাকলে সরাসরি রিডাইরেক্ট করবে
+      return;
+    }
+
+    const savedDetails = sessionStorage.getItem('landPropertyDetails');
+    if (savedDetails) {
+      try {
+        const details = JSON.parse(savedDetails);
+        if (details.title) document.getElementById('land-title').value = details.title;
+        if (details.district) document.getElementById('district').value = details.district;
+        if (details.upazila) document.getElementById('upazila').value = details.upazila;
+        if (details.mouza) document.getElementById('mouza').value = details.mouza;
+        if (details.khatian_no) document.getElementById('khatian-no').value = details.khatian_no;
+        if (details.dag_no) document.getElementById('dag-no').value = details.dag_no;
+        if (details.area) document.getElementById('area').value = details.area;
+        if (details.land_type) document.getElementById('land-type').value = details.land_type;
+        if (details.price) document.getElementById('price').value = details.price;
+        
+        // Negotiable Radio Button Restore
+        if (details.negotiable) {
+          const radioBtn = document.querySelector(`input[name="negotiable"][value="${details.negotiable}"]`);
+          if (radioBtn) radioBtn.checked = true;
+        }
+
+        if (details.description && document.getElementById('description')) {
+          document.getElementById('description').value = details.description;
+        }
+      } catch (e) {
+        console.error('Error parsing cached details:', e);
+      }
+    }
+  });
+
+  // Submit Step 1 to Backend API
+  async function handleNextStep(event) {
+    event.preventDefault();
+
+    // local-এর বদলে sessionStorage ব্যবহার করা হয়েছে
+    const token = sessionStorage.getItem('token') || sessionStorage.getItem('authToken');
+
+    if (!token) {
+      alert('You are not logged in! Please log in to post a property.');
+      window.location.href = 'login.html';
+      return;
+    }
+    
+    const submitBtn = document.getElementById('next-btn');
+    const btnText = document.getElementById('btn-text');
+    
+    submitBtn.disabled = true;
+    btnText.textContent = 'Saving...';
+
+    const form = document.getElementById('property-form');
+    const formData = new FormData(form);
+    const propertyData = {};
+
+    formData.forEach((value, key) => {
+      propertyData[key] = value;
     });
 
-    // Submit Step 1 to Backend API
-    async function handleNextStep(event) {
-      event.preventDefault();
-
-  const token = localStorage.getItem('token') || localStorage.getItem('authToken');
-
-  if (!token) {
-    alert('You are not logged in! Please log in to post a property.');
-    window.location.href = 'login.html'; // Adjust to your login page URL
-    return;
-  }
-      
-      const submitBtn = document.getElementById('next-btn');
-      const btnText = document.getElementById('btn-text');
-      
-      submitBtn.disabled = true;
-      btnText.textContent = 'Saving...';
-
-      const form = document.getElementById('property-form');
-      const formData = new FormData(form);
-      const propertyData = {};
-
-      formData.forEach((value, key) => {
-        propertyData[key] = value;
+    try {
+      const response = await fetch(API_BASE, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(propertyData)
       });
 
-      try {
-        const response = await fetch(API_BASE, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-           },
-          body: JSON.stringify(propertyData)
-        });
+      const result = await response.json();
 
-        const result = await response.json();
+      if (result.success) {
+        // Store property ID for steps 2 & 3
+        sessionStorage.setItem('currentPropertyId', result.propertyId);
+        sessionStorage.setItem('landPropertyDetails', JSON.stringify(propertyData));
 
-        if (result.success) {
-          // Store property ID for steps 2 & 3
-          sessionStorage.setItem('currentPropertyId', result.propertyId);
-          sessionStorage.setItem('landPropertyDetails', JSON.stringify(propertyData));
-
-          // Proceed to Step 2
-          window.location.href = 'add_land2.html';
-        } else {
-          alert('Failed to save details: ' + (result.message || 'Server error'));
-          submitBtn.disabled = false;
-          btnText.textContent = 'Next Step';
-        }
-      } catch (err) {
-        console.error('API Error:', err);
-        alert('Could not connect to the backend server. Make sure it is running on http://localhost:5000.');
+        // Proceed to Step 2
+        window.location.href = 'add_land2.html';
+      } else {
+        alert('Failed to save details: ' + (result.message || 'Server error'));
         submitBtn.disabled = false;
         btnText.textContent = 'Next Step';
       }
+    } catch (err) {
+      console.error('API Error:', err);
+      alert('Could not connect to the backend server. Make sure it is running on http://localhost:5000.');
+      submitBtn.disabled = false;
+      btnText.textContent = 'Next Step';
     }
-  </script>
+  }
+</script>
 </body>
 </html>

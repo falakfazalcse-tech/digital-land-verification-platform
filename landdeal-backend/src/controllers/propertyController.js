@@ -33,6 +33,29 @@ exports.getAllProperties = async (req, res, next) => {
   }
 };
 
+exports.getUserProperties = async (req, res, next) => {
+  try {
+    const userId = req.user ? (req.user.id || req.user.userId) : null;
+
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: 'User ID not found in token payload'
+      });
+    }
+
+    const properties = await PropertyModel.findByUserId(userId);
+
+    res.status(200).json({
+      success: true,
+      count: properties.length,
+      data: properties
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.getPropertyById = async (req, res) => {
   try {
     const { id } = req.params;
