@@ -244,11 +244,11 @@
 <script>
   lucide.createIcons();
 
-  const API_BASE = 'https://digital-land-verification-platform-sand.vercel.app/api/messages';
+  const API_BASE = 'https://digital-land-verification-platform-five.vercel.app/api/messages';
   const TOKEN = localStorage.getItem('authToken'); // JWT token saved during login
   const CURRENT_USER_ID = localStorage.getItem('userId'); // Logged in User ID
 
-  const socket = io('https://digital-land-verification-platform-sand.vercel.app');
+  const socket = io('https://digital-land-verification-platform-five.vercel.app');
   let activeContactId = null;
   let activePropertyId = null;
 

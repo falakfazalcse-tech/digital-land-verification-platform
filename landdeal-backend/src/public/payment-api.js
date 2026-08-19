@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://digital-land-verification-platform-sand.vercel.app/api/v1/payments';
+const API_BASE_URL = 'https://digital-land-verification-platform-five.vercel.app/api/v1/payments';
 
 async function initiatePayment(propertyId = 1, method = 'bkash') {
   try {
