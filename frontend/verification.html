@@ -234,7 +234,7 @@
     async function fetchPropertyDetails(id) {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch(`https://digital-land-verification-platform-eight.vercel.app//api/properties/${id}`, {
+        const res = await fetch(`https://vercel.com/falak9/digital-land-verification-platform-k8h4/2dNJx54Anif8Nboy3zrVJDz8erQL/api/properties/${id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const result = await res.json();
@@ -306,7 +306,7 @@ function populateUI(land) {
 
     if (doc.rawPath) {
       const filename = doc.rawPath.replace(/^.*[\\\/]/, '');
-      fileUrl = `https://digital-land-verification-platform-eight.vercel.app//uploads/documents/${filename}`;
+      fileUrl = `https://vercel.com/falak9/digital-land-verification-platform-k8h4/2dNJx54Anif8Nboy3zrVJDz8erQL/uploads/documents/${filename}`;
     }
 
     return `
@@ -345,7 +345,7 @@ function populateImages(land) {
   const getImageUrl = (imgName) => {
     if (!imgName) return defaultImg;
     const fileName = imgName.replace(/^.*[\\\/]/, '');
-    return `https://digital-land-verification-platform-eight.vercel.app//uploads/documents/${fileName}`;
+    return `https://vercel.com/falak9/digital-land-verification-platform-k8h4/2dNJx54Anif8Nboy3zrVJDz8erQL/uploads/documents/${fileName}`;
   };
 
   const mainImgElem = document.getElementById('main-img');
@@ -368,7 +368,7 @@ function populateImages(land) {
 
       try {
         const token = sessionStorage.getItem('token');
-        const res = await fetch(`https://digital-land-verification-platform-eight.vercel.app//api/properties/${propertyId}/status`, {
+        const res = await fetch(`https://vercel.com/falak9/digital-land-verification-platform-k8h4/2dNJx54Anif8Nboy3zrVJDz8erQL/api/properties/${propertyId}/status`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',

@@ -225,7 +225,7 @@ document.addEventListener('click', (e) => {
 
 
 // Load User Data into Profile & Dropdown
-const BACKEND_URL = 'https://digital-land-verification-platform-eight.vercel.app/'; 
+const BACKEND_URL = 'https://vercel.com/falak9/digital-land-verification-platform-k8h4/2dNJx54Anif8Nboy3zrVJDz8erQL'; 
 
 async function loadUserProfile() {
   const avatarRing = document.getElementById('profile-avatar-ring');
@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchDashboardMetrics() {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch('https://digital-land-verification-platform-eight.vercel.app//api/properties/metrics', {
+        const res = await fetch('https://vercel.com/falak9/digital-land-verification-platform-k8h4/2dNJx54Anif8Nboy3zrVJDz8erQL/api/properties/metrics', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const tableBody = document.getElementById('properties-table-body');
       try {
         const token = localStorage.getItem('token');
-        let url = `https://digital-land-verification-platform-eight.vercel.app//api/properties?status=${currentFilter}&search=${encodeURIComponent(search)}`;
+        let url = `https://vercel.com/falak9/digital-land-verification-platform-k8h4/2dNJx54Anif8Nboy3zrVJDz8erQL/api/properties?status=${currentFilter}&search=${encodeURIComponent(search)}`;
 
         const response = await fetch(url, {
           headers: { 'Authorization': `Bearer ${token}` }
