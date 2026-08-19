@@ -10,7 +10,7 @@ const propertyRoutes = require('./src/routes/propertyRoutes');
 const authMiddleware = require('./src/middlewares/authMiddleware'); 
 
 // --- Import Models ---
-const PaymentModel = require('./src/models/PaymentModel'); 
+const PaymentModel = require('./src/models/paymentModel'); 
 
 const app = express();
 
