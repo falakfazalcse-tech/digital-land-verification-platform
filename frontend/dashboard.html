@@ -348,7 +348,7 @@ document.addEventListener('click', (e) => {
 
 
 // Load User Data into Profile & Dropdown
-const BACKEND_URL = 'https://digital-land-verification-platform-five.vercel.app'; 
+const BACKEND_URL = 'https://digital-land-verification-platform-eight.vercel.app/'; 
 
 async function loadUserProfile() {
   const avatarRing = document.getElementById('profile-avatar-ring');
@@ -449,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const emptyState = document.getElementById('empty-state');
   const propertyGrid = document.getElementById('property-grid');
 
-const API_BASE_URL = 'https://digital-land-verification-platform-five.vercel.app'; 
+const API_BASE_URL = 'https://digital-land-verification-platform-eight.vercel.app/'; 
 
 async function loadApprovedProperties() {
   try {
@@ -479,7 +479,7 @@ async function loadApprovedProperties() {
 }
 
 function renderPropertyCards(properties) {
-  const BACKEND_URL = 'https://digital-land-verification-platform-five.vercel.app';
+  const BACKEND_URL = 'https://digital-land-verification-platform-eight.vercel.app/';
 
   propertyGrid.innerHTML = properties.map(property => {
     const formattedPrice = new Intl.NumberFormat('en-IN').format(property.price || 0);
