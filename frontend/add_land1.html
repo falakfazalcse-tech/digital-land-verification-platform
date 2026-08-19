@@ -334,7 +334,7 @@ document.addEventListener('click', (e) => {
 
 
 
-const BACKEND_URL = 'https://digital-land-verification-platform-sand.vercel.app/'; 
+const BACKEND_URL = 'https://digital-land-verification-platform-sand.vercel.app'; 
 
 async function loadUserProfile() {
   const avatarRing = document.getElementById('profile-avatar-ring');
@@ -423,7 +423,7 @@ async function loadUserProfile() {
 document.addEventListener('DOMContentLoaded', () => {
   loadUserProfile();
 });
-  const API_BASE = 'https://digital-land-verification-platform-sand.vercel.app//api/properties';
+  const API_BASE = 'https://digital-land-verification-platform-sand.vercel.app/api/properties';
 
   // Sidebar Mobile Controls
   const sidebar = document.getElementById('sidebar');
@@ -520,7 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (err) {
       console.error('API Error:', err);
-      alert('Could not connect to the backend server. Make sure it is running on https://digital-land-verification-platform-sand.vercel.app/.');
+      alert('Could not connect to the backend server. Make sure it is running on https://digital-land-verification-platform-sand.vercel.app.');
       submitBtn.disabled = false;
       btnText.textContent = 'Next Step';
     }
