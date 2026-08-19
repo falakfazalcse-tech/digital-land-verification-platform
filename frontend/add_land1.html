@@ -334,7 +334,7 @@ document.addEventListener('click', (e) => {
 
 
 
-const BACKEND_URL = 'https://vercel.com/falak9/digital-land-verification-platform-k8h4/2dNJx54Anif8Nboy3zrVJDz8erQL'; 
+const BACKEND_URL = 'https://digital-land-verification-platform-eight.vercel.app'; 
 
 async function loadUserProfile() {
   const avatarRing = document.getElementById('profile-avatar-ring');
@@ -423,7 +423,7 @@ async function loadUserProfile() {
 document.addEventListener('DOMContentLoaded', () => {
   loadUserProfile();
 });
-  const API_BASE = 'https://vercel.com/falak9/digital-land-verification-platform-k8h4/2dNJx54Anif8Nboy3zrVJDz8erQL/api/properties';
+  const API_BASE = 'https://digital-land-verification-platform-eight.vercel.app/api/properties';
 
   // Sidebar Mobile Controls
   const sidebar = document.getElementById('sidebar');
@@ -520,7 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (err) {
       console.error('API Error:', err);
-      alert('Could not connect to the backend server. Make sure it is running on https://vercel.com/falak9/digital-land-verification-platform-k8h4/2dNJx54Anif8Nboy3zrVJDz8erQL.');
+      alert('Could not connect to the backend server. Make sure it is running on https://digital-land-verification-platform-eight.vercel.app.');
       submitBtn.disabled = false;
       btnText.textContent = 'Next Step';
     }

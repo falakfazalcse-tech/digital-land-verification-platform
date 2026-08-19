@@ -272,7 +272,7 @@ document.addEventListener('click', (e) => {
 
 
 
-const BACKEND_URL = 'https://vercel.com/falak9/digital-land-verification-platform-k8h4/2dNJx54Anif8Nboy3zrVJDz8erQL'; 
+const BACKEND_URL = 'https://digital-land-verification-platform-eight.vercel.app'; 
 
 async function loadUserProfile() {
   const avatarRing = document.getElementById('profile-avatar-ring');
@@ -480,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nextBtn.innerHTML = `<span>Saving...</span>`;
 
       try {
-        const response = await fetch('https://vercel.com/falak9/digital-land-verification-platform-k8h4/2dNJx54Anif8Nboy3zrVJDz8erQL/api/properties/documents', {
+        const response = await fetch('https://digital-land-verification-platform-eight.vercel.app/api/properties/documents', {
           method: 'POST',
           body: formData
         });
