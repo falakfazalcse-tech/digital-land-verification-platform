@@ -23,6 +23,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'src/uploads')));
 app.use('/uploads', express.static('uploads'));
 
+app.get('/', (req, res) => {
+  res.status(200).json({ success: true, message: 'LandDeal API is running' });
+});
 // Environment & Config Variables
 const PORT = process.env.PORT || 5000;
 const FRONTEND_BASE_URL = process.env.FRONTEND_BASE_URL || 'http://127.0.0.1:5500/frontend';
