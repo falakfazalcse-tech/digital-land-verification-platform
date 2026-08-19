@@ -112,14 +112,14 @@ app.post('/api/v1/sslcommerz/initiate', authMiddleware, async (req, res) => {
   }
 
   const data = {
-    total_amount: processedAmount,
-    currency: 'BDT',
-    tran_id: tran_id,
+  total_amount: 100,
+  currency: 'BDT',
+  tran_id: transactionId,
+  success_url: `${process.env.BASE_URL}/api/v1/payments/success`,
+  fail_url: `${process.env.BASE_URL}/api/v1/payments/fail`,
+  cancel_url: `${process.env.BASE_URL}/api/v1/payments/cancel`,
     
-    success_url: `${BACKEND_BASE_URL}/api/v1/sslcommerz/success?tran_id=${tran_id}&requested_amount=${userRequestedAmount}&user_id=${activeUserId}`,
-    fail_url: `${BACKEND_BASE_URL}/api/v1/sslcommerz/fail?tran_id=${tran_id}`,
-    cancel_url: `${BACKEND_BASE_URL}/api/v1/sslcommerz/cancel?tran_id=${tran_id}`,
-    ipn_url: `${BACKEND_BASE_URL}/api/v1/sslcommerz/ipn`,
+    ipn_url: `${process.env.BASE_URL}/api/v1/sslcommerz/ipn`,
     
     shipping_method: 'NO',
     product_name: '12.5 katha Residential Plot',
