@@ -48,7 +48,7 @@
       </div>
 
       <div class="pt-6 border-t border-gray-100 mt-6 lg:mt-0">
-        <a href="home.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 font-medium rounded-xl text-sm transition-colors">
+        <a href="login.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 font-medium rounded-xl text-sm transition-colors">
           <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
           <span>Logout</span>
         </a>
@@ -427,7 +427,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (imgPath) {
             // Build absolute URL for the image
-            const fullImgUrl = imgPath.startsWith('http') ? imgPath : `${baseUrl}/${imgPath.replace(/^\//, '')}`;
+            const cleanImgPath = imgPath.replace(/^\//, '');
+            const fullImgUrl = imgPath.startsWith('http')
+              ? imgPath
+              : cleanImgPath.includes('uploads/')
+                ? `${baseUrl}/${cleanImgPath}`
+                : `${baseUrl}/uploads/documents/${cleanImgPath}`;
             
             const card = document.createElement('div');
             card.className = 'overflow-hidden rounded-xl h-28 bg-gray-100 border border-gray-200 shadow-xs relative group';
@@ -444,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Render Attached Document Tags
       const docsList = document.getElementById('docs-list');
       docsList.innerHTML = '';
-      const docKeys = ['deed', 'taxReceipt', 'nationalId', 'mutationCert', 'mouzaMap', 'tax_receipt', 'national_id', 'mutation_cert', 'mouza_map'];
+      const docKeys = ['deed_path', 'tax_receipt_path', 'national_id_path', 'mutation_cert_path', 'mouza_map_path'];
       
       let foundDocs = 0;
       docKeys.forEach(key => {
@@ -452,7 +457,8 @@ document.addEventListener('DOMContentLoaded', () => {
           foundDocs++;
           const badge = document.createElement('span');
           badge.className = 'bg-green-50 text-[#0b6b32] font-semibold px-2.5 py-1 rounded-lg border border-green-200/50 flex items-center gap-1';
-          badge.innerHTML = `✓ ${key.replace(/([A-Z])/g, ' $1').replace(/_/g, ' ')}`;
+          const label = key.replace(/_path$/, '').replace(/_/g, ' ');
+          badge.innerHTML = `✓ ${label}`;
           docsList.appendChild(badge);
         }
       });

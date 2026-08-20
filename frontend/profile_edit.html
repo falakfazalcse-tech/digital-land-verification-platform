@@ -112,7 +112,7 @@
 
     // Fetch current profile details to pre-fill inputs
     async function loadCurrentUserData() {
-      const token = localStorage.getItem('token');
+      const token = sessionStorage.getItem('token');
 
 
       if (!token) {
@@ -156,7 +156,7 @@
       e.preventDefault();
 
 
-      const token = localStorage.getItem('token');
+      const token = sessionStorage.getItem('token');
       const saveBtn = document.getElementById('save-btn');
      
       saveBtn.disabled = true;
