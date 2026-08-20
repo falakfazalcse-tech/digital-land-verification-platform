@@ -273,10 +273,10 @@
             if (data.success) {
                 const token = data.token || (data.data && data.data.token);
             if (token) {
-                localStorage.setItem('token', token);
+                sessionStorage.setItem('token', token);
             }
             
-            localStorage.setItem('registeredUser', JSON.stringify(data.data));
+            sessionStorage.setItem('registeredUser', JSON.stringify(data.data));
 
             const userRole = (data.data?.role || values.role).toLowerCase();
             
