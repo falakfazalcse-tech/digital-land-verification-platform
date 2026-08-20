@@ -117,7 +117,7 @@ app.post('/api/v1/sslcommerz/initiate', authMiddleware, async (req, res) => {
   const data = {
   total_amount: 100,
   currency: 'BDT',
-  tran_id: transactionId,
+  tran_id: tran_id,
   success_url: `${process.env.BASE_URL}/api/v1/payments/success`,
   fail_url: `${process.env.BASE_URL}/api/v1/payments/fail`,
   cancel_url: `${process.env.BASE_URL}/api/v1/payments/cancel`,
@@ -220,3 +220,5 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
+
+module.exports = app;

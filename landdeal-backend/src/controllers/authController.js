@@ -2,74 +2,151 @@ const db = require('../config/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+// ...existing code...
+
 exports.register = async (req, res) => {
   try {
-    const { full_name, phone, email, password, confirm_password, role, terms } = req.body;
+    const {
+      full_name,
+      phone,
+      email,
+      password,
+      confirm_password,
+      role,
+      terms
+    } = req.body;
 
-    // Validation
-    if (!full_name || !email || !password || !role) {
-      return res.status(400).json({ success: false, message: 'Required fields missing.' });
+    const normalizedEmail = String(email || '').trim().toLowerCase();
+    const normalizedRole = String(role || '').trim().toLowerCase();
+    const normalizedPhone = String(phone || '').trim() || null;
+
+    if (!full_name || !normalizedEmail || !password || !confirm_password || !normalizedRole) {
+      return res.status(400).json({
+        success: false,
+        message: 'Required fields missing.'
+      });
     }
 
-    if (!terms) {
-      return res.status(400).json({ success: false, message: 'You must accept the Terms & Conditions.' });
+    if (terms !== true && terms !== 'true' && terms !== 1 && terms !== '1') {
+      return res.status(400).json({
+        success: false,
+        message: 'You must accept the Terms & Conditions.'
+      });
     }
 
     if (password !== confirm_password) {
-      return res.status(400).json({ success: false, message: 'Passwords do not match.' });
+      return res.status(400).json({
+        success: false,
+        message: 'Passwords do not match.'
+      });
     }
 
-    // Check duplicate Email or Mobile
+    const allowedRoles = ['buyer', 'seller', 'officer'];
+
+    if (!allowedRoles.includes(normalizedRole)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid user role.'
+      });
+    }
+
     const [existing] = await db.query(
-      'SELECT id FROM users WHERE email = ? OR (phone IS NOT NULL AND phone = ? AND phone != "")', 
-      [email, phone || '']
+      `SELECT id FROM users
+       WHERE LOWER(email) = ?
+       OR (? IS NOT NULL AND phone = ?)
+       LIMIT 1`,
+      [normalizedEmail, normalizedPhone, normalizedPhone]
     );
 
     if (existing.length > 0) {
-      return res.status(400).json({ success: false, message: 'Email or Phone Number already registered.' });
+      return res.status(409).json({
+        success: false,
+        message: 'Email or Phone Number already registered.'
+      });
     }
 
-    // Hash Password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Format Role & Custom ID Prefix
-    const normalizedRole = role.toLowerCase();
-    const rolePrefixes = { buyer: 'BYR', seller: 'SLR', officer: 'OFF' };
-    const prefix = rolePrefixes[normalizedRole] || 'USR';
+    const rolePrefixes = {
+      buyer: 'BYR',
+      seller: 'SLR',
+      officer: 'OFF'
+    };
 
-    const [countResult] = await db.query('SELECT COUNT(*) as total FROM users');
-    const custom_id = `LD-${prefix}-${countResult[0].total + 1001}`;
+    const prefix = rolePrefixes[normalizedRole];
 
-    // Save to Database
-    const [result] = await db.query(
-      'INSERT INTO users (custom_id, full_name, email, phone, password, role) VALUES (?, ?, ?, ?, ?, ?)',
-      [custom_id, full_name, email, phone || null, hashedPassword, normalizedRole]
+    const [countResult] = await db.query(
+      'SELECT COUNT(*) AS total FROM users'
     );
 
-    const token = jwt.sign(
-  { id: result.insertId, custom_id: custom_id, role: normalizedRole },
-  process.env.JWT_SECRET || 'landdeal_secret',
-  { expiresIn: '7d' }
-);
+    const customIdNumber = Number(countResult[0].total) + 1001;
+    const custom_id = `LD-${prefix}-${customIdNumber}`;
 
-    res.status(201).json({
+    const [result] = await db.query(
+      `INSERT INTO users
+       (custom_id, full_name, email, phone, password, role)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [
+        custom_id,
+        String(full_name).trim(),
+        normalizedEmail,
+        normalizedPhone,
+        hashedPassword,
+        normalizedRole
+      ]
+    );
+
+    const secret = process.env.JWT_SECRET;
+
+    if (!secret) {
+      throw new Error('JWT_SECRET is not configured in the deployment environment.');
+    }
+
+    const token = jwt.sign(
+      {
+        id: result.insertId,
+        custom_id,
+        role: normalizedRole
+      },
+      secret,
+      { expiresIn: '7d' }
+    );
+
+    return res.status(201).json({
       success: true,
-      token: token,
+      token,
       message: 'Account created successfully!',
       data: {
         userId: custom_id,
         id: result.insertId,
-        full_name,
-        email,
+        full_name: String(full_name).trim(),
+        email: normalizedEmail,
         role: normalizedRole
       }
     });
   } catch (error) {
-    console.error('Registration Error:', error);
-    res.status(500).json({ success: false, message: 'Server error during registration.' });
+    console.error('Registration Error:', {
+      message: error.message,
+      code: error.code,
+      sqlState: error.sqlState,
+      stack: error.stack
+    });
+
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({
+        success: false,
+        message: 'Email, phone, or user ID already exists.'
+      });
+    }
+
+    return res.status(500).json({
+      success: false,
+      message: 'Server error during registration.'
+    });
   }
 };
+
+// ...existing code...
 
 // ------------------- LOGIN -------------------
 exports.login = async (req, res) => {
