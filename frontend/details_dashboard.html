@@ -55,7 +55,7 @@
       </div>
 
       <div class="pt-6 border-t border-gray-100 mt-6 lg:mt-0">
-        <a href="home.html" id="logoutBtn" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
+        <a href="index.html" id="logoutBtn" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
           <i data-lucide="log-out" class="w-5 h-5"></i> Logout
         </a>
       </div>
@@ -248,7 +248,6 @@
         return;
       }
 
-      // Automatically attach Property ID to Payment button link
       const payBtnLink = document.getElementById('pay-btn-link');
       if (payBtnLink) {
         payBtnLink.href = `payment3.html?property_id=${propertyId}`;

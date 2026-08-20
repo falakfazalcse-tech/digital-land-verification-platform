@@ -99,7 +99,6 @@
               </svg>
             </button>
 
-  <!-- Profile Button -->
 
 <div class="relative" id="profile-dropdown-container">
   <button 
@@ -263,7 +262,6 @@ async function loadUserProfile() {
       if (result.success) {
         user = result.user || result.data;
         if (user) {
-          // API থেকে পাওয়ার পর sessionStorage-এ সেভ করা হচ্ছে
           sessionStorage.setItem('user', JSON.stringify(user));
         }
       }
