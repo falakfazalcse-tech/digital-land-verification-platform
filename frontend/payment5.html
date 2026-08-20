@@ -114,9 +114,17 @@
 
   document.addEventListener("DOMContentLoaded", async () => {
     const tbody = document.getElementById("history-table-body");
+    const token = sessionStorage.getItem('token') || localStorage.getItem('token');
+
+    if (!token) {
+      tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-red-500 font-medium">Please log in to view your transaction history.</td></tr>`;
+      return;
+    }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1/payments`);
+      const response = await fetch(`${API_BASE_URL}/api/v1/payments/mine`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
       if (!response.ok) {
         throw new Error(`Server status ${response.status}`);
       }

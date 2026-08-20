@@ -82,6 +82,20 @@ app.get('/api/v1/payments/user/:userId', async (req, res) => {
   }
 });
 
+app.get('/api/v1/payments/mine', authMiddleware, async (req, res) => {
+  try {
+    const activeUserId = req.user?.id || req.user?.userId || req.user?.user_id;
+    if (!activeUserId) {
+      return res.status(401).json({ status: 'error', message: 'Invalid User Authentication' });
+    }
+    const rows = await PaymentModel.getPaymentsByUserId(activeUserId);
+    return res.json({ status: 'success', data: rows });
+  } catch (err) {
+    console.error('Database query error:', err);
+    return res.status(500).json({ status: 'error', message: 'Failed to fetch payment history' });
+  }
+});
+
 // SSLCommerz Payment Initiation (PROTECTED ROUTE)
 app.post('/api/v1/sslcommerz/initiate', authMiddleware, async (req, res) => {
   const tran_id = 'TXN_' + Date.now();
