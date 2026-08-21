@@ -27,8 +27,8 @@ app.get('/', (req, res) => {
   res.status(200).json({ success: true, message: 'LandDeal API is running' });
 });
 // Environment & Config Variables
-const PORT = process.env.PORT || 5000;
-const FRONTEND_BASE_URL = process.env.FRONTEND_BASE_URL || 'http://127.0.0.1:5500/frontend';
+const PORT = process.env.PORT || 24402;
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://127.0.0.1:5500/frontend';
 const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL || `http://localhost:${PORT}`;
 
 const STORE_ID = process.env.SSL_STORE_ID;
@@ -192,7 +192,7 @@ app.post('/api/v1/sslcommerz/success', async (req, res) => {
     console.error('[DB EXCEPTION]:', err.message);
   }
 
-  return res.redirect(`${FRONTEND_BASE_URL}/payment4.html?transaction_id=${finalTranId}&payment_method=${encodeURIComponent(finalMethod)}&amount=${finalAmount}`);
+  return res.redirect(`${FRONTEND_URL}/payment4.html?transaction_id=${finalTranId}&payment_method=${encodeURIComponent(finalMethod)}&amount=${finalAmount}`);
 });
 
 // SSLCommerz Fail Callback
@@ -205,7 +205,7 @@ app.post('/api/v1/sslcommerz/fail', async (req, res) => {
       console.error('[DB FAIL UPDATE ERROR]:', err.message);
     }
   }
-  res.redirect(`${FRONTEND_BASE_URL}/payment1.html?error=payment_failed`);
+  res.redirect(`${FRONTEND_URL}/payment1.html?error=payment_failed`);
 });
 
 // SSLCommerz Cancel Callback
@@ -218,7 +218,7 @@ app.post('/api/v1/sslcommerz/cancel', async (req, res) => {
       console.error('[DB CANCEL UPDATE ERROR]:', err.message);
     }
   }
-  res.redirect(`${FRONTEND_BASE_URL}/payment1.html?error=payment_cancelled`);
+  res.redirect(`${FRONTEND_URL}/payment1.html?error=payment_cancelled`);
 });
 
 // Centralized Error Handlers
