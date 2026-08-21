@@ -129,13 +129,13 @@ app.post('/api/v1/sslcommerz/initiate', authMiddleware, async (req, res) => {
   }
 
   const data = {
-  total_amount: 100,
+  total_amount: processedAmount,
   currency: 'BDT',
   tran_id: tran_id,
-  success_url: `${process.env.BASE_URL}/api/v1/payments/success`,
-  fail_url: `${process.env.BASE_URL}/api/v1/payments/fail`,
-  cancel_url: `${process.env.BASE_URL}/api/v1/payments/cancel`,
-    
+  success_url: `${process.env.BASE_URL}/api/v1/sslcommerz/success?tran_id=${tran_id}&requested_amount=${processedAmount}&user_id=${activeUserId}`,
+  fail_url: `${process.env.BASE_URL}/api/v1/sslcommerz/fail?tran_id=${tran_id}`,
+  cancel_url: `${process.env.BASE_URL}/api/v1/sslcommerz/cancel?tran_id=${tran_id}`,
+
     ipn_url: `${process.env.BASE_URL}/api/v1/sslcommerz/ipn`,
     
     shipping_method: 'NO',
