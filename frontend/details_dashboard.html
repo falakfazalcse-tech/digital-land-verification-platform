@@ -39,11 +39,13 @@
           <a href="properties.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="home" class="w-5 h-5"></i> My Properties
           </a>
-          <a href="add_land.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="add_land1.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="plus" class="w-5 h-5"></i> Add Land
           </a>
-         
-          <a href="payment.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+          <a href="message_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
+            <i data-lucide="mail" class="w-5 h-5"></i> Messages
+          </a>
+          <a href="payment5.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="receipt" class="w-5 h-5"></i> Transactions
           </a>
           <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
@@ -53,7 +55,7 @@
       </div>
 
       <div class="pt-6 border-t border-gray-100 mt-6 lg:mt-0">
-        <a href="index.html" id="logoutBtn" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
+        <a href="login.html" id="logoutBtn" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-xl text-sm font-medium transition-colors">
           <i data-lucide="log-out" class="w-5 h-5"></i> Logout
         </a>
       </div>
@@ -94,7 +96,10 @@
                 <img id="main-img" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80" alt="Main Plot Image" class="w-full h-80 md:h-[340px] object-cover rounded-xl shadow-sm" />
               </div>
               <div class="flex flex-col gap-3">
-               </div>
+                <img id="sub-img-1" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" alt="Plot Image 2" class="w-full h-24 md:h-[104px] object-cover rounded-xl shadow-sm" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80'" />
+                <img id="sub-img-2" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" alt="Plot Image 3" class="w-full h-24 md:h-[104px] object-cover rounded-xl shadow-sm" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80'" />
+                <img id="sub-img-3" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" alt="Plot Image 4" class="w-full h-24 md:h-[104px] object-cover rounded-xl shadow-sm" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80'" />
+              </div>
             </div>
 
             <div>
@@ -256,7 +261,7 @@
 
     async function fetchPropertyDetails(id) {
       try {
-        const token = sessionStorage.getItem('token');
+        const token = sessionStorage.getItem('token') || localStorage.getItem('token');
         const res = await fetch(`${API_BASE}/api/properties/${id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -377,12 +382,14 @@
       const mainImgElem = document.getElementById('main-img');
       if (mainImgElem) {
         mainImgElem.src = images.length > 0 ? getImageUrl(images[0]) : defaultImg;
+        mainImgElem.onerror = function() { this.onerror = null; this.src = defaultImg; };
       }
 
       for (let i = 1; i <= 3; i++) {
         const subImgElem = document.getElementById(`sub-img-${i}`);
         if (subImgElem) {
           subImgElem.src = images[i] ? getImageUrl(images[i]) : defaultImg;
+          subImgElem.onerror = function() { this.onerror = null; this.src = defaultImg; };
         }
       }
     }
