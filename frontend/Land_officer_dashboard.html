@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchDashboardMetrics() {
       try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const res = await fetch('https://digital-land-verification-platform.onrender.com/api/properties/metrics', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchProperties(search = '') {
       const tableBody = document.getElementById('properties-table-body');
       try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         let url = `https://digital-land-verification-platform.onrender.com/api/properties?status=${currentFilter}&search=${encodeURIComponent(search)}`;
 
         const response = await fetch(url, {
@@ -410,8 +410,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function logout() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('registeredUser');
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('registeredUser');
       window.location.href = 'login.html';
     }
   </script>

@@ -42,9 +42,7 @@
           <a href="add_land.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="plus" class="w-5 h-5"></i> Add Land
           </a>
-          <a href="message_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
-            <i data-lucide="mail" class="w-5 h-5"></i> Messages
-          </a>
+         
           <a href="payment.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl text-sm font-medium transition-colors">
             <i data-lucide="receipt" class="w-5 h-5"></i> Transactions
           </a>
@@ -258,7 +256,7 @@
 
     async function fetchPropertyDetails(id) {
       try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const res = await fetch(`${API_BASE}/api/properties/${id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
