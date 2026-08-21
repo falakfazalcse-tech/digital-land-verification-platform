@@ -82,6 +82,8 @@ app.get('/api/v1/payments/user/:userId', async (req, res) => {
   }
 });
 
+// Secure "my payments" endpoint - user ID comes from the verified JWT, not a client-supplied param,
+// so one logged-in user can never view another user's transaction history by editing a URL.
 app.get('/api/v1/payments/mine', authMiddleware, async (req, res) => {
   try {
     const activeUserId = req.user?.id || req.user?.userId || req.user?.user_id;
@@ -132,9 +134,9 @@ app.post('/api/v1/sslcommerz/initiate', authMiddleware, async (req, res) => {
   total_amount: 100,
   currency: 'BDT',
   tran_id: tran_id,
-  success_url: `${process.env.BASE_URL}/api/v1/payments/success`,
-  fail_url: `${process.env.BASE_URL}/api/v1/payments/fail`,
-  cancel_url: `${process.env.BASE_URL}/api/v1/payments/cancel`,
+  success_url: `${process.env.BASE_URL}/api/v1/sslcommerz/success`,
+  fail_url: `${process.env.BASE_URL}/api/v1/sslcommerz/fail`,
+  cancel_url: `${process.env.BASE_URL}/api/v1/sslcommerz/cancel`,
     
     ipn_url: `${process.env.BASE_URL}/api/v1/sslcommerz/ipn`,
     
@@ -219,6 +221,30 @@ app.post('/api/v1/sslcommerz/cancel', async (req, res) => {
     }
   }
   res.redirect(`${FRONTEND_BASE_URL}/payment1.html?error=payment_cancelled`);
+});
+
+// SSLCommerz IPN (Instant Payment Notification) - server-to-server confirmation,
+// separate from the browser-facing success_url redirect above.
+app.post('/api/v1/sslcommerz/ipn', async (req, res) => {
+  const { tran_id, val_id, status, card_type, amount, value_b } = req.body;
+
+  if (!tran_id) {
+    return res.status(400).json({ success: false, message: 'Missing tran_id' });
+  }
+
+  try {
+    if (status === 'VALID' || status === 'VALIDATED') {
+      let finalUserId = Number(value_b);
+      if (!value_b || isNaN(finalUserId) || finalUserId <= 0) finalUserId = 1;
+      await savePaymentToDB(tran_id, card_type || 'BKASH', Number(amount) || 0, 'completed', val_id, finalUserId);
+    } else {
+      await PaymentModel.updatePaymentStatus(tran_id, 'failed');
+    }
+    return res.status(200).json({ success: true });
+  } catch (err) {
+    console.error('[IPN ERROR]:', err.message);
+    return res.status(500).json({ success: false, message: 'IPN processing failed' });
+  }
 });
 
 // Centralized Error Handlers
